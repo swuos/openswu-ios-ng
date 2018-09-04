@@ -12,9 +12,11 @@
 		4B4B04DA213ECC67008FA20D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B4B04D9213ECC67008FA20D /* Assets.xcassets */; };
 		4B4B04DD213ECC67008FA20D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B4B04DB213ECC67008FA20D /* LaunchScreen.storyboard */; };
 		4B4B04E0213ECC67008FA20D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B04DF213ECC67008FA20D /* main.m */; };
+		DC09C91A2C60A4222D2326BA /* libPods-OpenSwuNG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 055E4E42096CDE36E1746EE7 /* libPods-OpenSwuNG.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		055E4E42096CDE36E1746EE7 /* libPods-OpenSwuNG.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpenSwuNG.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4B04CD213ECC66008FA20D /* OpenSwuNG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenSwuNG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4B04D0213ECC66008FA20D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4B4B04D1213ECC66008FA20D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -24,6 +26,8 @@
 		4B4B04DC213ECC67008FA20D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B4B04DE213ECC67008FA20D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B4B04DF213ECC67008FA20D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CD0B42B6BB2805C5D6295880 /* Pods-OpenSwuNG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenSwuNG.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenSwuNG/Pods-OpenSwuNG.debug.xcconfig"; sourceTree = "<group>"; };
+		F8B7907FCE06F2DC1CECC24F /* Pods-OpenSwuNG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenSwuNG.release.xcconfig"; path = "Pods/Target Support Files/Pods-OpenSwuNG/Pods-OpenSwuNG.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC09C91A2C60A4222D2326BA /* libPods-OpenSwuNG.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		28EF1B5D3E93E805818CEC18 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CD0B42B6BB2805C5D6295880 /* Pods-OpenSwuNG.debug.xcconfig */,
+				F8B7907FCE06F2DC1CECC24F /* Pods-OpenSwuNG.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		4B4B04C4213ECC66008FA20D = {
 			isa = PBXGroup;
 			children = (
 				4B4B04CF213ECC66008FA20D /* OpenSwuNG */,
 				4B4B04CE213ECC66008FA20D /* Products */,
+				28EF1B5D3E93E805818CEC18 /* Pods */,
+				8A1F23BCE7A3E2F4677BF21D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,6 +84,14 @@
 			path = OpenSwuNG;
 			sourceTree = "<group>";
 		};
+		8A1F23BCE7A3E2F4677BF21D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				055E4E42096CDE36E1746EE7 /* libPods-OpenSwuNG.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -75,6 +99,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4B4B04E3213ECC67008FA20D /* Build configuration list for PBXNativeTarget "OpenSwuNG" */;
 			buildPhases = (
+				8F4FA79A4A75D3462CCC925E /* [CP] Check Pods Manifest.lock */,
 				4B4B04C9213ECC66008FA20D /* Sources */,
 				4B4B04CA213ECC66008FA20D /* Frameworks */,
 				4B4B04CB213ECC66008FA20D /* Resources */,
@@ -130,6 +155,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8F4FA79A4A75D3462CCC925E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OpenSwuNG-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4B4B04C9213ECC66008FA20D /* Sources */ = {
@@ -268,6 +314,7 @@
 		};
 		4B4B04E4213ECC67008FA20D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD0B42B6BB2805C5D6295880 /* Pods-OpenSwuNG.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -284,6 +331,7 @@
 		};
 		4B4B04E5213ECC67008FA20D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8B7907FCE06F2DC1CECC24F /* Pods-OpenSwuNG.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
