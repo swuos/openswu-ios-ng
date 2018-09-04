@@ -51,6 +51,27 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		4B3A835F213ED342002C2C15 /* AccountManage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AccountManage;
+			sourceTree = "<group>";
+		};
+		4B3A8360213ED34E002C2C15 /* Grades */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Grades;
+			sourceTree = "<group>";
+		};
+		4B3A8361213ED35D002C2C15 /* Schedules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Schedules;
+			sourceTree = "<group>";
+		};
 		4B4B04C4213ECC66008FA20D = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +93,9 @@
 		4B4B04CF213ECC66008FA20D /* OpenSwuNG */ = {
 			isa = PBXGroup;
 			children = (
+				4B3A8360213ED34E002C2C15 /* Grades */,
+				4B3A835F213ED342002C2C15 /* AccountManage */,
+				4B3A8361213ED35D002C2C15 /* Schedules */,
 				4B4B04D0213ECC66008FA20D /* AppDelegate.h */,
 				4B4B04D1213ECC66008FA20D /* AppDelegate.m */,
 				4B4B04D3213ECC66008FA20D /* ViewController.h */,
