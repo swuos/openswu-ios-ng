@@ -6,7 +6,9 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+#import "SWUTabBarController.h"
+
+
 @interface AppDelegate ()
 
 @end
@@ -15,9 +17,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    ViewController *vc = [[ViewController alloc] init];
-    self.window = [[UIWindow alloc] init];
-    [self.window setRootViewController:vc];
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    SWUTabBarController * tabBarVc = [[SWUTabBarController alloc] init];
+    [self.window setRootViewController:tabBarVc];
     [self.window makeKeyAndVisible];
     return YES;
 }

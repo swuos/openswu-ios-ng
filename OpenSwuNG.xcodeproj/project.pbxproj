@@ -7,25 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4B4B04D2213ECC66008FA20D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B04D1213ECC66008FA20D /* AppDelegate.m */; };
-		4B4B04D5213ECC66008FA20D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B04D4213ECC66008FA20D /* ViewController.m */; };
 		4B4B04DA213ECC67008FA20D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B4B04D9213ECC67008FA20D /* Assets.xcassets */; };
 		4B4B04DD213ECC67008FA20D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B4B04DB213ECC67008FA20D /* LaunchScreen.storyboard */; };
-		4B4B04E0213ECC67008FA20D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B4B04DF213ECC67008FA20D /* main.m */; };
+		BF75E8CE2218F59B005244C5 /* SWUTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF75E8B52218F59B005244C5 /* SWUTabBarController.m */; };
+		BF75E8CF2218F59B005244C5 /* SWUMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF75E8BB2218F59B005244C5 /* SWUMainViewController.m */; };
+		BF75E8D02218F59B005244C5 /* SWUMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF75E8C12218F59B005244C5 /* SWUMineViewController.m */; };
+		BF75E8D12218F59B005244C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF75E8C62218F59B005244C5 /* AppDelegate.m */; };
+		BF75E8D22218F59B005244C5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF75E8C72218F59B005244C5 /* main.m */; };
+		BF75E8D32218F59B005244C5 /* SWUScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF75E8CB2218F59B005244C5 /* SWUScheduleViewController.m */; };
 		DC09C91A2C60A4222D2326BA /* libPods-OpenSwuNG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 055E4E42096CDE36E1746EE7 /* libPods-OpenSwuNG.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		055E4E42096CDE36E1746EE7 /* libPods-OpenSwuNG.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpenSwuNG.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4B04CD213ECC66008FA20D /* OpenSwuNG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenSwuNG.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4B4B04D0213ECC66008FA20D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		4B4B04D1213ECC66008FA20D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4B4B04D3213ECC66008FA20D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4B4B04D4213ECC66008FA20D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		4B4B04D9213ECC67008FA20D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B4B04DC213ECC67008FA20D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B4B04DE213ECC67008FA20D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4B4B04DF213ECC67008FA20D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BF75E8B42218F59B005244C5 /* SWUTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUTabBarController.h; sourceTree = "<group>"; };
+		BF75E8B52218F59B005244C5 /* SWUTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUTabBarController.m; sourceTree = "<group>"; };
+		BF75E8BA2218F59B005244C5 /* SWUMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUMainViewController.h; sourceTree = "<group>"; };
+		BF75E8BB2218F59B005244C5 /* SWUMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUMainViewController.m; sourceTree = "<group>"; };
+		BF75E8C02218F59B005244C5 /* SWUMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUMineViewController.h; sourceTree = "<group>"; };
+		BF75E8C12218F59B005244C5 /* SWUMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUMineViewController.m; sourceTree = "<group>"; };
+		BF75E8C52218F59B005244C5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BF75E8C62218F59B005244C5 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BF75E8C72218F59B005244C5 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BF75E8CA2218F59B005244C5 /* SWUScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUScheduleViewController.h; sourceTree = "<group>"; };
+		BF75E8CB2218F59B005244C5 /* SWUScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUScheduleViewController.m; sourceTree = "<group>"; };
 		CD0B42B6BB2805C5D6295880 /* Pods-OpenSwuNG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenSwuNG.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenSwuNG/Pods-OpenSwuNG.debug.xcconfig"; sourceTree = "<group>"; };
 		F8B7907FCE06F2DC1CECC24F /* Pods-OpenSwuNG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenSwuNG.release.xcconfig"; path = "Pods/Target Support Files/Pods-OpenSwuNG/Pods-OpenSwuNG.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -51,27 +60,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		4B3A835F213ED342002C2C15 /* AccountManage */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AccountManage;
-			sourceTree = "<group>";
-		};
-		4B3A8360213ED34E002C2C15 /* Grades */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Grades;
-			sourceTree = "<group>";
-		};
-		4B3A8361213ED35D002C2C15 /* Schedules */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Schedules;
-			sourceTree = "<group>";
-		};
 		4B4B04C4213ECC66008FA20D = {
 			isa = PBXGroup;
 			children = (
@@ -93,17 +81,10 @@
 		4B4B04CF213ECC66008FA20D /* OpenSwuNG */ = {
 			isa = PBXGroup;
 			children = (
-				4B3A8360213ED34E002C2C15 /* Grades */,
-				4B3A835F213ED342002C2C15 /* AccountManage */,
-				4B3A8361213ED35D002C2C15 /* Schedules */,
-				4B4B04D0213ECC66008FA20D /* AppDelegate.h */,
-				4B4B04D1213ECC66008FA20D /* AppDelegate.m */,
-				4B4B04D3213ECC66008FA20D /* ViewController.h */,
-				4B4B04D4213ECC66008FA20D /* ViewController.m */,
+				BF75E8B12218F59B005244C5 /* Classes */,
 				4B4B04D9213ECC67008FA20D /* Assets.xcassets */,
 				4B4B04DB213ECC67008FA20D /* LaunchScreen.storyboard */,
 				4B4B04DE213ECC67008FA20D /* Info.plist */,
-				4B4B04DF213ECC67008FA20D /* main.m */,
 			);
 			path = OpenSwuNG;
 			sourceTree = "<group>";
@@ -114,6 +95,160 @@
 				055E4E42096CDE36E1746EE7 /* libPods-OpenSwuNG.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BF75E8B12218F59B005244C5 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				BF75E8B22218F59B005244C5 /* Main(主要) */,
+				BF75E8B82218F59B005244C5 /* Main(主页) */,
+				BF75E8BE2218F59B005244C5 /* Me(我的) */,
+				BF75E8C42218F59B005244C5 /* Other */,
+				BF75E8C82218F59B005244C5 /* Schedule(课程表) */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		BF75E8B22218F59B005244C5 /* Main(主要) */ = {
+			isa = PBXGroup;
+			children = (
+				BF75E8B32218F59B005244C5 /* Controller */,
+				BF75E8B62218F59B005244C5 /* Model */,
+				BF75E8B72218F59B005244C5 /* View */,
+			);
+			path = "Main(主要)";
+			sourceTree = "<group>";
+		};
+		BF75E8B32218F59B005244C5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BF75E8B42218F59B005244C5 /* SWUTabBarController.h */,
+				BF75E8B52218F59B005244C5 /* SWUTabBarController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BF75E8B62218F59B005244C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BF75E8B72218F59B005244C5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BF75E8B82218F59B005244C5 /* Main(主页) */ = {
+			isa = PBXGroup;
+			children = (
+				BF75E8B92218F59B005244C5 /* Controller */,
+				BF75E8BC2218F59B005244C5 /* Model */,
+				BF75E8BD2218F59B005244C5 /* View */,
+			);
+			path = "Main(主页)";
+			sourceTree = "<group>";
+		};
+		BF75E8B92218F59B005244C5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BF75E8BA2218F59B005244C5 /* SWUMainViewController.h */,
+				BF75E8BB2218F59B005244C5 /* SWUMainViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BF75E8BC2218F59B005244C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BF75E8BD2218F59B005244C5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BF75E8BE2218F59B005244C5 /* Me(我的) */ = {
+			isa = PBXGroup;
+			children = (
+				BF75E8BF2218F59B005244C5 /* Controller */,
+				BF75E8C22218F59B005244C5 /* Model */,
+				BF75E8C32218F59B005244C5 /* View */,
+			);
+			path = "Me(我的)";
+			sourceTree = "<group>";
+		};
+		BF75E8BF2218F59B005244C5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BF75E8C02218F59B005244C5 /* SWUMineViewController.h */,
+				BF75E8C12218F59B005244C5 /* SWUMineViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BF75E8C22218F59B005244C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BF75E8C32218F59B005244C5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BF75E8C42218F59B005244C5 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				BF75E8C52218F59B005244C5 /* AppDelegate.h */,
+				BF75E8C62218F59B005244C5 /* AppDelegate.m */,
+				BF75E8C72218F59B005244C5 /* main.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		BF75E8C82218F59B005244C5 /* Schedule(课程表) */ = {
+			isa = PBXGroup;
+			children = (
+				BF75E8C92218F59B005244C5 /* Controller */,
+				BF75E8CC2218F59B005244C5 /* Model */,
+				BF75E8CD2218F59B005244C5 /* View */,
+			);
+			path = "Schedule(课程表)";
+			sourceTree = "<group>";
+		};
+		BF75E8C92218F59B005244C5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BF75E8CA2218F59B005244C5 /* SWUScheduleViewController.h */,
+				BF75E8CB2218F59B005244C5 /* SWUScheduleViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BF75E8CC2218F59B005244C5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BF75E8CD2218F59B005244C5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,9 +341,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B4B04D5213ECC66008FA20D /* ViewController.m in Sources */,
-				4B4B04E0213ECC67008FA20D /* main.m in Sources */,
-				4B4B04D2213ECC66008FA20D /* AppDelegate.m in Sources */,
+				BF75E8D22218F59B005244C5 /* main.m in Sources */,
+				BF75E8D12218F59B005244C5 /* AppDelegate.m in Sources */,
+				BF75E8CE2218F59B005244C5 /* SWUTabBarController.m in Sources */,
+				BF75E8D02218F59B005244C5 /* SWUMineViewController.m in Sources */,
+				BF75E8CF2218F59B005244C5 /* SWUMainViewController.m in Sources */,
+				BF75E8D32218F59B005244C5 /* SWUScheduleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
