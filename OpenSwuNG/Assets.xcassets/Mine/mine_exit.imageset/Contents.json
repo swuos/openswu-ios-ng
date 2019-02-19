@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "tabBar_schedule_icon.png",
+      "filename" : "mine_exit.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "tabBar_schedule_icon@2x.png",
+      "filename" : "mine_exit@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "tabBar_schedule_icon@3x.png",
+      "filename" : "mine_exit@3x.png",
       "scale" : "3x"
     }
   ],
