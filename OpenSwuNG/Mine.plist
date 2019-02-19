@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>content</key>
+		<string>校园卡解除绑定</string>
+		<key>count</key>
+		<string>2</string>
+		<key>icon</key>
+		<string>mine_card</string>
+		<key>information</key>
+		<string>解除绑定后的部分功能将不能使用!</string>
+	</dict>
+	<dict>
+		<key>content</key>
+		<string>清除缓存</string>
+		<key>count</key>
+		<string>2</string>
+		<key>icon</key>
+		<string>mine_clean</string>
+		<key>information</key>
+		<string>清除缓存后部分数据需要重新加载!</string>
+	</dict>
+	<dict>
+		<key>content</key>
+		<string>反馈</string>
+		<key>count</key>
+		<string>1</string>
+		<key>icon</key>
+		<string>mine_feedback</string>
+		<key>information</key>
+		<string>暂不支持APP内反馈反馈邮箱:210555980@qq.com!</string>
+	</dict>
+	<dict>
+		<key>content</key>
+		<string>关于</string>
+		<key>count</key>
+		<string>1</string>
+		<key>icon</key>
+		<string>mine_about</string>
+		<key>information</key>
+		<string>发现新版本,请升级!</string>
+	</dict>
+	<dict>
+		<key>content</key>
+		<string>退出</string>
+		<key>count</key>
+		<string>2</string>
+		<key>icon</key>
+		<string>mine_about</string>
+		<key>information</key>
+		<string>确定要退出登录吗?</string>
+	</dict>
+</array>
+</plist>
