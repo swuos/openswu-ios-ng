@@ -11,6 +11,7 @@
 #import "MJExtension.h"
 #import "SWUMineModel.h"
 #import "SWUAboutViewController.h"
+#import "BindingViewController.h"
 
 
 
@@ -31,29 +32,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-//    self.tableView.sectionHeaderHeight = 100;
-
+    //    self.tableView.sectionHeaderHeight = 100;
+    
     //    清除多余的cell
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     self.tableView.separatorColor = [UIColor lightGrayColor];
     self.tableView.separatorInset = UIEdgeInsetsMake(7, 15, 7, 15);
-
     
 }
 
-
-
-
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    self.tabBarController.tabBar.hidden = NO;
     self.navigationController.navigationBarHidden = YES;
 }
-
--(void)viewWillDisappear:(BOOL)animated {
-//    self.tabBarController.tabBar.hidden = YES;
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -104,6 +95,7 @@
     }else{
         SWUAboutViewController * aboutVc = [[SWUAboutViewController alloc] init];
         [self.navigationController pushViewController:aboutVc animated:YES];
+        
     }
 }
 

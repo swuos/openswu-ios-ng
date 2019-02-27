@@ -18,7 +18,6 @@
 		BF75E8D02218F59B005244C5 /* SWUMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF75E8C12218F59B005244C5 /* SWUMineViewController.m */; };
 		BF75E8D12218F59B005244C5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF75E8C62218F59B005244C5 /* AppDelegate.m */; };
 		BF75E8D22218F59B005244C5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF75E8C72218F59B005244C5 /* main.m */; };
-		BF75E8D32218F59B005244C5 /* SWUScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF75E8CB2218F59B005244C5 /* SWUScheduleViewController.m */; };
 		BF7E68B4221BE1480032422F /* SWUHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7E68B2221BE1470032422F /* SWUHeaderView.m */; };
 		BF7E68B7221BEB4B0032422F /* SWUMineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7E68B6221BEB4B0032422F /* SWUMineTableViewCell.m */; };
 		BF7E6913221C19D80032422F /* SWUMineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7E6912221C19D80032422F /* SWUMineModel.m */; };
@@ -26,6 +25,17 @@
 		BF7E691E221CF8010032422F /* SWUAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7E691D221CF8010032422F /* SWUAboutViewController.m */; };
 		BF7E6921221D320C0032422F /* SWUAboutHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7E6920221D320C0032422F /* SWUAboutHeaderView.m */; };
 		BF7E6947221D3C730032422F /* SWUNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7E6946221D3C730032422F /* SWUNavigationController.m */; };
+		BFA4BD8D22229868006F674E /* BindingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BD8C22229868006F674E /* BindingViewController.m */; };
+		BFA4BE3B22255E06006F674E /* SWUScrollview.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BE3A22255E06006F674E /* SWUScrollview.m */; };
+		BFA4BE3E22255EE1006F674E /* SWULabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BE3D22255EE1006F674E /* SWULabel.m */; };
+		BFA4BE4122255FDF006F674E /* SWUCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BE4022255FDF006F674E /* SWUCollectionViewCell.m */; };
+		BFA4BE4822256264006F674E /* course.plist in Resources */ = {isa = PBXBuildFile; fileRef = BFA4BE4222256263006F674E /* course.plist */; };
+		BFA4BE4922256264006F674E /* Data.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BE4522256264006F674E /* Data.m */; };
+		BFA4BE4A22256264006F674E /* Weekitem.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BE4722256264006F674E /* Weekitem.m */; };
+		BFA4BE7622262F66006F674E /* SWUAlertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BE7522262F66006F674E /* SWUAlertViewController.m */; };
+		BFA4BE7922267E21006F674E /* SWUNavTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BE7822267E21006F674E /* SWUNavTitleView.m */; };
+		BFA4BE7C222697DD006F674E /* SWUScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BE7B222697DD006F674E /* SWUScheduleViewController.m */; };
+		BFA4BE7F2226A3C5006F674E /* SWUWeekSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BE7E2226A3C5006F674E /* SWUWeekSelectView.m */; };
 		BFD47F6F22222435000AED18 /* UIBarButtonItem+Item.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD47F6D22222435000AED18 /* UIBarButtonItem+Item.m */; };
 		DC09C91A2C60A4222D2326BA /* libPods-OpenSwuNG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 055E4E42096CDE36E1746EE7 /* libPods-OpenSwuNG.a */; };
 /* End PBXBuildFile section */
@@ -52,8 +62,6 @@
 		BF75E8C52218F59B005244C5 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BF75E8C62218F59B005244C5 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BF75E8C72218F59B005244C5 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		BF75E8CA2218F59B005244C5 /* SWUScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUScheduleViewController.h; sourceTree = "<group>"; };
-		BF75E8CB2218F59B005244C5 /* SWUScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUScheduleViewController.m; sourceTree = "<group>"; };
 		BF7E68B2221BE1470032422F /* SWUHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUHeaderView.m; sourceTree = "<group>"; };
 		BF7E68B3221BE1480032422F /* SWUHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUHeaderView.h; sourceTree = "<group>"; };
 		BF7E68B5221BEB4B0032422F /* SWUMineTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUMineTableViewCell.h; sourceTree = "<group>"; };
@@ -67,6 +75,28 @@
 		BF7E6920221D320C0032422F /* SWUAboutHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUAboutHeaderView.m; sourceTree = "<group>"; };
 		BF7E6945221D3C730032422F /* SWUNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUNavigationController.h; sourceTree = "<group>"; };
 		BF7E6946221D3C730032422F /* SWUNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUNavigationController.m; sourceTree = "<group>"; };
+		BFA4BD8B22229868006F674E /* BindingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BindingViewController.h; sourceTree = "<group>"; };
+		BFA4BD8C22229868006F674E /* BindingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BindingViewController.m; sourceTree = "<group>"; };
+		BFA4BE3922255E06006F674E /* SWUScrollview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUScrollview.h; sourceTree = "<group>"; };
+		BFA4BE3A22255E06006F674E /* SWUScrollview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUScrollview.m; sourceTree = "<group>"; };
+		BFA4BE3C22255EE1006F674E /* SWULabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWULabel.h; sourceTree = "<group>"; };
+		BFA4BE3D22255EE1006F674E /* SWULabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWULabel.m; sourceTree = "<group>"; };
+		BFA4BE3F22255FDF006F674E /* SWUCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUCollectionViewCell.h; sourceTree = "<group>"; };
+		BFA4BE4022255FDF006F674E /* SWUCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUCollectionViewCell.m; sourceTree = "<group>"; };
+		BFA4BE4222256263006F674E /* course.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = course.plist; sourceTree = "<group>"; };
+		BFA4BE4422256264006F674E /* Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
+		BFA4BE4522256264006F674E /* Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Data.m; sourceTree = "<group>"; };
+		BFA4BE4622256264006F674E /* Weekitem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weekitem.h; sourceTree = "<group>"; };
+		BFA4BE4722256264006F674E /* Weekitem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Weekitem.m; sourceTree = "<group>"; };
+		BFA4BE732226070D006F674E /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		BFA4BE7422262F66006F674E /* SWUAlertViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SWUAlertViewController.h; path = OpenSwuNG/Classes/Schedule/Controller/SWUAlertViewController.h; sourceTree = SOURCE_ROOT; };
+		BFA4BE7522262F66006F674E /* SWUAlertViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SWUAlertViewController.m; path = OpenSwuNG/Classes/Schedule/Controller/SWUAlertViewController.m; sourceTree = SOURCE_ROOT; };
+		BFA4BE7722267E21006F674E /* SWUNavTitleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUNavTitleView.h; sourceTree = "<group>"; };
+		BFA4BE7822267E21006F674E /* SWUNavTitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUNavTitleView.m; sourceTree = "<group>"; };
+		BFA4BE7A222697DD006F674E /* SWUScheduleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUScheduleViewController.h; sourceTree = "<group>"; };
+		BFA4BE7B222697DD006F674E /* SWUScheduleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUScheduleViewController.m; sourceTree = "<group>"; };
+		BFA4BE7D2226A3C5006F674E /* SWUWeekSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUWeekSelectView.h; sourceTree = "<group>"; };
+		BFA4BE7E2226A3C5006F674E /* SWUWeekSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUWeekSelectView.m; sourceTree = "<group>"; };
 		BFD47F6D22222435000AED18 /* UIBarButtonItem+Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Item.m"; sourceTree = "<group>"; };
 		BFD47F6E22222435000AED18 /* UIBarButtonItem+Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Item.h"; sourceTree = "<group>"; };
 		CD0B42B6BB2805C5D6295880 /* Pods-OpenSwuNG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenSwuNG.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenSwuNG/Pods-OpenSwuNG.debug.xcconfig"; sourceTree = "<group>"; };
@@ -140,6 +170,7 @@
 				BF75E8BE2218F59B005244C5 /* Mine */,
 				BF75E8C82218F59B005244C5 /* Schedule */,
 				BF75E8C42218F59B005244C5 /* Other */,
+				BFA4BE732226070D006F674E /* Constants.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -228,6 +259,8 @@
 			children = (
 				BF75E8C02218F59B005244C5 /* SWUMineViewController.h */,
 				BF75E8C12218F59B005244C5 /* SWUMineViewController.m */,
+				BFA4BD8B22229868006F674E /* BindingViewController.h */,
+				BFA4BD8C22229868006F674E /* BindingViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -257,8 +290,9 @@
 		BF75E8C82218F59B005244C5 /* Schedule */ = {
 			isa = PBXGroup;
 			children = (
+				BFA4BE4222256263006F674E /* course.plist */,
+				BFA4BE4322256264006F674E /* Model */,
 				BF75E8C92218F59B005244C5 /* Controller */,
-				BF75E8CC2218F59B005244C5 /* Model */,
 				BF75E8CD2218F59B005244C5 /* View */,
 			);
 			path = Schedule;
@@ -267,22 +301,27 @@
 		BF75E8C92218F59B005244C5 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				BF75E8CA2218F59B005244C5 /* SWUScheduleViewController.h */,
-				BF75E8CB2218F59B005244C5 /* SWUScheduleViewController.m */,
+				BFA4BE7A222697DD006F674E /* SWUScheduleViewController.h */,
+				BFA4BE7B222697DD006F674E /* SWUScheduleViewController.m */,
+				BFA4BE7422262F66006F674E /* SWUAlertViewController.h */,
+				BFA4BE7522262F66006F674E /* SWUAlertViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		BF75E8CC2218F59B005244C5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		BF75E8CD2218F59B005244C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BFA4BE7D2226A3C5006F674E /* SWUWeekSelectView.h */,
+				BFA4BE7E2226A3C5006F674E /* SWUWeekSelectView.m */,
+				BFA4BE7722267E21006F674E /* SWUNavTitleView.h */,
+				BFA4BE7822267E21006F674E /* SWUNavTitleView.m */,
+				BFA4BE3C22255EE1006F674E /* SWULabel.h */,
+				BFA4BE3D22255EE1006F674E /* SWULabel.m */,
+				BFA4BE3922255E06006F674E /* SWUScrollview.h */,
+				BFA4BE3A22255E06006F674E /* SWUScrollview.m */,
+				BFA4BE3F22255FDF006F674E /* SWUCollectionViewCell.h */,
+				BFA4BE4022255FDF006F674E /* SWUCollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -336,6 +375,17 @@
 				BF7E6920221D320C0032422F /* SWUAboutHeaderView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		BFA4BE4322256264006F674E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BFA4BE4422256264006F674E /* Data.h */,
+				BFA4BE4522256264006F674E /* Data.m */,
+				BFA4BE4622256264006F674E /* Weekitem.h */,
+				BFA4BE4722256264006F674E /* Weekitem.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		BFD47F6C222223E6000AED18 /* Category */ = {
@@ -407,6 +457,7 @@
 				BF71B161221F903000C00868 /* About.plist in Resources */,
 				4B4B04DD213ECC67008FA20D /* LaunchScreen.storyboard in Resources */,
 				4B4B04DA213ECC67008FA20D /* Assets.xcassets in Resources */,
+				BFA4BE4822256264006F674E /* course.plist in Resources */,
 				BF7E6917221C55540032422F /* Mine.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,20 +490,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFA4BE7F2226A3C5006F674E /* SWUWeekSelectView.m in Sources */,
+				BFA4BE3E22255EE1006F674E /* SWULabel.m in Sources */,
 				BF7E691E221CF8010032422F /* SWUAboutViewController.m in Sources */,
 				BF71B164221F93B900C00868 /* SWUAboutUsViewController.m in Sources */,
 				BF75E8D22218F59B005244C5 /* main.m in Sources */,
+				BFA4BE7C222697DD006F674E /* SWUScheduleViewController.m in Sources */,
+				BFA4BE4A22256264006F674E /* Weekitem.m in Sources */,
+				BFA4BE7922267E21006F674E /* SWUNavTitleView.m in Sources */,
 				BF75E8D12218F59B005244C5 /* AppDelegate.m in Sources */,
 				BF75E8CE2218F59B005244C5 /* SWUTabBarController.m in Sources */,
 				BFD47F6F22222435000AED18 /* UIBarButtonItem+Item.m in Sources */,
 				BF75E8D02218F59B005244C5 /* SWUMineViewController.m in Sources */,
 				BF7E6921221D320C0032422F /* SWUAboutHeaderView.m in Sources */,
+				BFA4BD8D22229868006F674E /* BindingViewController.m in Sources */,
+				BFA4BE4922256264006F674E /* Data.m in Sources */,
 				BF7E6913221C19D80032422F /* SWUMineModel.m in Sources */,
 				BF7E68B7221BEB4B0032422F /* SWUMineTableViewCell.m in Sources */,
 				BF7E6947221D3C730032422F /* SWUNavigationController.m in Sources */,
+				BFA4BE3B22255E06006F674E /* SWUScrollview.m in Sources */,
+				BFA4BE7622262F66006F674E /* SWUAlertViewController.m in Sources */,
 				BF75E8CF2218F59B005244C5 /* SWUMainViewController.m in Sources */,
+				BFA4BE4122255FDF006F674E /* SWUCollectionViewCell.m in Sources */,
 				BF71B167221F93D400C00868 /* SWUUpdateLogViewController.m in Sources */,
-				BF75E8D32218F59B005244C5 /* SWUScheduleViewController.m in Sources */,
 				BF7E68B4221BE1480032422F /* SWUHeaderView.m in Sources */,
 				BF71B15F221F8FFC00C00868 /* SWUAboutModel.m in Sources */,
 			);
