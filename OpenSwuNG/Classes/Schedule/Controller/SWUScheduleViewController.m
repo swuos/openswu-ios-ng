@@ -27,6 +27,7 @@
 @property (nonatomic,assign) NSInteger  currentWeek;
 /** 选中的button  */
 @property (nonatomic,strong) SWULabel * selectBtn;
+
 @end
 
 @implementation SWUScheduleViewController

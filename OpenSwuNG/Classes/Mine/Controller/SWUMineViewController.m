@@ -31,12 +31,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    //    self.tableView.sectionHeaderHeight = 100;
     
+
     //    清除多余的cell
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     self.tableView.separatorColor = [UIColor lightGrayColor];
     self.tableView.separatorInset = UIEdgeInsetsMake(7, 15, 7, 15);
+
     
 }
 
@@ -44,6 +45,7 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
 }
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -51,12 +53,16 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
     return self.dataArray.count;
+
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
     static NSString * ID = @"Mine";
+
     SWUMineTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
         cell = [[SWUMineTableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
@@ -66,7 +72,9 @@
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+
     SWUHeaderView * view = [[SWUHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
+
     return  view;
 }
 
@@ -74,6 +82,7 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     SWUMineModel * swuMine = self.dataArray[indexPath.row];
+
     [self showAlertViewtableView:tableView SwuMine:swuMine];
     
 }

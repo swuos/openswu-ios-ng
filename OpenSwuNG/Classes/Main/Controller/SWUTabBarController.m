@@ -11,6 +11,7 @@
 #import "SWUScheduleViewController.h"
 #import "SWUNavigationController.h"
 
+
 @interface SWUTabBarController ()
 
 @end
@@ -23,15 +24,17 @@
     
     //    1.添加子控制器
     [self setupAllChildViewController];
+
 //    解决返回时 tabbar的卡顿问题
     [UITabBar appearance].translucent = NO;
     
-    
+
 }
 -(void)setupAllChildViewController {
     //    子控制器
     //    主页
     SWUMainViewController * mainVc = [[SWUMainViewController alloc] init];
+
     SWUNavigationController * nav = [[SWUNavigationController alloc] initWithRootViewController:mainVc];
     [self setupOneChildViewController:nav image:[UIImage imageNamed:@"tabBar_home_icon"] selImage:[UIImage imageNamed:@"tabBar_home_click_icon"] title:@"主页"];
     //    课程表
@@ -44,13 +47,16 @@
     [self setupOneChildViewController:nav2 image:[UIImage imageNamed:@"tabBar_mine_icon"] selImage:[UIImage imageNamed:@"tabBar_mine_click_icon"] title:@"我的"];
 }
 
+
 //初始化一个控制器的View
 -(void)setupOneChildViewController:(UIViewController *)vc image:(UIImage *)image selImage:(UIImage *)selImage title:(NSString *)title {
     [self addChildViewController:vc];
     vc.tabBarItem.image = image;
+
 //    防止tabbar进行渲染
     selImage = [selImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     vc.tabBarItem.selectedImage = selImage;
     vc.tabBarItem.title = title;
+
 }
 @end
