@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SWUAlertViewController : UIAlertController
 
+//+(instancetype)alertControllerWithSWULabel:(SWULabel *)swulabel Gesture:(UIGestureRecognizer *)gesture;
 +(instancetype)alertControllerWithSWULabel:(SWULabel *)swulabel;
 @end
 

@@ -7,6 +7,9 @@
 
 #import "AppDelegate.h"
 #import "SWUTabBarController.h"
+#import "SWUNavigationController.h"
+#import "SWULoginViewController.h"
+
 
 
 @interface AppDelegate ()
@@ -18,10 +21,27 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    SWUTabBarController * tabBarVc = [[SWUTabBarController alloc] init];
-    [self.window setRootViewController:tabBarVc];
+    if ([self isUserLogin]) {
+        SWUTabBarController * tabBarVc = [[SWUTabBarController alloc] init];
+        [self.window setRootViewController:tabBarVc];
+    }else {
+        SWULoginViewController * loginVc = [[SWULoginViewController alloc] init];
+        SWUNavigationController * nav = [[SWUNavigationController alloc] initWithRootViewController:loginVc];
+        [self.window setRootViewController:nav];
+    }
+
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+-(BOOL)isUserLogin {
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@"1" forKey:@"USER_ID"];
+    NSString * userId = [userDefaults objectForKey:@"USER_ID"];
+    if (userId != nil && [userId integerValue] > 0) {
+        return YES;
+    }
+    return NO;
 }
 
 

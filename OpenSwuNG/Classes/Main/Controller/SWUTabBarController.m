@@ -35,9 +35,6 @@
     SWUNavigationController * nav = [[SWUNavigationController alloc] initWithRootViewController:mainVc];
     [self setupOneChildViewController:nav image:[UIImage imageNamed:@"tabBar_home_icon"] selImage:[UIImage imageNamed:@"tabBar_home_click_icon"] title:@"主页"];
     //    课程表
-//    UICollectionViewFlowLayout * layoutView = [[UICollectionViewFlowLayout alloc] init];
-//    layoutView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-//    SWUScheduleViewController * scheduleVc = [[SWUScheduleViewController alloc] initWithCollectionViewLayout:layoutView];
     SWUScheduleViewController * scheduleVc = [[SWUScheduleViewController alloc] init];
     SWUNavigationController * nav1 = [[SWUNavigationController alloc] initWithRootViewController:scheduleVc];
     [self setupOneChildViewController:nav1 image:[UIImage imageNamed:@"tabBar_schedule_icon"] selImage:[UIImage imageNamed:@"tabBar_schedule_click_icon"] title:@"课程表"];

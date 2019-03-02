@@ -7,6 +7,7 @@
 
 #import "SWUWeekSelectView.h"
 #import "Constants.h"
+#import "SWULabel.h"
 
 @interface SWUWeekSelectView ()
 /** 选中的button  */
@@ -25,11 +26,11 @@
 }
 
 -(void)addSelectWeekButton {
-    self.contentSize = CGSizeMake(WeekCounts*weekScrollerViewH, weekScrollerViewH);
-    for (int i = 0; i < WeekCounts; i++) {
-        SWULabel * weekBtn = [[SWULabel alloc] initWithFrame:CGRectMake(i*weekScrollerViewH, 0, weekScrollerViewH, weekScrollerViewH)];
-        weekBtn.layer.cornerRadius =  weekScrollerViewH*0.5;
-        weekBtn.backgroundColor = [UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1.0];
+    self.contentSize = CGSizeMake(WEEK_COUNTS*WEEK_SCROLLERVIEW_HEIGHT, WEEK_SCROLLERVIEW_HEIGHT);
+    for (int i = 0; i < WEEK_COUNTS; i++) {
+        SWULabel * weekBtn = [[SWULabel alloc] initWithFrame:CGRectMake(i*WEEK_SCROLLERVIEW_HEIGHT+WEEK_SCROLLERVIEW_HEIGHT*0.2, WEEK_SCROLLERVIEW_HEIGHT*0.1, WEEK_SCROLLERVIEW_HEIGHT*0.8, WEEK_SCROLLERVIEW_HEIGHT*0.8)];
+        weekBtn.layer.cornerRadius =  weekBtn.frame.size.width*0.5;
+        weekBtn.backgroundColor = UNSELECT_COLOR;
         weekBtn.tag = i+1;
         weekBtn.userInteractionEnabled = YES;
         weekBtn.text = [NSString stringWithFormat:@"%d",i+1];

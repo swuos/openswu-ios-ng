@@ -11,7 +11,6 @@
 #import "MJExtension.h"
 #import "SWUMineModel.h"
 #import "SWUAboutViewController.h"
-#import "BindingViewController.h"
 
 
 

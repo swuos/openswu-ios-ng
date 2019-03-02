@@ -7,6 +7,8 @@
 
 #import "SWUNavTitleView.h"
 #import "Constants.h"
+#import "SWULabel.h"
+#import "Masonry.h"
 
 @interface SWUNavTitleView ()
 /** 标题图片是否下拉  */
@@ -39,7 +41,7 @@
     [_weekDeirView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.mas_centerY);
         make.height.width.equalTo(@15);
-        make.right.equalTo(self->_titleLabel).offset(0);
+        make.right.equalTo(self->_titleLabel).offset(3);
     }];
 }
 

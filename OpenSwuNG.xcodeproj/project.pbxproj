@@ -25,7 +25,6 @@
 		BF7E691E221CF8010032422F /* SWUAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7E691D221CF8010032422F /* SWUAboutViewController.m */; };
 		BF7E6921221D320C0032422F /* SWUAboutHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7E6920221D320C0032422F /* SWUAboutHeaderView.m */; };
 		BF7E6947221D3C730032422F /* SWUNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF7E6946221D3C730032422F /* SWUNavigationController.m */; };
-		BFA4BD8D22229868006F674E /* BindingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BD8C22229868006F674E /* BindingViewController.m */; };
 		BFA4BE3B22255E06006F674E /* SWUScrollview.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BE3A22255E06006F674E /* SWUScrollview.m */; };
 		BFA4BE3E22255EE1006F674E /* SWULabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BE3D22255EE1006F674E /* SWULabel.m */; };
 		BFA4BE4122255FDF006F674E /* SWUCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BE4022255FDF006F674E /* SWUCollectionViewCell.m */; };
@@ -36,7 +35,14 @@
 		BFA4BE7922267E21006F674E /* SWUNavTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BE7822267E21006F674E /* SWUNavTitleView.m */; };
 		BFA4BE7C222697DD006F674E /* SWUScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BE7B222697DD006F674E /* SWUScheduleViewController.m */; };
 		BFA4BE7F2226A3C5006F674E /* SWUWeekSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BE7E2226A3C5006F674E /* SWUWeekSelectView.m */; };
+		BFA4BE862226D230006F674E /* SWULoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BE852226D230006F674E /* SWULoginViewController.m */; };
+		BFA4BE892226D2A4006F674E /* SWURegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BE882226D2A4006F674E /* SWURegisterViewController.m */; };
+		BFA4BE8C2226D2E6006F674E /* SWUBindingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BE8B2226D2E6006F674E /* SWUBindingViewController.m */; };
 		BFD47F6F22222435000AED18 /* UIBarButtonItem+Item.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD47F6D22222435000AED18 /* UIBarButtonItem+Item.m */; };
+		BFF9ADA122280A9C00B10767 /* SWUTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF9ADA022280A9C00B10767 /* SWUTextField.m */; };
+		BFF9ADA422281BB700B10767 /* UIButton+Login.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF9ADA322281BB700B10767 /* UIButton+Login.m */; };
+		BFF9ADFA22296FDE00B10767 /* SWUForgetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF9ADF922296FDE00B10767 /* SWUForgetPwdViewController.m */; };
+		BFF9ADFD222A321E00B10767 /* SWULoginLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF9ADFC222A321E00B10767 /* SWULoginLabel.m */; };
 		DC09C91A2C60A4222D2326BA /* libPods-OpenSwuNG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 055E4E42096CDE36E1746EE7 /* libPods-OpenSwuNG.a */; };
 /* End PBXBuildFile section */
 
@@ -75,8 +81,6 @@
 		BF7E6920221D320C0032422F /* SWUAboutHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUAboutHeaderView.m; sourceTree = "<group>"; };
 		BF7E6945221D3C730032422F /* SWUNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUNavigationController.h; sourceTree = "<group>"; };
 		BF7E6946221D3C730032422F /* SWUNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUNavigationController.m; sourceTree = "<group>"; };
-		BFA4BD8B22229868006F674E /* BindingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BindingViewController.h; sourceTree = "<group>"; };
-		BFA4BD8C22229868006F674E /* BindingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BindingViewController.m; sourceTree = "<group>"; };
 		BFA4BE3922255E06006F674E /* SWUScrollview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUScrollview.h; sourceTree = "<group>"; };
 		BFA4BE3A22255E06006F674E /* SWUScrollview.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUScrollview.m; sourceTree = "<group>"; };
 		BFA4BE3C22255EE1006F674E /* SWULabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWULabel.h; sourceTree = "<group>"; };
@@ -97,8 +101,22 @@
 		BFA4BE7B222697DD006F674E /* SWUScheduleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUScheduleViewController.m; sourceTree = "<group>"; };
 		BFA4BE7D2226A3C5006F674E /* SWUWeekSelectView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUWeekSelectView.h; sourceTree = "<group>"; };
 		BFA4BE7E2226A3C5006F674E /* SWUWeekSelectView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUWeekSelectView.m; sourceTree = "<group>"; };
+		BFA4BE842226D230006F674E /* SWULoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWULoginViewController.h; sourceTree = "<group>"; };
+		BFA4BE852226D230006F674E /* SWULoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWULoginViewController.m; sourceTree = "<group>"; };
+		BFA4BE872226D2A4006F674E /* SWURegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWURegisterViewController.h; sourceTree = "<group>"; };
+		BFA4BE882226D2A4006F674E /* SWURegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWURegisterViewController.m; sourceTree = "<group>"; };
+		BFA4BE8A2226D2E6006F674E /* SWUBindingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUBindingViewController.h; sourceTree = "<group>"; };
+		BFA4BE8B2226D2E6006F674E /* SWUBindingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUBindingViewController.m; sourceTree = "<group>"; };
 		BFD47F6D22222435000AED18 /* UIBarButtonItem+Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Item.m"; sourceTree = "<group>"; };
 		BFD47F6E22222435000AED18 /* UIBarButtonItem+Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Item.h"; sourceTree = "<group>"; };
+		BFF9AD9F22280A9C00B10767 /* SWUTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUTextField.h; sourceTree = "<group>"; };
+		BFF9ADA022280A9C00B10767 /* SWUTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUTextField.m; sourceTree = "<group>"; };
+		BFF9ADA222281BB700B10767 /* UIButton+Login.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+Login.h"; sourceTree = "<group>"; };
+		BFF9ADA322281BB700B10767 /* UIButton+Login.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Login.m"; sourceTree = "<group>"; };
+		BFF9ADF822296FDE00B10767 /* SWUForgetPwdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUForgetPwdViewController.h; sourceTree = "<group>"; };
+		BFF9ADF922296FDE00B10767 /* SWUForgetPwdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUForgetPwdViewController.m; sourceTree = "<group>"; };
+		BFF9ADFB222A321E00B10767 /* SWULoginLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWULoginLabel.h; sourceTree = "<group>"; };
+		BFF9ADFC222A321E00B10767 /* SWULoginLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWULoginLabel.m; sourceTree = "<group>"; };
 		CD0B42B6BB2805C5D6295880 /* Pods-OpenSwuNG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenSwuNG.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenSwuNG/Pods-OpenSwuNG.debug.xcconfig"; sourceTree = "<group>"; };
 		F8B7907FCE06F2DC1CECC24F /* Pods-OpenSwuNG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenSwuNG.release.xcconfig"; path = "Pods/Target Support Files/Pods-OpenSwuNG/Pods-OpenSwuNG.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -164,6 +182,7 @@
 		BF75E8B12218F59B005244C5 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				BFA4BE802226D1A3006F674E /* Login */,
 				BF7E6918221C5B5D0032422F /* About */,
 				BF75E8B22218F59B005244C5 /* Main */,
 				BF75E8B82218F59B005244C5 /* Home */,
@@ -259,8 +278,6 @@
 			children = (
 				BF75E8C02218F59B005244C5 /* SWUMineViewController.h */,
 				BF75E8C12218F59B005244C5 /* SWUMineViewController.m */,
-				BFA4BD8B22229868006F674E /* BindingViewController.h */,
-				BFA4BD8C22229868006F674E /* BindingViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -388,11 +405,56 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		BFA4BE802226D1A3006F674E /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				BFA4BE812226D1A3006F674E /* Controller */,
+				BFA4BE822226D1A3006F674E /* Model */,
+				BFA4BE832226D1A3006F674E /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		BFA4BE812226D1A3006F674E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BFA4BE842226D230006F674E /* SWULoginViewController.h */,
+				BFA4BE852226D230006F674E /* SWULoginViewController.m */,
+				BFA4BE872226D2A4006F674E /* SWURegisterViewController.h */,
+				BFA4BE882226D2A4006F674E /* SWURegisterViewController.m */,
+				BFF9ADF822296FDE00B10767 /* SWUForgetPwdViewController.h */,
+				BFF9ADF922296FDE00B10767 /* SWUForgetPwdViewController.m */,
+				BFA4BE8A2226D2E6006F674E /* SWUBindingViewController.h */,
+				BFA4BE8B2226D2E6006F674E /* SWUBindingViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BFA4BE822226D1A3006F674E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BFA4BE832226D1A3006F674E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BFF9AD9F22280A9C00B10767 /* SWUTextField.h */,
+				BFF9ADA022280A9C00B10767 /* SWUTextField.m */,
+				BFF9ADFB222A321E00B10767 /* SWULoginLabel.h */,
+				BFF9ADFC222A321E00B10767 /* SWULoginLabel.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		BFD47F6C222223E6000AED18 /* Category */ = {
 			isa = PBXGroup;
 			children = (
 				BFD47F6E22222435000AED18 /* UIBarButtonItem+Item.h */,
 				BFD47F6D22222435000AED18 /* UIBarButtonItem+Item.m */,
+				BFF9ADA222281BB700B10767 /* UIButton+Login.h */,
+				BFF9ADA322281BB700B10767 /* UIButton+Login.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -408,6 +470,7 @@
 				4B4B04C9213ECC66008FA20D /* Sources */,
 				4B4B04CA213ECC66008FA20D /* Frameworks */,
 				4B4B04CB213ECC66008FA20D /* Resources */,
+				1D7562F5CD9F527E95320CDF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -465,6 +528,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1D7562F5CD9F527E95320CDF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-OpenSwuNG/Pods-OpenSwuNG-resources.sh",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-OpenSwuNG/Pods-OpenSwuNG-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8F4FA79A4A75D3462CCC925E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -491,6 +576,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFA4BE7F2226A3C5006F674E /* SWUWeekSelectView.m in Sources */,
+				BFF9ADFA22296FDE00B10767 /* SWUForgetPwdViewController.m in Sources */,
+				BFF9ADA122280A9C00B10767 /* SWUTextField.m in Sources */,
 				BFA4BE3E22255EE1006F674E /* SWULabel.m in Sources */,
 				BF7E691E221CF8010032422F /* SWUAboutViewController.m in Sources */,
 				BF71B164221F93B900C00868 /* SWUAboutUsViewController.m in Sources */,
@@ -500,17 +587,21 @@
 				BFA4BE7922267E21006F674E /* SWUNavTitleView.m in Sources */,
 				BF75E8D12218F59B005244C5 /* AppDelegate.m in Sources */,
 				BF75E8CE2218F59B005244C5 /* SWUTabBarController.m in Sources */,
+				BFA4BE862226D230006F674E /* SWULoginViewController.m in Sources */,
+				BFF9ADA422281BB700B10767 /* UIButton+Login.m in Sources */,
 				BFD47F6F22222435000AED18 /* UIBarButtonItem+Item.m in Sources */,
+				BFF9ADFD222A321E00B10767 /* SWULoginLabel.m in Sources */,
 				BF75E8D02218F59B005244C5 /* SWUMineViewController.m in Sources */,
 				BF7E6921221D320C0032422F /* SWUAboutHeaderView.m in Sources */,
-				BFA4BD8D22229868006F674E /* BindingViewController.m in Sources */,
 				BFA4BE4922256264006F674E /* Data.m in Sources */,
 				BF7E6913221C19D80032422F /* SWUMineModel.m in Sources */,
+				BFA4BE8C2226D2E6006F674E /* SWUBindingViewController.m in Sources */,
 				BF7E68B7221BEB4B0032422F /* SWUMineTableViewCell.m in Sources */,
 				BF7E6947221D3C730032422F /* SWUNavigationController.m in Sources */,
 				BFA4BE3B22255E06006F674E /* SWUScrollview.m in Sources */,
 				BFA4BE7622262F66006F674E /* SWUAlertViewController.m in Sources */,
 				BF75E8CF2218F59B005244C5 /* SWUMainViewController.m in Sources */,
+				BFA4BE892226D2A4006F674E /* SWURegisterViewController.m in Sources */,
 				BFA4BE4122255FDF006F674E /* SWUCollectionViewCell.m in Sources */,
 				BF71B167221F93D400C00868 /* SWUUpdateLogViewController.m in Sources */,
 				BF7E68B4221BE1480032422F /* SWUHeaderView.m in Sources */,

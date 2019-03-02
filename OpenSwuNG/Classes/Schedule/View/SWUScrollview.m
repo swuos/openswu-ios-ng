@@ -6,6 +6,11 @@
 //
 
 #import "SWUScrollview.h"
+#import "Weekitem.h"
+#import "SWUAlertViewController.h"
+#import "Data.h"
+#import "MJExtension.h"
+#import "SWULabel.h"
 #import "Constants.h"
 
 
@@ -19,13 +24,15 @@
 @property (nonatomic,strong) SWUAlertViewController * alert;
 /** 传递数据  */
 @property (nonatomic,strong) Weekitem * weekitem;
+/** 点击手势  */
+@property (nonatomic,strong) UITapGestureRecognizer * tap;
 @end
 
 @implementation SWUScrollview
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        self.contentSize = CGSizeMake(frame.size.width, cellHW*14);
+        self.contentSize = CGSizeMake(frame.size.width, CELL_HW*14);
     }
     return self;
 }
@@ -54,14 +61,14 @@
     }
     //    添加星期几
     for (int i = 0; i < 7; i++) {
-        SWULabel * label = [[SWULabel alloc] initWithFrame:CGRectMake(timeHW+i*cellHW, 0, cellHW, timeHW)];
+        SWULabel * label = [[SWULabel alloc] initWithFrame:CGRectMake(TIME_HW+i*CELL_HW, 0, CELL_HW, TIME_HW)];
         label.text = self.dateArray[i];
         label.textColor = [UIColor blackColor];
         [self addSubview:label];
     }
     //    添加时间课程
     for (int i = 0; i < 14; i++) {
-        SWULabel * label = [[SWULabel alloc] initWithFrame:CGRectMake(0, timeHW+i*cellHW, timeHW, cellHW)];
+        SWULabel * label = [[SWULabel alloc] initWithFrame:CGRectMake(0, TIME_HW+i*CELL_HW, TIME_HW, CELL_HW)];
         label.textColor = [UIColor blackColor];
         label.text = [NSString stringWithFormat:@"%d",i+1];
         label.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
@@ -74,7 +81,7 @@
         for (int i = 0;i < data.weekitem.count;i++) {
           self.weekitem = data.weekitem[i];
             NSInteger count = _weekitem.endTime.integerValue-_weekitem.startTime.integerValue+1;;
-            SWULabel * label = [[SWULabel alloc] initWithFrame:CGRectMake(timeHW+(_weekitem.day.integerValue-1)*cellHW, (_weekitem.startTime.integerValue-1)*cellHW+timeHW, cellHW,cellHW*count)];
+            SWULabel * label = [[SWULabel alloc] initWithFrame:CGRectMake(TIME_HW+(_weekitem.day.integerValue-1)*CELL_HW, (_weekitem.startTime.integerValue-1)*CELL_HW+TIME_HW, CELL_HW,CELL_HW*count)];
             _weekitem.scrollerViewCount = i;
             label.weekitem = _weekitem;
             UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDetailInfo:)];
@@ -87,8 +94,8 @@
 -(void)showDetailInfo:(UITapGestureRecognizer *)sender {
     self.alert = [SWUAlertViewController alertControllerWithSWULabel:(SWULabel*)sender.view];
     //    添加Windows手势   点击空白处消失
-    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handletapPressGesture:)];
-    [[UIApplication sharedApplication].keyWindow addGestureRecognizer:tap];
+    self.tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handletapPressGesture:)];
+    [[UIApplication sharedApplication].keyWindow addGestureRecognizer:_tap];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:_alert animated:_alert completion:nil];
 }
 //点击空白消失
@@ -96,6 +103,7 @@
     CGPoint location = [sender locationInView:self];
     if (!CGRectContainsPoint(_alert.view.frame, location)) {
         [_alert dismissViewControllerAnimated:YES completion:nil];
+        [[UIApplication sharedApplication].keyWindow removeGestureRecognizer:_tap];
     }
 }
 

@@ -7,6 +7,9 @@
 
 #import "SWUScheduleViewController.h"
 #import "Constants.h"
+#import "SWUNavTitleView.h"
+#import "SWULabel.h"
+#import "SWUCollectionViewCell.h"
 #import "SWUWeekSelectView.h"
 
 @interface SWUScheduleViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -43,7 +46,8 @@ static NSString * const reuseIdentifier = @"Cell";
     //    添加collectionview
     UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc] init];
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, NAVAHeight+20, SCREEN_WIDTH, SCREEN_HEIGHT-NAVAHeight-20) collectionViewLayout:layout];
+    
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, NAVA_MAXY, SCREEN_WIDTH, SCREEN_HEIGHT-NAVA_MAXY-self.tabBarController.tabBar.frame.size.height) collectionViewLayout:layout];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
@@ -52,8 +56,9 @@ static NSString * const reuseIdentifier = @"Cell";
     self.collectionView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:self.collectionView];
     
+    
     //    添加修改周课表的scrollerview
-    self.weekScrollerView = [[SWUWeekSelectView alloc] initWithFrame:CGRectMake(0, CGRectGetMinY(self.collectionView.frame)-weekScrollerViewH, SCREEN_WIDTH, weekScrollerViewH)];
+    self.weekScrollerView = [[SWUWeekSelectView alloc] initWithFrame:CGRectMake(0, CGRectGetMinY(self.collectionView.frame)-WEEK_SCROLLERVIEW_HEIGHT, SCREEN_WIDTH, WEEK_SCROLLERVIEW_HEIGHT)];
     for (UIView * view in _weekScrollerView.subviews) {
         if ([view isKindOfClass:[SWULabel class]]) {
             SWULabel * weekBtn = (SWULabel *)view;
@@ -65,7 +70,7 @@ static NSString * const reuseIdentifier = @"Cell";
     
     
     //    设置导航栏标题
-    self.navTitleView = [[SWUNavTitleView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-100, NAVAHeight)];
+    self.navTitleView = [[SWUNavTitleView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH-100, NAVA_HEIGHT)];
     self.navigationItem.titleView = _navTitleView;
     //    给导航栏的下拉图片添加点击手势
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showWeekSelectView)];
@@ -77,7 +82,7 @@ static NSString * const reuseIdentifier = @"Cell";
     if (_isOpen) {
         _isOpen = false;
         [UIView animateWithDuration:0.3 animations:^{
-            self.view.transform = CGAffineTransformMakeTranslation(0, weekScrollerViewH);
+            self.view.transform = CGAffineTransformMakeTranslation(0, WEEK_SCROLLERVIEW_HEIGHT);
             self->_navTitleView.weekDeirView.transform = CGAffineTransformMakeRotation(M_PI);
         }];
     }else {
@@ -88,7 +93,7 @@ static NSString * const reuseIdentifier = @"Cell";
         }];
     }
     self.selectBtn = [self.weekScrollerView viewWithTag:self.currentWeek];
-    self.selectBtn.backgroundColor = selectColor;
+    self.selectBtn.backgroundColor = SELECT_COLOR;
 }
 //响应点击手势
 -(void)btnBackGroundSelected:(UITapGestureRecognizer *)sender {
@@ -103,7 +108,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 #pragma mark <UICollectionViewDataSource>
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return WeekCounts;
+    return WEEK_COUNTS;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -147,11 +152,11 @@ static NSString * const reuseIdentifier = @"Cell";
 -(void)changeCurrentReference {
     //    被选中的按钮消除颜色
     if (_selectBtn) {
-        _selectBtn.backgroundColor = unSelectColor;
+        _selectBtn.backgroundColor = UNSELECT_COLOR;
     }
     //    更改被选中的按钮
     self.selectBtn = [self.weekScrollerView viewWithTag:self.currentWeek];
-    self.selectBtn.backgroundColor = selectColor;
+    self.selectBtn.backgroundColor = SELECT_COLOR;
     
     _navTitleView.titleLabel.text = [NSString stringWithFormat:@"第%ld周",self.currentWeek];
     [self.collectionView setContentOffset:CGPointMake((self.currentWeek-1)*SCREEN_WIDTH, 0) animated:YES];
