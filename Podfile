@@ -8,5 +8,7 @@ target 'OpenSwuNG' do
   # Pods for OpenSwuNG
   pod 'AFNetworking', '~> 3.0'
   pod 'Masonry'
+  pod 'MJExtension'
+  pod 'SVProgressHUD'
 
 end
