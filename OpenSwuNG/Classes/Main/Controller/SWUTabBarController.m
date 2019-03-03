@@ -13,7 +13,8 @@
 
 
 @interface SWUTabBarController ()
-
+/** 记录上一次点击的item  */
+@property (nonatomic,assign) NSInteger  passIndex;
 @end
 
 @implementation SWUTabBarController
@@ -21,20 +22,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.alpha = 1.0;
-    
+    self.passIndex = 0;
     //    1.添加子控制器
     [self setupAllChildViewController];
-
-//    解决返回时 tabbar的卡顿问题
+    
+    //    解决返回时 tabbar的卡顿问题
     [UITabBar appearance].translucent = NO;
     
-
+    
 }
 -(void)setupAllChildViewController {
     //    子控制器
     //    主页
     SWUMainViewController * mainVc = [[SWUMainViewController alloc] init];
-
+    
     SWUNavigationController * nav = [[SWUNavigationController alloc] initWithRootViewController:mainVc];
     [self setupOneChildViewController:nav image:[UIImage imageNamed:@"tabBar_home_icon"] selImage:[UIImage imageNamed:@"tabBar_home_click_icon"] title:@"主页"];
     //    课程表
@@ -52,11 +53,32 @@
 -(void)setupOneChildViewController:(UIViewController *)vc image:(UIImage *)image selImage:(UIImage *)selImage title:(NSString *)title {
     [self addChildViewController:vc];
     vc.tabBarItem.image = image;
-
-//    防止tabbar进行渲染
+    
+    //    防止tabbar进行渲染
     selImage = [selImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     vc.tabBarItem.selectedImage = selImage;
     vc.tabBarItem.title = title;
-
 }
+
+-(void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
+    NSInteger index = [self.tabBar.items indexOfObject:item];
+    if (index != _passIndex) {
+        NSMutableArray * array = [NSMutableArray array];
+        for (UIView * item in self.tabBar.subviews) {
+            if ([item isKindOfClass:NSClassFromString(@"UITabBarButton")]) {
+                [array addObject:item];
+            }
+        }
+        UIView * item = [array objectAtIndex:index];
+        [UIView animateWithDuration:0.2 animations:^{
+            item.transform = CGAffineTransformMakeScale(1.2, 1.2);
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.2 animations:^{
+                item.transform = CGAffineTransformIdentity;
+            }];
+        }];
+        _passIndex = index;
+    }
+}
+
 @end

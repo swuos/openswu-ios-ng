@@ -41,7 +41,7 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 
 -(void)setUpUIAndAddGesture {
-    self.isOpen = true;
+//    self.isOpen = true;
     self.currentWeek = 5;
     [self addObserver:self forKeyPath:@"currentWeek" options:NSKeyValueObservingOptionNew context:nil];
     //    添加collectionview
@@ -105,6 +105,19 @@ static NSString * const reuseIdentifier = @"Cell";
     [super viewWillAppear:animated];
     [self changeCurrentReference];
 }
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+//    放置选择星期a的按钮出现了，然后切换tabbar发生bug
+    if (!_isOpen) {
+        _isOpen = true;
+        [UIView animateWithDuration:0.3 animations:^{
+            self->_navTitleView.weekDeirView.transform = CGAffineTransformIdentity;
+            self.view.transform = CGAffineTransformIdentity;
+        }];
+    }
+    self.selectBtn = [self.weekScrollerView viewWithTag:self.currentWeek];
+    self.selectBtn.backgroundColor = SELECT_COLOR;
+}
 
 
 #pragma mark <UICollectionViewDataSource>
@@ -132,7 +145,6 @@ static NSString * const reuseIdentifier = @"Cell";
     }else {
         //                NSLog(@"到达开头或者结尾");
     }
-    
 }
 
 
