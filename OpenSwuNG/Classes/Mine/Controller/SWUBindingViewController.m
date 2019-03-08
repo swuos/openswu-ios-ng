@@ -11,6 +11,8 @@
 #import "SWUTextField.h"
 #import "SWULoginLabel.h"
 #import "SVProgressHUD.h"
+#import "AFNetworking.h"
+#import "NSMutableDictionary+Parameters.h"
 
 @interface SWUBindingViewController ()
 /** 卡号  */
@@ -46,10 +48,11 @@
     SWULoginLabel * firstPwdLabel  = [SWULoginLabel SWULoginLabelwithText:@"密码"];
     self.cardNumberPwd = [SWUTextField SWUTextFieldWithFrame:CGRectMake(0, i*(WEEK_SCROLLERVIEW_HEIGHT+10), SCREEN_WIDTH, WEEK_SCROLLERVIEW_HEIGHT) LeftView:firstPwdLabel Text:@"请输入一卡通密码" KeyBoardType:UIKeyboardTypeNumberPad];
     [_cardNumberPwd setLineViewLength:CGRectMake(SCREEN_WIDTH*0.05, _cardNumberPwd.frame.size.height, SCREEN_WIDTH*0.9, 0.5)];
+    _cardNumberPwd.secureTextEntry = YES;
     [backView addSubview: _cardNumberPwd];
     
     //    添加绑定按钮
-    self.bindingBtn = [UIButton ButtonWithTitle:@"注册" Frame:CGRectMake(SCREEN_WIDTH*0.05, CGRectGetMaxY(backView.frame)+35,SCREEN_WIDTH*0.9, 40) Alignment:UIControlContentHorizontalAlignmentCenter titleColor:[UIColor whiteColor]];
+    self.bindingBtn = [UIButton ButtonWithTitle:@"绑定" Frame:CGRectMake(SCREEN_WIDTH*0.05, CGRectGetMaxY(backView.frame)+35,SCREEN_WIDTH*0.9, 40) Alignment:UIControlContentHorizontalAlignmentCenter titleColor:[UIColor whiteColor]];
     _bindingBtn.backgroundColor = [UIColor colorWithRed:24/255.0 green:113/255.0 blue:245/255.0 alpha:1.0];
     [_bindingBtn addTarget:self action:@selector(bindingCard) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_bindingBtn];
@@ -59,10 +62,37 @@
     if (_cardNumber.text.length == 15) {
         if (_cardNumberPwd.text.length == 6) {
             NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-            [userDefaults setObject:_cardNumber.text forKey:@"cardNumber"];
-            [userDefaults setObject:_cardNumberPwd forKey:@"cardNumberPwd"];
-            [userDefaults synchronize];
-            [self dismissViewControllerAnimated:YES completion:nil];
+            
+            AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
+            manager.requestSerializer = [AFJSONRequestSerializer new];
+            
+            
+            
+            [manager.requestSerializer setValue:[userDefaults objectForKey:@"acToken"] forHTTPHeaderField:@"acToken"];
+            NSMutableDictionary * paraDic = [NSMutableDictionary ParametersDic];
+            [paraDic setObject:@"swuid" forKey:_cardNumber.text];
+            [paraDic setObject:@"password" forKey:_cardNumberPwd.text];
+            
+//            NSLog(@"绑定时的取出来的actoken：%@---%@--%d",[[userDefaults objectForKey:@"acToken"] class],[userDefaults objectForKey:@"acToken"],true);
+            //            发送请求
+            [manager POST:@"https://freegatty.swuosa.xenoeye.org/ac/bindSwuac" parameters:paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//                NSLog(@"%@",responseObject);
+//                如果登录成功
+                if (![responseObject[@"success"] isEqualToString:@"1"]) {
+                    [SVProgressHUD showErrorWithStatus:@"请检查账号和密码"];
+                    return ;
+                }
+                [userDefaults setObject:self->_cardNumber.text forKey:@"cardNumber"];
+                [userDefaults setObject:self->_cardNumberPwd forKey:@"cardNumberPwd"];
+                [userDefaults synchronize];
+                [self dismissViewControllerAnimated:YES completion:nil];
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"%@",error);
+                NSData *errorData = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
+                NSDictionary *serializedData = [NSJSONSerialization JSONObjectWithData: errorData options:kNilOptions error:nil];
+//                NSLog(@"error--%@",serializedData);
+                [SVProgressHUD showErrorWithStatus:@"请检查网络!"];
+            }];
         }else {
             [SVProgressHUD showErrorWithStatus:@"请检查卡号密码一般是6位"];
         }

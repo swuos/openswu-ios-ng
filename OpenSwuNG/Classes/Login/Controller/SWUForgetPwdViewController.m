@@ -10,6 +10,10 @@
 #import "UIButton+Login.h"
 #import "SWUTextField.h"
 #import "SWULoginLabel.h"
+#import "SVProgressHUD.h"
+#import "AFNetworking.h"
+#import "NSMutableDictionary+Parameters.h"
+#import "SWUVerificationCodeButton.h"
 
 @interface SWUForgetPwdViewController ()
 /** 手机号  */
@@ -22,6 +26,12 @@
 @property (nonatomic,strong) SWUTextField * secondPwd;
 /** 确认修改密码  */
 @property (nonatomic,strong) UIButton * confirmBtn;
+/** 网络回话管理者  */
+@property (nonatomic,strong) AFHTTPSessionManager * manager;
+/** 网络请求传递的参数  */
+@property (nonatomic,strong) NSMutableDictionary * paraDic;
+/** 获取验证码的按钮  */
+@property (nonatomic,strong) SWUVerificationCodeButton * getVerCodeBtn;
 @end
 
 @implementation SWUForgetPwdViewController
@@ -52,9 +62,10 @@
     
     SWULoginLabel * veriLabel  = [SWULoginLabel SWULoginLabelwithText:@"验证码"];
     self.verificationCode = [SWUTextField SWUTextFieldWithFrame:CGRectMake(0, i*(WEEK_SCROLLERVIEW_HEIGHT+10), SCREEN_WIDTH, WEEK_SCROLLERVIEW_HEIGHT) LeftView:veriLabel Text:@"请输入验证码" KeyBoardType:UIKeyboardTypeNumberPad];
-    UIButton * getVerCodeBtn = [UIButton ButtonWithTitle:@"获取验证码" Frame:CGRectMake(SCREEN_WIDTH*0.8-20, 0, SCREEN_WIDTH*0.2, WEEK_SCROLLERVIEW_HEIGHT) Alignment:UIControlContentHorizontalAlignmentCenter titleColor:[UIColor colorWithRed:24/255.0 green:113/255.0 blue:245/255.0 alpha:1.0]];
-    getVerCodeBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    [_verificationCode addSubview:getVerCodeBtn];
+    //    添加获取验证的按钮
+    self.getVerCodeBtn = [[SWUVerificationCodeButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH*0.8-20, 0, SCREEN_WIDTH*0.2, WEEK_SCROLLERVIEW_HEIGHT)];
+    [_getVerCodeBtn addTarget:self action:@selector(getVerificationCode) forControlEvents:UIControlEventTouchUpInside];
+    [_verificationCode addSubview:_getVerCodeBtn];
     [_verificationCode setLineViewLength:CGRectMake(SCREEN_WIDTH*0.05, _userPhoneNumber.frame.size.height, SCREEN_WIDTH*0.9, 0.5)];
     [backView addSubview: _verificationCode];
     i++;
@@ -78,12 +89,55 @@
     [self.view addSubview:_confirmBtn];
     
 }
+//确认修改按钮
 -(void)confirmModify {
-    
-    
+    //    判断两次的密码是否相同
+    if (_firstPwd.text.length <= 0 ||  _secondPwd.text.length <= 0 ) {
+        [SVProgressHUD showErrorWithStatus:@"密码为空，请输入"];
+        return;
+    }
+    if (![_firstPwd.text isEqualToString:_secondPwd.text]) {
+        [SVProgressHUD showErrorWithStatus:@"两次密码不一致"];
+        return;
+    }
+    if (_verificationCode.text.length <= 0) {
+        [SVProgressHUD showErrorWithStatus:@"验证码为空!"];
+        return;
+    }
+    self.paraDic = [NSMutableDictionary ParametersDic];
+    [_paraDic setObject:@"password" forKey:_firstPwd.text];
+    [_paraDic setObject:@"verificationCode" forKey:_verificationCode.text];
+    [_paraDic setObject:@"acToken" forKey:[[NSUserDefaults standardUserDefaults] objectForKey:@"acToken"] ];
+    [_manager POST:@"https://freegatty.swuosa.xenoeye.org/ac/changePassword" parameters:_paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [SVProgressHUD showErrorWithStatus:@"请检查网络，稍后重试!"];
+    }];
 }
-
-
+//获取验证码
+-(void)getVerificationCode {
+    if (_userPhoneNumber.text.length == 11 && [self checkPhoneNumber:_userPhoneNumber.text]) {
+        //        设置计时器开始计时
+        [self.getVerCodeBtn timeFailBeginFrom:150];
+        self.manager = [AFHTTPSessionManager manager];
+        _manager.requestSerializer = [AFJSONRequestSerializer new];
+        self.paraDic = [NSMutableDictionary ParametersDic];
+        [_paraDic setObject:_userPhoneNumber.text forKey:@"phoneNumber"];
+        [_manager POST:@"https://freegatty.swuosa.xenoeye.org/ac/sendVerificationCode" parameters:_paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSLog(@"%@",responseObject);
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"%@",error);
+        }];
+        return ;
+    }
+    [SVProgressHUD showErrorWithStatus:@"请检查手机号!"];
+}
+- (BOOL)checkPhoneNumber:(NSString *)phoneNumber
+{
+    NSString *regex = @"^[1][3-8]\\d{9}$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    return [pred evaluateWithObject:phoneNumber];
+}
 
 
 

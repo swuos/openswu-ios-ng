@@ -11,6 +11,7 @@
 #import "MJExtension.h"
 #import "SWUMineModel.h"
 #import "SWUAboutViewController.h"
+#import "SWUBindingViewController.h"
 
 
 
@@ -96,9 +97,24 @@
             [alert addAction:cancelAction];
         }
         UIAlertAction * okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+
         }];
         [alert addAction:okAction];
-        // 弹出对话框
+        // 弹出对话框还是切换界面？
+        //            点击cell，如果已经绑定校园卡，则解绑
+        if ([swuMine.icon isEqualToString:@"mine_card"]) {
+            NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+            NSString * cardNumber = [userDefaults objectForKey:@"cardNumber"];
+            if (cardNumber.length <= 0) {
+                SWUBindingViewController * bindingVc = [[SWUBindingViewController alloc] init];
+                [self presentViewController:bindingVc animated:YES completion:nil];
+            }else {
+                //                    解绑
+                [userDefaults setObject:@"" forKey:@"cardNumber"];
+                [self presentViewController:alert animated:true completion:nil];
+                return;
+            }
+        }
         [self presentViewController:alert animated:true completion:nil];
     }else{
         SWUAboutViewController * aboutVc = [[SWUAboutViewController alloc] init];
