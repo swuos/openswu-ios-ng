@@ -8,6 +8,7 @@
 
 #import "SWULabel.h"
 #import "Weekitem.h"
+#import "Constants.h"
 
 @implementation SWULabel
 -(instancetype)initWithFrame:(CGRect)frame {
@@ -23,14 +24,24 @@
 
 -(void)setWeekitem:(Weekitem *)weekitem {
     _weekitem = weekitem;
-    self.text = [NSString stringWithFormat:@"%@\n%@ \n@%@",weekitem.lessonName,weekitem.teacher,weekitem.classRoom];
+    self.text = [NSString stringWithFormat:@"%@ \n@%@",weekitem.lessonName,weekitem.classRoom];
     NSArray * colors = @[
-                         [UIColor colorWithRed:250/255.0 green:192/255.0 blue:49/255.0 alpha:1.0],
-                         [UIColor colorWithRed:52/255.0 green:170/255.0 blue:245/255.0 alpha:1.0],
-                         [UIColor colorWithRed:252/255.0 green:144/255.0 blue:72/255.0 alpha:1.0],
-                         [UIColor colorWithRed:113/255.0 green:156/255.0 blue:253/255.0 alpha:1.0],
-                         [UIColor colorWithRed:250/255.0 green:192/255.0 blue:49/255.0 alpha:1.0],
-                         [UIColor colorWithRed:18/255.0 green:224/255.0 blue:209/255.0 alpha:1.0]
+                         SWUCOLOR(250, 192, 49),
+                         SWUCOLOR(52, 170, 245),
+                         SWUCOLOR(252, 144, 72),
+                         SWUCOLOR(113, 156, 253),
+                         SWUCOLOR(250, 192, 49),
+                         SWUCOLOR(255, 186, 132),
+                         SWUCOLOR(18, 224, 209),
+                         SWUCOLOR(177, 180, 121),
+                         SWUCOLOR(220, 159, 180),
+                         SWUCOLOR(158, 122, 122),
+                         SWUCOLOR(85, 66, 54),
+                         SWUCOLOR(125, 83, 44),
+                         SWUCOLOR(233, 139, 42),
+                         SWUCOLOR(188, 159, 119),
+                         SWUCOLOR(159, 53, 58),
+                         SWUCOLOR(102, 186, 183)
                          ];
     self.backgroundColor = colors[weekitem.scrollerViewCount%colors.count];
     self.font = [UIFont systemFontOfSize:12];

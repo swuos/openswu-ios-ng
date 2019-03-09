@@ -22,4 +22,15 @@
 #define SELECT_COLOR [UIColor colorWithRed:24/255.0 green:113/255.0 blue:245/255.0 alpha:1.0]
 #define UNSELECT_COLOR [UIColor colorWithRed:204/255.0 green:204/255.0 blue:204/255.0 alpha:1.0]
 
+#define SWUCOLOR(R,G,B) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:1.0]
+
+//获取应用程序的位置
+//缓存
+#define CACHE_PATH(_arg) [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:_arg]
+//library
+#define LIBRARY_PATH(_arg) [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:_arg]
+//document
+#define DOCUMENT_PATH(_arg) [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:_arg]
+
+
 #endif /* Constants_h */

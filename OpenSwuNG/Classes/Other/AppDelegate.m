@@ -26,7 +26,6 @@
         SWULoginViewController * loginVc = [[SWULoginViewController alloc] init];
         SWUNavigationController * nav = [[SWUNavigationController alloc] initWithRootViewController:loginVc];
         [self.window setRootViewController:nav];
-//        [tabBarVc presentViewController:nav animated:YES completion:nil];
     }else {
         SWUTabBarController * tabBarVc = [[SWUTabBarController alloc] init];
         [self.window setRootViewController:tabBarVc];
@@ -40,9 +39,9 @@
 
 -(BOOL)isUserLogin {
     NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:@"0" forKey:@"USER_ID"];
-    NSString * userId = [userDefaults objectForKey:@"USER_ID"];
-    if (userId != nil && [userId integerValue] > 0) {
+//    [userDefaults setObject:@"" forKey:@"acToken"];
+    NSString * userId = [userDefaults objectForKey:@"acToken"];
+    if (userId != nil && ![userId isEqualToString:@""]) {
         return YES;
     }
     return NO;

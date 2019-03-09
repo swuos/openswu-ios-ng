@@ -11,8 +11,7 @@
 #import "SWUTextField.h"
 #import "SWULoginLabel.h"
 #import "SVProgressHUD.h"
-#import "AFNetworking.h"
-#import "NSMutableDictionary+Parameters.h"
+#import "SWUAFN.h"
 #import "SWUVerificationCodeButton.h"
 
 @interface SWUForgetPwdViewController ()
@@ -29,7 +28,7 @@
 /** 网络回话管理者  */
 @property (nonatomic,strong) AFHTTPSessionManager * manager;
 /** 网络请求传递的参数  */
-@property (nonatomic,strong) NSMutableDictionary * paraDic;
+@property (nonatomic,strong) NSDictionary * paraDic;
 /** 获取验证码的按钮  */
 @property (nonatomic,strong) SWUVerificationCodeButton * getVerCodeBtn;
 @end
@@ -104,11 +103,13 @@
         [SVProgressHUD showErrorWithStatus:@"验证码为空!"];
         return;
     }
-    self.paraDic = [NSMutableDictionary ParametersDic];
-    [_paraDic setObject:@"password" forKey:_firstPwd.text];
-    [_paraDic setObject:@"verificationCode" forKey:_verificationCode.text];
-    [_paraDic setObject:@"acToken" forKey:[[NSUserDefaults standardUserDefaults] objectForKey:@"acToken"] ];
+    self.paraDic = @{
+                     @"password":_firstPwd.text,
+                     @"verificationCode":_verificationCode.text,
+                     @"acToken":[[NSUserDefaults standardUserDefaults] objectForKey:@"acToken"]
+                     };
     [_manager POST:@"https://freegatty.swuosa.xenoeye.org/ac/changePassword" parameters:_paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        修改密码后怎么办？
         NSLog(@"%@",responseObject);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD showErrorWithStatus:@"请检查网络，稍后重试!"];
@@ -119,14 +120,14 @@
     if (_userPhoneNumber.text.length == 11 && [self checkPhoneNumber:_userPhoneNumber.text]) {
         //        设置计时器开始计时
         [self.getVerCodeBtn timeFailBeginFrom:150];
-        self.manager = [AFHTTPSessionManager manager];
-        _manager.requestSerializer = [AFJSONRequestSerializer new];
-        self.paraDic = [NSMutableDictionary ParametersDic];
-        [_paraDic setObject:_userPhoneNumber.text forKey:@"phoneNumber"];
+        self.manager = [SWUAFN swuAfnManage];
+        self.paraDic = @{
+                         @"phoneNumber":_userPhoneNumber.text
+                         };
         [_manager POST:@"https://freegatty.swuosa.xenoeye.org/ac/sendVerificationCode" parameters:_paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSLog(@"%@",responseObject);
+//            NSLog(@"%@",responseObject);
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"%@",error);
+//            NSLog(@"%@",error);
         }];
         return ;
     }

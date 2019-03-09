@@ -14,13 +14,13 @@
 	</dict>
 	<dict>
 		<key>content</key>
-		<string>清除缓存</string>
+		<string>教务处同步</string>
 		<key>count</key>
 		<string>2</string>
 		<key>icon</key>
 		<string>mine_clean</string>
 		<key>information</key>
-		<string>清除缓存后部分数据需要重新加载!</string>
+		<string>即将重新获取教务处数据！</string>
 	</dict>
 	<dict>
 		<key>content</key>
@@ -48,7 +48,7 @@
 		<key>count</key>
 		<string>2</string>
 		<key>icon</key>
-		<string>mine_about</string>
+		<string>mine_exit</string>
 		<key>information</key>
 		<string>确定要退出登录吗?</string>
 	</dict>

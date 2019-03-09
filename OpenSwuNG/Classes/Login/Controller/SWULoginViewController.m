@@ -13,11 +13,10 @@
 #import "SWURegisterViewController.h"
 #import "SWUForgetPwdViewController.h"
 #import "Constants.h"
-#import "NSMutableDictionary+Parameters.h"
 #import "SWUTabBarController.h"
 #import "SWULoginModel.h"
 #import "MJExtension.h"
-#import "AFNetworking.h"
+#import "SWUAFN.h"
 
 
 
@@ -111,14 +110,14 @@
     }
     [SVProgressHUD showWithStatus:@"请稍后..."];
 //    登录请求
-    AFHTTPSessionManager * manger = [AFHTTPSessionManager manager];
-    manger.requestSerializer = [AFJSONRequestSerializer new];
-    NSMutableDictionary * paraDic = [NSMutableDictionary ParametersDic];
-    [paraDic setObject:_userTextField.text forKey:@"phoneNumber"];
-    [paraDic setObject:_pwdTextfield.text forKey:@"password"];
+    AFHTTPSessionManager * manger = [SWUAFN swuAfnManage];
+    
+    NSDictionary * paraDic = @{
+                               @"phoneNumber":_userTextField.text,
+                               @"password":_pwdTextfield.text
+                               };
     
     [manger POST:@"https://freegatty.swuosa.xenoeye.org/ac/login" parameters:paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-
         SWULoginModel * loginModel = [SWULoginModel mj_objectWithKeyValues:responseObject];
         if(loginModel.success.intValue != 1) {
             [SVProgressHUD showErrorWithStatus:@"请检查账户和密码后重试"];
@@ -128,6 +127,8 @@
         NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
         NSLog(@"登录保存的actoken：%@",loginModel.result[@"acToken"]);
         [defaults setObject:loginModel.result[@"acToken"] forKey:@"acToken"];
+//        清空绑定的信息
+        [defaults setObject:@"" forKey:@"cardNumber"];
         [defaults synchronize];
         
         [SVProgressHUD dismiss];

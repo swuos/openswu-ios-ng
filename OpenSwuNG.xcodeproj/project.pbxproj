@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4B4B04DA213ECC67008FA20D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B4B04D9213ECC67008FA20D /* Assets.xcassets */; };
 		4B4B04DD213ECC67008FA20D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B4B04DB213ECC67008FA20D /* LaunchScreen.storyboard */; };
-		BF629272222FF688004EA540 /* NSMutableDictionary+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = BF629271222FF688004EA540 /* NSMutableDictionary+Parameters.m */; };
 		BF71B15F221F8FFC00C00868 /* SWUAboutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF71B15E221F8FFC00C00868 /* SWUAboutModel.m */; };
 		BF71B161221F903000C00868 /* About.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF71B160221F903000C00868 /* About.plist */; };
 		BF71B164221F93B900C00868 /* SWUAboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF71B163221F93B900C00868 /* SWUAboutUsViewController.m */; };
@@ -41,6 +40,10 @@
 		BFA4BE8C2226D2E6006F674E /* SWUBindingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFA4BE8B2226D2E6006F674E /* SWUBindingViewController.m */; };
 		BFB95C802231169600090BEE /* SWULoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95C7F2231169600090BEE /* SWULoginModel.m */; };
 		BFB95C8322312D6F00090BEE /* SWUVerificationCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95C8222312D6F00090BEE /* SWUVerificationCodeButton.m */; };
+		BFB95CD322323AAB00090BEE /* SWUBindingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CD222323AAB00090BEE /* SWUBindingModel.m */; };
+		BFB95CD622323D6800090BEE /* SWUAFN.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CD522323D6800090BEE /* SWUAFN.m */; };
+		BFB95CD922326B6B00090BEE /* SWUScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CD822326B6B00090BEE /* SWUScheduleModel.m */; };
+		BFB95CE02233931B00090BEE /* NSDate+DistanceOfTimes.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CDF2233931B00090BEE /* NSDate+DistanceOfTimes.m */; };
 		BFD47F6F22222435000AED18 /* UIBarButtonItem+Item.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD47F6D22222435000AED18 /* UIBarButtonItem+Item.m */; };
 		BFF9ADA122280A9C00B10767 /* SWUTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF9ADA022280A9C00B10767 /* SWUTextField.m */; };
 		BFF9ADA422281BB700B10767 /* UIButton+Login.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF9ADA322281BB700B10767 /* UIButton+Login.m */; };
@@ -55,8 +58,6 @@
 		4B4B04D9213ECC67008FA20D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B4B04DC213ECC67008FA20D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B4B04DE213ECC67008FA20D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BF629270222FF688004EA540 /* NSMutableDictionary+Parameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Parameters.h"; sourceTree = "<group>"; };
-		BF629271222FF688004EA540 /* NSMutableDictionary+Parameters.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Parameters.m"; sourceTree = "<group>"; };
 		BF71B15D221F8FFC00C00868 /* SWUAboutModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUAboutModel.h; sourceTree = "<group>"; };
 		BF71B15E221F8FFC00C00868 /* SWUAboutModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUAboutModel.m; sourceTree = "<group>"; };
 		BF71B160221F903000C00868 /* About.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = About.plist; sourceTree = "<group>"; };
@@ -116,6 +117,14 @@
 		BFB95C7F2231169600090BEE /* SWULoginModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWULoginModel.m; sourceTree = "<group>"; };
 		BFB95C8122312D6F00090BEE /* SWUVerificationCodeButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUVerificationCodeButton.h; sourceTree = "<group>"; };
 		BFB95C8222312D6F00090BEE /* SWUVerificationCodeButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUVerificationCodeButton.m; sourceTree = "<group>"; };
+		BFB95CD122323AAB00090BEE /* SWUBindingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUBindingModel.h; sourceTree = "<group>"; };
+		BFB95CD222323AAB00090BEE /* SWUBindingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUBindingModel.m; sourceTree = "<group>"; };
+		BFB95CD422323D6800090BEE /* SWUAFN.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUAFN.h; sourceTree = "<group>"; };
+		BFB95CD522323D6800090BEE /* SWUAFN.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUAFN.m; sourceTree = "<group>"; };
+		BFB95CD722326B6B00090BEE /* SWUScheduleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUScheduleModel.h; sourceTree = "<group>"; };
+		BFB95CD822326B6B00090BEE /* SWUScheduleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUScheduleModel.m; sourceTree = "<group>"; };
+		BFB95CDE2233931B00090BEE /* NSDate+DistanceOfTimes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+DistanceOfTimes.h"; sourceTree = "<group>"; };
+		BFB95CDF2233931B00090BEE /* NSDate+DistanceOfTimes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DistanceOfTimes.m"; sourceTree = "<group>"; };
 		BFD47F6D22222435000AED18 /* UIBarButtonItem+Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Item.m"; sourceTree = "<group>"; };
 		BFD47F6E22222435000AED18 /* UIBarButtonItem+Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Item.h"; sourceTree = "<group>"; };
 		BFF9AD9F22280A9C00B10767 /* SWUTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUTextField.h; sourceTree = "<group>"; };
@@ -311,6 +320,8 @@
 				BF75E8C52218F59B005244C5 /* AppDelegate.h */,
 				BF75E8C62218F59B005244C5 /* AppDelegate.m */,
 				BF75E8C72218F59B005244C5 /* main.m */,
+				BFB95CD422323D6800090BEE /* SWUAFN.h */,
+				BFB95CD522323D6800090BEE /* SWUAFN.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -359,6 +370,8 @@
 			children = (
 				BF7E6911221C19D80032422F /* SWUMineModel.h */,
 				BF7E6912221C19D80032422F /* SWUMineModel.m */,
+				BFB95CD122323AAB00090BEE /* SWUBindingModel.h */,
+				BFB95CD222323AAB00090BEE /* SWUBindingModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -408,6 +421,8 @@
 		BFA4BE4322256264006F674E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BFB95CD722326B6B00090BEE /* SWUScheduleModel.h */,
+				BFB95CD822326B6B00090BEE /* SWUScheduleModel.m */,
 				BFA4BE4422256264006F674E /* Data.h */,
 				BFA4BE4522256264006F674E /* Data.m */,
 				BFA4BE4622256264006F674E /* Weekitem.h */,
@@ -468,8 +483,8 @@
 				BFD47F6D22222435000AED18 /* UIBarButtonItem+Item.m */,
 				BFF9ADA222281BB700B10767 /* UIButton+Login.h */,
 				BFF9ADA322281BB700B10767 /* UIButton+Login.m */,
-				BF629270222FF688004EA540 /* NSMutableDictionary+Parameters.h */,
-				BF629271222FF688004EA540 /* NSMutableDictionary+Parameters.m */,
+				BFB95CDE2233931B00090BEE /* NSDate+DistanceOfTimes.h */,
+				BFB95CDF2233931B00090BEE /* NSDate+DistanceOfTimes.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -591,6 +606,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFA4BE7F2226A3C5006F674E /* SWUWeekSelectView.m in Sources */,
+				BFB95CD322323AAB00090BEE /* SWUBindingModel.m in Sources */,
 				BFF9ADFA22296FDE00B10767 /* SWUForgetPwdViewController.m in Sources */,
 				BFF9ADA122280A9C00B10767 /* SWUTextField.m in Sources */,
 				BFA4BE3E22255EE1006F674E /* SWULabel.m in Sources */,
@@ -604,6 +620,7 @@
 				BF75E8D12218F59B005244C5 /* AppDelegate.m in Sources */,
 				BF75E8CE2218F59B005244C5 /* SWUTabBarController.m in Sources */,
 				BFA4BE862226D230006F674E /* SWULoginViewController.m in Sources */,
+				BFB95CD922326B6B00090BEE /* SWUScheduleModel.m in Sources */,
 				BFF9ADA422281BB700B10767 /* UIButton+Login.m in Sources */,
 				BFD47F6F22222435000AED18 /* UIBarButtonItem+Item.m in Sources */,
 				BFF9ADFD222A321E00B10767 /* SWULoginLabel.m in Sources */,
@@ -613,9 +630,10 @@
 				BF7E6913221C19D80032422F /* SWUMineModel.m in Sources */,
 				BFA4BE8C2226D2E6006F674E /* SWUBindingViewController.m in Sources */,
 				BF7E68B7221BEB4B0032422F /* SWUMineTableViewCell.m in Sources */,
-				BF629272222FF688004EA540 /* NSMutableDictionary+Parameters.m in Sources */,
 				BF7E6947221D3C730032422F /* SWUNavigationController.m in Sources */,
+				BFB95CE02233931B00090BEE /* NSDate+DistanceOfTimes.m in Sources */,
 				BFA4BE3B22255E06006F674E /* SWUScrollview.m in Sources */,
+				BFB95CD622323D6800090BEE /* SWUAFN.m in Sources */,
 				BFA4BE7622262F66006F674E /* SWUAlertViewController.m in Sources */,
 				BF75E8CF2218F59B005244C5 /* SWUMainViewController.m in Sources */,
 				BFA4BE892226D2A4006F674E /* SWURegisterViewController.m in Sources */,

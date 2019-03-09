@@ -7,10 +7,12 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
 
+NS_ASSUME_NONNULL_BEGIN
+@class SWUScrollview;
 @interface SWUCollectionViewCell : UICollectionViewCell
 
+@property (nonatomic,strong)  SWUScrollview * scrollerView;
 @end
 
 NS_ASSUME_NONNULL_END

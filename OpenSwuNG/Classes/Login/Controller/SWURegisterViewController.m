@@ -11,8 +11,7 @@
 #import "SWULoginLabel.h"
 #import "UIButton+Login.h"
 #import "SVProgressHUD.h"
-#import "AFNetworking.h"
-#import "NSMutableDictionary+Parameters.h"
+#import "SWUAFN.h"
 #import "SWUVerificationCodeButton.h"
 
 
@@ -30,7 +29,7 @@
 /** 网络回话管理者  */
 @property (nonatomic,strong) AFHTTPSessionManager * manager;
 /** 网络请求传递的参数  */
-@property (nonatomic,strong) NSMutableDictionary * paraDic;
+@property (nonatomic,strong) NSDictionary * paraDic;
 /** 获取验证码的按钮  */
 @property (nonatomic,strong) SWUVerificationCodeButton * getVerCodeBtn;
 @end
@@ -97,10 +96,10 @@
     if (_userPhoneNumber.text.length == 11 && [self checkPhoneNumber:_userPhoneNumber.text]) {
 //        设置计时器开始计时
         [self.getVerCodeBtn timeFailBeginFrom:150];
-        self.manager = [AFHTTPSessionManager manager];
-        _manager.requestSerializer = [AFJSONRequestSerializer new];
-        self.paraDic = [NSMutableDictionary ParametersDic];
-        [_paraDic setObject:_userPhoneNumber.text forKey:@"phoneNumber"];
+        self.manager = [SWUAFN swuAfnManage];
+        self.paraDic = @{@"phoneNumber":_userPhoneNumber.text};
+        
+        
         [_manager POST:@"https://freegatty.swuosa.xenoeye.org/ac/sendVerificationCode" parameters:_paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             NSLog(@"%@",responseObject);
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -129,10 +128,13 @@
         [SVProgressHUD showErrorWithStatus:@"验证码为空!"];
         return;
     }
-    [_paraDic setObject:@"password" forKey:_firstPwd.text];
-    [_paraDic setObject:@"verificationCode" forKey:_verificationCode.text];
+    self.paraDic = @{
+                     @"phoneNumber":_userPhoneNumber.text,
+                     @"password":_firstPwd.text,
+                     @"verificationCode":_verificationCode.text
+                     };
     [_manager POST:@"https://freegatty.swuosa.xenoeye.org/ac/register" parameters:_paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
+//        注册后怎么办？
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD showErrorWithStatus:@"请检查网络，稍后重试!"];
     }];

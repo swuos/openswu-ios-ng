@@ -11,8 +11,10 @@
 #import "SWUTextField.h"
 #import "SWULoginLabel.h"
 #import "SVProgressHUD.h"
-#import "AFNetworking.h"
-#import "NSMutableDictionary+Parameters.h"
+#import "SWUAFN.h"
+#import "SWUBindingModel.h"
+#import "MJExtension.h"
+#import "NSDate+DistanceOfTimes.h"
 
 @interface SWUBindingViewController ()
 /** 卡号  */
@@ -61,38 +63,34 @@
 -(void)bindingCard {
     if (_cardNumber.text.length == 15) {
         if (_cardNumberPwd.text.length == 6) {
+            [SVProgressHUD showWithStatus:@"请稍等...."];
             NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
             
-            AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
-            manager.requestSerializer = [AFJSONRequestSerializer new];
-            
-            
-            
+            AFHTTPSessionManager * manager = [SWUAFN swuAfnManage];
             [manager.requestSerializer setValue:[userDefaults objectForKey:@"acToken"] forHTTPHeaderField:@"acToken"];
-            NSMutableDictionary * paraDic = [NSMutableDictionary ParametersDic];
-            [paraDic setObject:@"swuid" forKey:_cardNumber.text];
-            [paraDic setObject:@"password" forKey:_cardNumberPwd.text];
-            
-//            NSLog(@"绑定时的取出来的actoken：%@---%@--%d",[[userDefaults objectForKey:@"acToken"] class],[userDefaults objectForKey:@"acToken"],true);
+            NSDictionary * paraDic = @{
+                                       @"swuid":_cardNumber.text,
+                                       @"password":_cardNumberPwd.text
+                                       };
             //            发送请求
             [manager POST:@"https://freegatty.swuosa.xenoeye.org/ac/bindSwuac" parameters:paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//                NSLog(@"%@",responseObject);
-//                如果登录成功
-                if (![responseObject[@"success"] isEqualToString:@"1"]) {
+                SWUBindingModel * bindingModel = [SWUBindingModel mj_objectWithKeyValues:responseObject];
+                NSLog(@"success:%@----message%@",bindingModel.success,bindingModel.message);
+                if (bindingModel.success.intValue != 1) {
                     [SVProgressHUD showErrorWithStatus:@"请检查账号和密码"];
                     return ;
                 }
-                [userDefaults setObject:self->_cardNumber.text forKey:@"cardNumber"];
-                [userDefaults setObject:self->_cardNumberPwd forKey:@"cardNumberPwd"];
+                [userDefaults setObject:self.cardNumber.text forKey:@"cardNumber"];
+                [userDefaults setObject:self.cardNumberPwd.text forKey:@"cardNumberPwd"];
                 [userDefaults synchronize];
                 [self dismissViewControllerAnimated:YES completion:nil];
+//                下载课表
+                [NSDate getSchedule];
+                
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                NSLog(@"%@",error);
-                NSData *errorData = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
-                NSDictionary *serializedData = [NSJSONSerialization JSONObjectWithData: errorData options:kNilOptions error:nil];
-//                NSLog(@"error--%@",serializedData);
                 [SVProgressHUD showErrorWithStatus:@"请检查网络!"];
             }];
+            [SVProgressHUD dismiss];
         }else {
             [SVProgressHUD showErrorWithStatus:@"请检查卡号密码一般是6位"];
         }
