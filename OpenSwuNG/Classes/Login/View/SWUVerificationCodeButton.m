@@ -27,6 +27,8 @@
         [self setTitleColor:[UIColor colorWithRed:24/255.0 green:113/255.0 blue:245/255.0 alpha:1.0] forState:UIControlStateNormal];
         [self.imageView removeFromSuperview];
         self.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+        [self setBackgroundImage:[SWUVerificationCodeButton createImageWithColor:[UIColor colorWithRed:24/255.0 green:113/255.0 blue:245/255.0 alpha:1.0]] forState:UIControlStateHighlighted];
+        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     }
     return self;
 }
@@ -48,6 +50,15 @@
     [self.timer invalidate];
 }
 
++ (UIImage*)createImageWithColor:(UIColor*)color{
+    CGRect rect=CGRectMake(0.0f,0.0f,1.0f,1.0f);UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context=UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage* theImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return theImage;
+}
 
 
 

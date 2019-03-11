@@ -18,13 +18,5 @@
 		<key>symbol</key>
 		<string>1</string>
 	</dict>
-	<dict>
-		<key>content</key>
-		<string>版本更新</string>
-		<key>controller</key>
-		<string>AU</string>
-		<key>symbol</key>
-		<string>0</string>
-	</dict>
 </array>
 </plist>

@@ -15,6 +15,7 @@
 #import "Constants.h"
 #import "NSDate+DistanceOfTimes.h"
 #import "SWULoginViewController.h"
+#import "SWUNavigationController.h"
 
 
 @interface SWUMineViewController ()
@@ -120,7 +121,8 @@
                 [fileManager removeItemAtPath:CACHE_PATH(@"schedule.plist") error:nil];
 //                退出登录，然后设置主页面为登录界面
                 SWULoginViewController * loginVc = [[SWULoginViewController alloc] init];
-                [[UIApplication sharedApplication].keyWindow setRootViewController:loginVc];
+                SWUNavigationController * nav = [[SWUNavigationController alloc] initWithRootViewController:loginVc];
+                [[UIApplication sharedApplication].keyWindow setRootViewController:nav];
                 return;
             }
         }];

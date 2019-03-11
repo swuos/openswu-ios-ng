@@ -17,6 +17,7 @@
 #import "SWUPickerView.h"
 #import "SWUAFN.h"
 #import "SWULabel.h"
+#import "SVProgressHUD.h"
 
 
 @interface SWUScoreViewController ()<UITableViewDelegate,UITableViewDataSource,SWUPickerViewDelegate>
@@ -115,17 +116,24 @@
 }
 #pragma mark ------ SWUPickerViewDelegate ------
 -(void)SWUPickerViewDidSelected:(NSMutableDictionary *)paraDic {
+    [SVProgressHUD showWithStatus:@"请稍后..."];
     NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
     [paraDic setObject:[userDefaults objectForKey:@"cardNumber"] forKey:@"swuid"];
     AFHTTPSessionManager * manager = [SWUAFN swuAfnManage];
     [manager.requestSerializer setValue:[userDefaults objectForKey:@"acToken"] forHTTPHeaderField:@"acToken"];
     [manager GET:@"https://freegatty.swuosa.xenoeye.org/api/grade/search" parameters:paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        NSLog(@"%@",responseObject);
+        NSLog(@"%@",responseObject);
+        NSString * success = responseObject[@"success"];
+        if (success.integerValue == 0) {
+            [SVProgressHUD showErrorWithStatus:@"系统繁忙，发生错误"];
+            return ;
+        }
         NSDictionary * dic = responseObject[@"result"];
         [self setDataArray:[SWUScoreModel mj_objectArrayWithKeyValuesArray:dic[@"data"]]];
         [self setUpUI:paraDic];
+        [SVProgressHUD dismiss];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
+        [SVProgressHUD showErrorWithStatus:@"请选择正确的学年和学期"];
     }];
 }
 

@@ -28,7 +28,6 @@
 }
 
 -(void)setUpUI:(CGRect)frame {
-//    self.backgroundColor = [UIColor whiteColor];
     UIView * gradeMessageView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WEEK_SCROLLERVIEW_HEIGHT, frame.size.height)];
     [self addSubview:gradeMessageView];
     

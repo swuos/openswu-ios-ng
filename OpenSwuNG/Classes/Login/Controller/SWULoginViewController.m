@@ -36,7 +36,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self setUpUI];
     NSLog(@"%@",CACHE_PATH(@"plist.plist"));
 }
@@ -128,7 +127,6 @@
                                @"phoneNumber":_userTextField.text,
                                @"password":_pwdTextfield.text
                                };
-    
     [manger POST:@"https://freegatty.swuosa.xenoeye.org/ac/login" parameters:paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         SWULoginModel * loginModel = [SWULoginModel mj_objectWithKeyValues:responseObject];
         if(loginModel.success.intValue != 1) {

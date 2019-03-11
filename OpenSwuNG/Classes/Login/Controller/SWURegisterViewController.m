@@ -13,6 +13,7 @@
 #import "SVProgressHUD.h"
 #import "SWUAFN.h"
 #import "SWUVerificationCodeButton.h"
+#import "SWULoginViewController.h"
 
 
 @interface SWURegisterViewController ()<UITextFieldDelegate>
@@ -38,7 +39,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 }
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -61,7 +61,6 @@
     i++;
     
     
-    
     SWULoginLabel * veriLabel  = [SWULoginLabel SWULoginLabelwithText:@"验证码"];
     self.verificationCode = [SWUTextField SWUTextFieldWithFrame:CGRectMake(0, i*(WEEK_SCROLLERVIEW_HEIGHT+10), SCREEN_WIDTH, WEEK_SCROLLERVIEW_HEIGHT) LeftView:veriLabel Text:@"请输入验证码" KeyBoardType:UIKeyboardTypeNumberPad];
 //    添加获取验证的按钮
@@ -75,11 +74,13 @@
     SWULoginLabel * firstPwdLabel  = [SWULoginLabel SWULoginLabelwithText:@"密码"];
     self.firstPwd = [SWUTextField SWUTextFieldWithFrame:CGRectMake(0, i*(WEEK_SCROLLERVIEW_HEIGHT+10), SCREEN_WIDTH, WEEK_SCROLLERVIEW_HEIGHT) LeftView:firstPwdLabel Text:@"请输入密码" KeyBoardType:UIKeyboardTypeDefault];
     [_firstPwd setLineViewLength:CGRectMake(SCREEN_WIDTH*0.05, _userPhoneNumber.frame.size.height, SCREEN_WIDTH*0.9, 0.5)];
+    _firstPwd.secureTextEntry = YES;
     [backView addSubview: _firstPwd];
     i++;
     
     UILabel * secondPwdLabel  = [SWULoginLabel SWULoginLabelwithText:@"确认密码"];
-    self.secondPwd = [SWUTextField SWUTextFieldWithFrame:CGRectMake(0, i*(WEEK_SCROLLERVIEW_HEIGHT+10), SCREEN_WIDTH, WEEK_SCROLLERVIEW_HEIGHT) LeftView:secondPwdLabel Text:@"请输入密码" KeyBoardType:UIKeyboardTypeDefault];
+    self.secondPwd = [SWUTextField SWUTextFieldWithFrame:CGRectMake(0, i*(WEEK_SCROLLERVIEW_HEIGHT+10), SCREEN_WIDTH, WEEK_SCROLLERVIEW_HEIGHT) LeftView:secondPwdLabel Text:@"请再次输入密码" KeyBoardType:UIKeyboardTypeDefault];
+    _secondPwd.secureTextEntry = YES;
     [_secondPwd setLineViewLength:CGRectMake(SCREEN_WIDTH*0.05, _userPhoneNumber.frame.size.height, SCREEN_WIDTH*0.9, 0.5)];
     [backView addSubview: _secondPwd];
     
@@ -98,8 +99,7 @@
         [self.getVerCodeBtn timeFailBeginFrom:150];
         self.manager = [SWUAFN swuAfnManage];
         self.paraDic = @{@"phoneNumber":_userPhoneNumber.text};
-        
-        
+
         [_manager POST:@"https://freegatty.swuosa.xenoeye.org/ac/sendVerificationCode" parameters:_paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             NSLog(@"%@",responseObject);
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -110,11 +110,7 @@
     [SVProgressHUD showErrorWithStatus:@"请检查手机号!"];
 }
 
-
-
-
 -(void)registerAndBinding {
-    
     //    判断两次的密码是否相同
     if (_firstPwd.text.length <= 0 ||  _secondPwd.text.length <= 0 ) {
         [SVProgressHUD showErrorWithStatus:@"密码为空，请输入"];
@@ -134,11 +130,19 @@
                      @"verificationCode":_verificationCode.text
                      };
     [_manager POST:@"https://freegatty.swuosa.xenoeye.org/ac/register" parameters:_paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//        注册后怎么办？
+//        注册后怎么办
+        NSLog(@"%@",responseObject);
+        NSString * success = responseObject[@"success"];
+        if (success.intValue == 0) {
+            [SVProgressHUD showErrorWithStatus:@"已存在账号,请登录!"];
+        }else {
+            [SVProgressHUD showSuccessWithStatus:@"注册成功!"];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
         [SVProgressHUD showErrorWithStatus:@"请检查网络，稍后重试!"];
     }];
-    
 }
 
 - (BOOL)checkPhoneNumber:(NSString *)phoneNumber

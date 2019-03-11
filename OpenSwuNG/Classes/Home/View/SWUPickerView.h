@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SWUPickerView : UIView
 /** 代理  */
-@property (nonatomic,strong) id<SWUPickerViewDelegate> delegate;
+@property (nonatomic,weak) id<SWUPickerViewDelegate> delegate;
 @end
 
 NS_ASSUME_NONNULL_END

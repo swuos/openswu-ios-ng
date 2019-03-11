@@ -21,24 +21,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-
-    
-        SWULoginViewController * loginVc = [[SWULoginViewController alloc] init];
-        SWUNavigationController * nav = [[SWUNavigationController alloc] initWithRootViewController:loginVc];
-        [self.window setRootViewController:nav];
+    SWULoginViewController * loginVc = [[SWULoginViewController alloc] init];
+    SWUNavigationController * nav = [[SWUNavigationController alloc] initWithRootViewController:loginVc];
+    [self.window setRootViewController:nav];
     
     [self.window makeKeyAndVisible];
     return YES;
 }
 
-//-(BOOL)isUserLogin {
-//    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-//    NSString * userId = [userDefaults objectForKey:@"acToken"];
-//    if (userId != nil && ![userId isEqualToString:@""]) {
-//        return YES;
-//    }
-//    return NO;
-//}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

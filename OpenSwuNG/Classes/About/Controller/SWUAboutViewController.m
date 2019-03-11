@@ -34,8 +34,6 @@
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     self.tableView.separatorColor = [UIColor lightGrayColor];
     self.tableView.separatorInset = UIEdgeInsetsMake(7, 15, 7, 15);
-    
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated {

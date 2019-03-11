@@ -17,7 +17,6 @@
     [manager.requestSerializer setValue:@"mi 6" forHTTPHeaderField:@"phoneModel"];
     [manager.requestSerializer setValue:@"1920" forHTTPHeaderField:@"resolutionRatioHeight"];
     [manager.requestSerializer setValue:@"1080" forHTTPHeaderField:@"resolutionRatioHeight"];
-    
     return manager;
     
 }

@@ -83,9 +83,9 @@
                 [userDefaults setObject:self.cardNumber.text forKey:@"cardNumber"];
                 [userDefaults setObject:self.cardNumberPwd.text forKey:@"cardNumberPwd"];
                 [userDefaults synchronize];
-                [self dismissViewControllerAnimated:YES completion:nil];
 //                下载课表
                 [NSDate getSchedule];
+                [self dismissViewControllerAnimated:YES completion:nil];
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 [SVProgressHUD showErrorWithStatus:@"请检查网络!"];
