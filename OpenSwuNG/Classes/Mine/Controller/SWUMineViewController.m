@@ -71,9 +71,7 @@
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-
     SWUHeaderView * view = [[SWUHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
-
     return  view;
 }
 
@@ -81,7 +79,6 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     SWUMineModel * swuMine = self.dataArray[indexPath.row];
-
     [self showAlertViewtableView:tableView SwuMine:swuMine];
     
 }
@@ -103,6 +100,7 @@
             if ([swuMine.icon isEqualToString:@"mine_card"]) {
                 [userDefaults setObject:@"" forKey:@"cardNumber"];
                 [userDefaults setObject:@"" forKey:@"cardNumberPwd"];
+                [userDefaults synchronize];
                 [fileManager removeItemAtPath:CACHE_PATH(@"schedule.plist") error:nil];
                 return ;
             }
@@ -116,6 +114,9 @@
                 [userDefaults setObject:@"" forKey:@"acToken"];
                 [userDefaults setObject:@"" forKey:@"cardNumber"];
                 [userDefaults setObject:@"" forKey:@"cardNumberPwd"];
+                [userDefaults setObject:@"" forKey:@"phoneNumber"];
+                [userDefaults setObject:@"" forKey:@"password"];
+                [userDefaults synchronize];
                 [fileManager removeItemAtPath:CACHE_PATH(@"schedule.plist") error:nil];
 //                退出登录，然后设置主页面为登录界面
                 SWULoginViewController * loginVc = [[SWULoginViewController alloc] init];

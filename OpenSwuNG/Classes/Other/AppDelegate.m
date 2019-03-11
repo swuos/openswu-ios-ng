@@ -22,30 +22,23 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
-    if (![self isUserLogin]) {
+    
         SWULoginViewController * loginVc = [[SWULoginViewController alloc] init];
         SWUNavigationController * nav = [[SWUNavigationController alloc] initWithRootViewController:loginVc];
         [self.window setRootViewController:nav];
-    }else {
-        SWUTabBarController * tabBarVc = [[SWUTabBarController alloc] init];
-        [self.window setRootViewController:tabBarVc];
-    }
-    
-    
     
     [self.window makeKeyAndVisible];
     return YES;
 }
 
--(BOOL)isUserLogin {
-    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-//    [userDefaults setObject:@"" forKey:@"acToken"];
-    NSString * userId = [userDefaults objectForKey:@"acToken"];
-    if (userId != nil && ![userId isEqualToString:@""]) {
-        return YES;
-    }
-    return NO;
-}
+//-(BOOL)isUserLogin {
+//    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+//    NSString * userId = [userDefaults objectForKey:@"acToken"];
+//    if (userId != nil && ![userId isEqualToString:@""]) {
+//        return YES;
+//    }
+//    return NO;
+//}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

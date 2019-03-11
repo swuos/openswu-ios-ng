@@ -21,7 +21,6 @@
     _swuMine = swuMine;
     self.imageView.image = [UIImage imageNamed:swuMine.icon];
     self.textLabel.text = swuMine.content;
-    
 }
 
 

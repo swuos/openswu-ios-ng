@@ -48,7 +48,7 @@
     i++;
     
     SWULoginLabel * firstPwdLabel  = [SWULoginLabel SWULoginLabelwithText:@"密码"];
-    self.cardNumberPwd = [SWUTextField SWUTextFieldWithFrame:CGRectMake(0, i*(WEEK_SCROLLERVIEW_HEIGHT+10), SCREEN_WIDTH, WEEK_SCROLLERVIEW_HEIGHT) LeftView:firstPwdLabel Text:@"请输入一卡通密码" KeyBoardType:UIKeyboardTypeNumberPad];
+    self.cardNumberPwd = [SWUTextField SWUTextFieldWithFrame:CGRectMake(0, i*(WEEK_SCROLLERVIEW_HEIGHT+10), SCREEN_WIDTH, WEEK_SCROLLERVIEW_HEIGHT) LeftView:firstPwdLabel Text:@"请输入教务处登录密码" KeyBoardType:UIKeyboardTypeDefault];
     [_cardNumberPwd setLineViewLength:CGRectMake(SCREEN_WIDTH*0.05, _cardNumberPwd.frame.size.height, SCREEN_WIDTH*0.9, 0.5)];
     _cardNumberPwd.secureTextEntry = YES;
     [backView addSubview: _cardNumberPwd];
@@ -62,7 +62,7 @@
 
 -(void)bindingCard {
     if (_cardNumber.text.length == 15) {
-        if (_cardNumberPwd.text.length == 6) {
+        if (_cardNumberPwd.text.length > 0) {
             [SVProgressHUD showWithStatus:@"请稍等...."];
             NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
             
@@ -92,7 +92,7 @@
             }];
             [SVProgressHUD dismiss];
         }else {
-            [SVProgressHUD showErrorWithStatus:@"请检查卡号密码一般是6位"];
+            [SVProgressHUD showErrorWithStatus:@"请检查卡号密码"];
         }
     }else {
         [SVProgressHUD showErrorWithStatus:@"请检查卡号"];

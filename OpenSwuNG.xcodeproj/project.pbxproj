@@ -44,6 +44,15 @@
 		BFB95CD622323D6800090BEE /* SWUAFN.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CD522323D6800090BEE /* SWUAFN.m */; };
 		BFB95CD922326B6B00090BEE /* SWUScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CD822326B6B00090BEE /* SWUScheduleModel.m */; };
 		BFB95CE02233931B00090BEE /* NSDate+DistanceOfTimes.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CDF2233931B00090BEE /* NSDate+DistanceOfTimes.m */; };
+		BFB95CE62233CD8700090BEE /* SWUScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CE52233CD8700090BEE /* SWUScoreViewController.m */; };
+		BFB95CE92233DED900090BEE /* SWUPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CE82233DED900090BEE /* SWUPointView.m */; };
+		BFB95CEC2233F77800090BEE /* SWUTotalScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CEB2233F77800090BEE /* SWUTotalScoreView.m */; };
+		BFB95CEF2233FCAB00090BEE /* SWUScrollerBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CEE2233FCAB00090BEE /* SWUScrollerBackView.m */; };
+		BFB95CF422340EA600090BEE /* SWUScoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CF322340EA600090BEE /* SWUScoreModel.m */; };
+		BFB95CF72234A6DB00090BEE /* SWUScoreHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CF62234A6DB00090BEE /* SWUScoreHeaderView.m */; };
+		BFB95CFA2234ABBC00090BEE /* SWUScoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CF92234ABBC00090BEE /* SWUScoreCell.m */; };
+		BFB95CFD2235493C00090BEE /* SWUPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CFC2235493C00090BEE /* SWUPickerView.m */; };
+		BFB95D2222354FC800090BEE /* NSDate+PickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95D2122354FC800090BEE /* NSDate+PickerView.m */; };
 		BFD47F6F22222435000AED18 /* UIBarButtonItem+Item.m in Sources */ = {isa = PBXBuildFile; fileRef = BFD47F6D22222435000AED18 /* UIBarButtonItem+Item.m */; };
 		BFF9ADA122280A9C00B10767 /* SWUTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF9ADA022280A9C00B10767 /* SWUTextField.m */; };
 		BFF9ADA422281BB700B10767 /* UIButton+Login.m in Sources */ = {isa = PBXBuildFile; fileRef = BFF9ADA322281BB700B10767 /* UIButton+Login.m */; };
@@ -125,6 +134,24 @@
 		BFB95CD822326B6B00090BEE /* SWUScheduleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUScheduleModel.m; sourceTree = "<group>"; };
 		BFB95CDE2233931B00090BEE /* NSDate+DistanceOfTimes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+DistanceOfTimes.h"; sourceTree = "<group>"; };
 		BFB95CDF2233931B00090BEE /* NSDate+DistanceOfTimes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DistanceOfTimes.m"; sourceTree = "<group>"; };
+		BFB95CE42233CD8700090BEE /* SWUScoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUScoreViewController.h; sourceTree = "<group>"; };
+		BFB95CE52233CD8700090BEE /* SWUScoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUScoreViewController.m; sourceTree = "<group>"; };
+		BFB95CE72233DED900090BEE /* SWUPointView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUPointView.h; sourceTree = "<group>"; };
+		BFB95CE82233DED900090BEE /* SWUPointView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUPointView.m; sourceTree = "<group>"; };
+		BFB95CEA2233F77800090BEE /* SWUTotalScoreView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUTotalScoreView.h; sourceTree = "<group>"; };
+		BFB95CEB2233F77800090BEE /* SWUTotalScoreView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUTotalScoreView.m; sourceTree = "<group>"; };
+		BFB95CED2233FCAB00090BEE /* SWUScrollerBackView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUScrollerBackView.h; sourceTree = "<group>"; };
+		BFB95CEE2233FCAB00090BEE /* SWUScrollerBackView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUScrollerBackView.m; sourceTree = "<group>"; };
+		BFB95CF222340EA600090BEE /* SWUScoreModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUScoreModel.h; sourceTree = "<group>"; };
+		BFB95CF322340EA600090BEE /* SWUScoreModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUScoreModel.m; sourceTree = "<group>"; };
+		BFB95CF52234A6DB00090BEE /* SWUScoreHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUScoreHeaderView.h; sourceTree = "<group>"; };
+		BFB95CF62234A6DB00090BEE /* SWUScoreHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUScoreHeaderView.m; sourceTree = "<group>"; };
+		BFB95CF82234ABBC00090BEE /* SWUScoreCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUScoreCell.h; sourceTree = "<group>"; };
+		BFB95CF92234ABBC00090BEE /* SWUScoreCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUScoreCell.m; sourceTree = "<group>"; };
+		BFB95CFB2235493C00090BEE /* SWUPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUPickerView.h; sourceTree = "<group>"; };
+		BFB95CFC2235493C00090BEE /* SWUPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUPickerView.m; sourceTree = "<group>"; };
+		BFB95D2022354FC800090BEE /* NSDate+PickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+PickerView.h"; sourceTree = "<group>"; };
+		BFB95D2122354FC800090BEE /* NSDate+PickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+PickerView.m"; sourceTree = "<group>"; };
 		BFD47F6D22222435000AED18 /* UIBarButtonItem+Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Item.m"; sourceTree = "<group>"; };
 		BFD47F6E22222435000AED18 /* UIBarButtonItem+Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Item.h"; sourceTree = "<group>"; };
 		BFF9AD9F22280A9C00B10767 /* SWUTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUTextField.h; sourceTree = "<group>"; };
@@ -262,6 +289,8 @@
 			children = (
 				BF75E8BA2218F59B005244C5 /* SWUMainViewController.h */,
 				BF75E8BB2218F59B005244C5 /* SWUMainViewController.m */,
+				BFB95CE42233CD8700090BEE /* SWUScoreViewController.h */,
+				BFB95CE52233CD8700090BEE /* SWUScoreViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -269,6 +298,8 @@
 		BF75E8BC2218F59B005244C5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BFB95CF222340EA600090BEE /* SWUScoreModel.h */,
+				BFB95CF322340EA600090BEE /* SWUScoreModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -276,6 +307,18 @@
 		BF75E8BD2218F59B005244C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BFB95CE72233DED900090BEE /* SWUPointView.h */,
+				BFB95CE82233DED900090BEE /* SWUPointView.m */,
+				BFB95CEA2233F77800090BEE /* SWUTotalScoreView.h */,
+				BFB95CEB2233F77800090BEE /* SWUTotalScoreView.m */,
+				BFB95CED2233FCAB00090BEE /* SWUScrollerBackView.h */,
+				BFB95CEE2233FCAB00090BEE /* SWUScrollerBackView.m */,
+				BFB95CF52234A6DB00090BEE /* SWUScoreHeaderView.h */,
+				BFB95CF62234A6DB00090BEE /* SWUScoreHeaderView.m */,
+				BFB95CF82234ABBC00090BEE /* SWUScoreCell.h */,
+				BFB95CF92234ABBC00090BEE /* SWUScoreCell.m */,
+				BFB95CFB2235493C00090BEE /* SWUPickerView.h */,
+				BFB95CFC2235493C00090BEE /* SWUPickerView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -485,6 +528,8 @@
 				BFF9ADA322281BB700B10767 /* UIButton+Login.m */,
 				BFB95CDE2233931B00090BEE /* NSDate+DistanceOfTimes.h */,
 				BFB95CDF2233931B00090BEE /* NSDate+DistanceOfTimes.m */,
+				BFB95D2022354FC800090BEE /* NSDate+PickerView.h */,
+				BFB95D2122354FC800090BEE /* NSDate+PickerView.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -610,23 +655,28 @@
 				BFF9ADFA22296FDE00B10767 /* SWUForgetPwdViewController.m in Sources */,
 				BFF9ADA122280A9C00B10767 /* SWUTextField.m in Sources */,
 				BFA4BE3E22255EE1006F674E /* SWULabel.m in Sources */,
+				BFB95CE62233CD8700090BEE /* SWUScoreViewController.m in Sources */,
 				BF7E691E221CF8010032422F /* SWUAboutViewController.m in Sources */,
 				BF71B164221F93B900C00868 /* SWUAboutUsViewController.m in Sources */,
 				BF75E8D22218F59B005244C5 /* main.m in Sources */,
 				BFB95C8322312D6F00090BEE /* SWUVerificationCodeButton.m in Sources */,
+				BFB95CF422340EA600090BEE /* SWUScoreModel.m in Sources */,
 				BFA4BE7C222697DD006F674E /* SWUScheduleViewController.m in Sources */,
 				BFA4BE4A22256264006F674E /* Weekitem.m in Sources */,
 				BFA4BE7922267E21006F674E /* SWUNavTitleView.m in Sources */,
 				BF75E8D12218F59B005244C5 /* AppDelegate.m in Sources */,
 				BF75E8CE2218F59B005244C5 /* SWUTabBarController.m in Sources */,
+				BFB95CE92233DED900090BEE /* SWUPointView.m in Sources */,
 				BFA4BE862226D230006F674E /* SWULoginViewController.m in Sources */,
 				BFB95CD922326B6B00090BEE /* SWUScheduleModel.m in Sources */,
 				BFF9ADA422281BB700B10767 /* UIButton+Login.m in Sources */,
+				BFB95CFA2234ABBC00090BEE /* SWUScoreCell.m in Sources */,
 				BFD47F6F22222435000AED18 /* UIBarButtonItem+Item.m in Sources */,
 				BFF9ADFD222A321E00B10767 /* SWULoginLabel.m in Sources */,
 				BF75E8D02218F59B005244C5 /* SWUMineViewController.m in Sources */,
 				BF7E6921221D320C0032422F /* SWUAboutHeaderView.m in Sources */,
 				BFA4BE4922256264006F674E /* Data.m in Sources */,
+				BFB95CEC2233F77800090BEE /* SWUTotalScoreView.m in Sources */,
 				BF7E6913221C19D80032422F /* SWUMineModel.m in Sources */,
 				BFA4BE8C2226D2E6006F674E /* SWUBindingViewController.m in Sources */,
 				BF7E68B7221BEB4B0032422F /* SWUMineTableViewCell.m in Sources */,
@@ -634,12 +684,16 @@
 				BFB95CE02233931B00090BEE /* NSDate+DistanceOfTimes.m in Sources */,
 				BFA4BE3B22255E06006F674E /* SWUScrollview.m in Sources */,
 				BFB95CD622323D6800090BEE /* SWUAFN.m in Sources */,
+				BFB95CEF2233FCAB00090BEE /* SWUScrollerBackView.m in Sources */,
 				BFA4BE7622262F66006F674E /* SWUAlertViewController.m in Sources */,
 				BF75E8CF2218F59B005244C5 /* SWUMainViewController.m in Sources */,
+				BFB95CFD2235493C00090BEE /* SWUPickerView.m in Sources */,
 				BFA4BE892226D2A4006F674E /* SWURegisterViewController.m in Sources */,
+				BFB95CF72234A6DB00090BEE /* SWUScoreHeaderView.m in Sources */,
 				BFA4BE4122255FDF006F674E /* SWUCollectionViewCell.m in Sources */,
 				BF71B167221F93D400C00868 /* SWUUpdateLogViewController.m in Sources */,
 				BF7E68B4221BE1480032422F /* SWUHeaderView.m in Sources */,
+				BFB95D2222354FC800090BEE /* NSDate+PickerView.m in Sources */,
 				BFB95C802231169600090BEE /* SWULoginModel.m in Sources */,
 				BF71B15F221F8FFC00C00868 /* SWUAboutModel.m in Sources */,
 			);

@@ -27,6 +27,8 @@
 @property (nonatomic,strong) SWUTextField * pwdTextfield;
 /** 登录按钮  */
 @property (nonatomic,strong) UIButton * loginBtn;
+/** userDefaults  */
+@property (nonatomic,strong) NSUserDefaults * userDefaults;
 
 @end
 
@@ -36,14 +38,25 @@
     [super viewDidLoad];
     
     [self setUpUI];
-    
-    
-    
-    
+    NSLog(@"%@",CACHE_PATH(@"plist.plist"));
 }
+
+
+
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+}
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString * phoneNumber = [self.userDefaults objectForKey:@"phoneNumber"];
+    NSString * cardNumber = [self.userDefaults objectForKey:@"cardNumber"];
+    if (phoneNumber.length > 0 && cardNumber.length > 0) {
+        self.userTextField.text = [self.userDefaults objectForKey:@"phoneNumber"];
+        self.pwdTextfield.text = [self.userDefaults objectForKey:@"password"];
+        [self login];
+    }
 }
 //布局
 -(void)setUpUI {
@@ -86,7 +99,6 @@
     _loginBtn.backgroundColor = [UIColor colorWithRed:24/255.0 green:113/255.0 blue:245/255.0 alpha:1.0];
     [_loginBtn addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_loginBtn];
-    
 }
 
 //快速注册
@@ -124,12 +136,11 @@
             return ;
         }
 //        将登录的actoken进行解析出来，然后存放到NSuserdefaults中
-        NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-        NSLog(@"登录保存的actoken：%@",loginModel.result[@"acToken"]);
-        [defaults setObject:loginModel.result[@"acToken"] forKey:@"acToken"];
-//        清空绑定的信息
-        [defaults setObject:@"" forKey:@"cardNumber"];
-        [defaults synchronize];
+//        NSLog(@"登录保存的actoken：%@",loginModel.result[@"acToken"]);
+        [self.userDefaults setObject:loginModel.result[@"acToken"] forKey:@"acToken"];
+        [self.userDefaults setObject:self.userTextField.text forKey:@"phoneNumber"];
+        [self.userDefaults setObject:self.pwdTextfield.text forKey:@"password"];
+        [self.userDefaults synchronize];
         
         [SVProgressHUD dismiss];
         
@@ -139,8 +150,8 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [SVProgressHUD showErrorWithStatus:@"请检查网络!"];
     }];
-    
 }
+
 
 #pragma mark ------ UITextFieldDelegate ------
 
