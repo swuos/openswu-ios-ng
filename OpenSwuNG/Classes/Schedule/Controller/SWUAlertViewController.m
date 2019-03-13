@@ -20,7 +20,6 @@
     
 }
 
-//+(instancetype)alertControllerWithSWULabel:(SWULabel *)swulabel Gesture:(UIGestureRecognizer *)gesture{
 +(instancetype)alertControllerWithSWULabel:(SWULabel *)swulabel {
     NSString * title = swulabel.weekitem.lessonName;
     NSString * message = [NSString stringWithFormat:@"教师:%@\n教室:%@\n星期:%@",swulabel.weekitem.teacher,swulabel.weekitem.classRoom,swulabel.weekitem.week];

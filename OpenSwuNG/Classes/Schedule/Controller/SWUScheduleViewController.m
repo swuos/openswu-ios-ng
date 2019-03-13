@@ -11,6 +11,14 @@
 #import "SWULabel.h"
 #import "SWUCollectionViewCell.h"
 #import "SWUWeekSelectView.h"
+#import "SWUAFN.h"
+#import "MJExtension.h"
+#import "SWUScheduleModel.h"
+#import "Data.h"
+#import "Weekitem.h"
+#import "SWUScrollview.h"
+#import "SVProgressHUD.h"
+#import "NSDate+DistanceOfTimes.h"
 
 @interface SWUScheduleViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 /** 判断collectionview是左右滑动  */
@@ -27,22 +35,75 @@
 @property (nonatomic,assign) NSInteger  currentWeek;
 /** 选中的button  */
 @property (nonatomic,strong) SWULabel * selectBtn;
-
+/** 存储课程信息的dataArray  */
+@property (nonatomic,strong) NSArray * dataArray;
+/** 当前时间  */
+@property (nonatomic,strong) NSDateComponents * comp;
+/**  userDefaults  */
+@property (nonatomic,strong) NSUserDefaults * userDefaults;
 @end
 
 @implementation SWUScheduleViewController
 
 static NSString * const reuseIdentifier = @"Cell";
 
+-(NSArray *)dataArray {
+    if (!_dataArray) {
+        [Data mj_setupObjectClassInArray:^NSDictionary *{
+            return @{@"weekitem":[Weekitem class]};
+        }];
+        _dataArray = [Data mj_objectArrayWithFile:CACHE_PATH(@"schedule.plist")];
+    }
+    return _dataArray;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setUpUIAndAddGesture];
+    
+    self.comp = [NSDate getDateComponents];
+    NSLog(@"%@",CACHE_PATH(@"schedule.plist"));
+    [self postSchedule];
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([[_userDefaults objectForKey:@"cardNumber"] length] > 0) {
+        [self setUpUIAndAddGesture];
+    }else {
+        for (UIView * view in self.view.subviews) {
+            [view removeFromSuperview];
+        }
+        SWULabel * titleLabel = [[SWULabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        titleLabel.backgroundColor = SWUCOLOR(143, 119, 181);
+        titleLabel.text = @"请先绑定校园卡";
+        titleLabel.font = [UIFont systemFontOfSize:25];
+        [self.view addSubview:titleLabel];
+        self.view.backgroundColor = [UIColor whiteColor];
+        self.navigationController.title = @"课程表";
+    }
+    [self changeCurrentReference];
+    
+}
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    //    放置选择星期的按钮出现了，然后切换tabbar发生bug
+    if (!_isOpen) {
+        _isOpen = true;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.navTitleView.weekDeirView.transform = CGAffineTransformIdentity;
+            self.view.transform = CGAffineTransformIdentity;
+        }];
+    }
+    self.selectBtn = [self.weekScrollerView viewWithTag:self.currentWeek];
+    self.selectBtn.backgroundColor = SELECT_COLOR;
+}
+
+
 -(void)setUpUIAndAddGesture {
-    self.isOpen = true;
-    self.currentWeek = 5;
+    self.currentWeek = ceil([NSDate distanceFromOneDayToNow:@"2019-02-25 00:00:00"]/7.0);
+    
     [self addObserver:self forKeyPath:@"currentWeek" options:NSKeyValueObservingOptionNew context:nil];
     //    添加collectionview
     UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc] init];
@@ -84,12 +145,12 @@ static NSString * const reuseIdentifier = @"Cell";
         _isOpen = false;
         [UIView animateWithDuration:0.3 animations:^{
             self.view.transform = CGAffineTransformMakeTranslation(0, WEEK_SCROLLERVIEW_HEIGHT);
-            self->_navTitleView.weekDeirView.transform = CGAffineTransformMakeRotation(M_PI);
+            self.navTitleView.weekDeirView.transform = CGAffineTransformMakeRotation(M_PI);
         }];
     }else {
         _isOpen = true;
         [UIView animateWithDuration:0.3 animations:^{
-            self->_navTitleView.weekDeirView.transform = CGAffineTransformIdentity;
+            self.navTitleView.weekDeirView.transform = CGAffineTransformIdentity;
             self.view.transform = CGAffineTransformIdentity;
         }];
     }
@@ -101,9 +162,17 @@ static NSString * const reuseIdentifier = @"Cell";
     self.currentWeek = sender.view.tag;
 }
 
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self changeCurrentReference];
+//获取课程表数据
+-(void)postSchedule {
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:CACHE_PATH(@"schedule.plist")]) {
+        return;
+    }
+    NSString * cardNumber = [_userDefaults objectForKey:@"cardNumber"];
+    if (cardNumber.length <= 0) {
+        return;
+    }
+    [NSDate getSchedule];
 }
 
 
@@ -111,11 +180,12 @@ static NSString * const reuseIdentifier = @"Cell";
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return WEEK_COUNTS;
 }
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     SWUCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    [cell.scrollerView setData:self.dataArray[indexPath.row]];
     return cell;
 }
+
 
 #pragma mark ------ UICollectionViewDelegate ------
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -132,7 +202,6 @@ static NSString * const reuseIdentifier = @"Cell";
     }else {
         //                NSLog(@"到达开头或者结尾");
     }
-    
 }
 
 

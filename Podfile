@@ -7,7 +7,7 @@ target 'OpenSwuNG' do
   # use_frameworks!
 
   # Pods for OpenSwuNG
-  pod 'AFNetworking', '~> 3.0'
+  pod 'AFNetworking','~> 3.2.1'
   pod 'Masonry'
   pod 'MJExtension'
   pod 'SVProgressHUD'

@@ -26,6 +26,8 @@
 @property (nonatomic,strong) Weekitem * weekitem;
 /** 点击手势  */
 @property (nonatomic,strong) UITapGestureRecognizer * tap;
+/** data  */
+@property (nonatomic,strong) Data * data;
 @end
 
 @implementation SWUScrollview
@@ -36,15 +38,7 @@
     }
     return self;
 }
--(NSArray *)dataArray {
-    if (!_dataArray) {
-        [Data mj_setupObjectClassInArray:^NSDictionary *{
-            return @{@"weekitem":[Weekitem class]};
-        }];
-        _dataArray = [Data mj_objectArrayWithFilename:@"course.plist"];
-    }
-    return _dataArray;
-}
+
 
 -(NSArray *)dateArray {
     if (!_dateArray) {
@@ -54,6 +48,10 @@
 }
 
 -(void)layoutSubviews {
+//    删除之前存在的视图，保证数据的更新
+    for (UIView * view in self.subviews) {
+        [view removeFromSuperview];
+    }
     [super layoutSubviews];
     //    删除之前的视图
     for (UIView * view in self.subviews) {
@@ -74,21 +72,17 @@
         label.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
         [self addSubview:label];
     }
-    
-    
     //        读取数据，然后布局
-    for (Data * data in self.dataArray) {
-        for (int i = 0;i < data.weekitem.count;i++) {
-          self.weekitem = data.weekitem[i];
-            NSInteger count = _weekitem.endTime.integerValue-_weekitem.startTime.integerValue+1;;
-            SWULabel * label = [[SWULabel alloc] initWithFrame:CGRectMake(TIME_HW+(_weekitem.day.integerValue-1)*CELL_HW, (_weekitem.startTime.integerValue-1)*CELL_HW+TIME_HW, CELL_HW,CELL_HW*count)];
-            _weekitem.scrollerViewCount = i;
-            label.weekitem = _weekitem;
-            UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDetailInfo:)];
-            [label addGestureRecognizer:tapGesture];
-            label.userInteractionEnabled = YES;
-            [self addSubview:label];
-        }
+    for (int i = 0;i < self.data.weekitem.count;i++) {
+        self.weekitem = _data.weekitem[i];
+        NSInteger count = _weekitem.endTime.integerValue-_weekitem.startTime.integerValue+1;;
+        SWULabel * label = [[SWULabel alloc] initWithFrame:CGRectMake(TIME_HW+(_weekitem.day.integerValue-1)*CELL_HW, (_weekitem.startTime.integerValue-1)*CELL_HW+TIME_HW, CELL_HW,CELL_HW*count)];
+        _weekitem.scrollerViewCount = i;
+        label.weekitem = _weekitem;
+        UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDetailInfo:)];
+        [label addGestureRecognizer:tapGesture];
+        label.userInteractionEnabled = YES;
+        [self addSubview:label];
     }
 }
 -(void)showDetailInfo:(UITapGestureRecognizer *)sender {
@@ -105,6 +99,11 @@
         [_alert dismissViewControllerAnimated:YES completion:nil];
         [[UIApplication sharedApplication].keyWindow removeGestureRecognizer:_tap];
     }
+}
+-(void)setData:(Data * )data {
+    _data = data;
+//    去除重叠时候发生的数据不能够更新的问题
+    [self layoutSubviews];
 }
 
 @end

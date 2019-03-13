@@ -11,7 +11,11 @@
 #import "MJExtension.h"
 #import "SWUMineModel.h"
 #import "SWUAboutViewController.h"
-
+#import "SWUBindingViewController.h"
+#import "Constants.h"
+#import "NSDate+DistanceOfTimes.h"
+#import "SWULoginViewController.h"
+#import "SWUNavigationController.h"
 
 
 @interface SWUMineViewController ()
@@ -31,14 +35,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    
-
     //    清除多余的cell
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     self.tableView.separatorColor = [UIColor lightGrayColor];
     self.tableView.separatorInset = UIEdgeInsetsMake(7, 15, 7, 15);
-
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
@@ -72,9 +72,7 @@
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-
     SWUHeaderView * view = [[SWUHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
-
     return  view;
 }
 
@@ -82,13 +80,16 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     SWUMineModel * swuMine = self.dataArray[indexPath.row];
-
     [self showAlertViewtableView:tableView SwuMine:swuMine];
     
 }
 //显示alertView
 -(void)showAlertViewtableView:(UITableView *)tableView SwuMine:(SWUMineModel *)swuMine {
     NSInteger count = swuMine.count.integerValue;
+    
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    
     if (count != 0) {
         UIAlertController * alert = [UIAlertController alertControllerWithTitle:NULL message:swuMine.information preferredStyle:UIAlertControllerStyleAlert];
         if (count == 2) {
@@ -96,14 +97,49 @@
             [alert addAction:cancelAction];
         }
         UIAlertAction * okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//            绑卡
+            if ([swuMine.icon isEqualToString:@"mine_card"]) {
+                [userDefaults setObject:@"" forKey:@"cardNumber"];
+                [userDefaults setObject:@"" forKey:@"cardNumberPwd"];
+                [userDefaults synchronize];
+                [fileManager removeItemAtPath:CACHE_PATH(@"schedule.plist") error:nil];
+                return ;
+            }
+//            教务处数据同步
+            if ([swuMine.icon isEqualToString:@"mine_clean"]) {
+                [NSDate getSchedule];
+                return;
+            }
+//            退出
+            if ([swuMine.icon isEqualToString:@"mine_exit"]) {
+                [userDefaults setObject:@"" forKey:@"acToken"];
+                [userDefaults setObject:@"" forKey:@"cardNumber"];
+                [userDefaults setObject:@"" forKey:@"cardNumberPwd"];
+                [userDefaults setObject:@"" forKey:@"phoneNumber"];
+                [userDefaults setObject:@"" forKey:@"password"];
+                [userDefaults synchronize];
+                [fileManager removeItemAtPath:CACHE_PATH(@"schedule.plist") error:nil];
+//                退出登录，然后设置主页面为登录界面
+                SWULoginViewController * loginVc = [[SWULoginViewController alloc] init];
+                SWUNavigationController * nav = [[SWUNavigationController alloc] initWithRootViewController:loginVc];
+                [[UIApplication sharedApplication].keyWindow setRootViewController:nav];
+                return;
+            }
         }];
         [alert addAction:okAction];
-        // 弹出对话框
+        // 弹出对话框还是切换界面？
+        //            点击cell，如果已经绑定校园卡，则解绑
+        if ([swuMine.icon isEqualToString:@"mine_card"]) {
+            NSString * cardNumber = [userDefaults objectForKey:@"cardNumber"];
+            if (cardNumber.length <= 0) {
+                SWUBindingViewController * bindingVc = [[SWUBindingViewController alloc] init];
+                [self presentViewController:bindingVc animated:YES completion:nil];
+            }
+        }
         [self presentViewController:alert animated:true completion:nil];
     }else{
         SWUAboutViewController * aboutVc = [[SWUAboutViewController alloc] init];
         [self.navigationController pushViewController:aboutVc animated:YES];
-        
     }
 }
 
