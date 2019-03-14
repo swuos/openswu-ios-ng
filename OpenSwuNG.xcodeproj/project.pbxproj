@@ -13,7 +13,6 @@
 		BF0F095C2236A36700CD362E /* SWUHomeSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0F09542236A36600CD362E /* SWUHomeSchedule.m */; };
 		BF0F095D2236A36700CD362E /* SWUHomeBanner.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0F09552236A36600CD362E /* SWUHomeBanner.m */; };
 		BF0F095E2236A36700CD362E /* SWUMainButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0F09582236A36700CD362E /* SWUMainButton.m */; };
-		BF0F095F2236A36700CD362E /* SWUHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0F09592236A36700CD362E /* SWUHomeView.m */; };
 		BF0F09622236A37C00CD362E /* SWUMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0F09612236A37B00CD362E /* SWUMainModel.m */; };
 		BF71B15F221F8FFC00C00868 /* SWUAboutModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BF71B15E221F8FFC00C00868 /* SWUAboutModel.m */; };
 		BF71B161221F903000C00868 /* About.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF71B160221F903000C00868 /* About.plist */; };
@@ -79,9 +78,7 @@
 		BF0F09542236A36600CD362E /* SWUHomeSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUHomeSchedule.m; sourceTree = "<group>"; };
 		BF0F09552236A36600CD362E /* SWUHomeBanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUHomeBanner.m; sourceTree = "<group>"; };
 		BF0F09562236A36600CD362E /* SWUHomeScheduleSubview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUHomeScheduleSubview.h; sourceTree = "<group>"; };
-		BF0F09572236A36600CD362E /* SWUHomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUHomeView.h; sourceTree = "<group>"; };
 		BF0F09582236A36700CD362E /* SWUMainButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUMainButton.m; sourceTree = "<group>"; };
-		BF0F09592236A36700CD362E /* SWUHomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUHomeView.m; sourceTree = "<group>"; };
 		BF0F095A2236A36700CD362E /* SWUMainButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUMainButton.h; sourceTree = "<group>"; };
 		BF0F09602236A37B00CD362E /* SWUMainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUMainModel.h; sourceTree = "<group>"; };
 		BF0F09612236A37B00CD362E /* SWUMainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUMainModel.m; sourceTree = "<group>"; };
@@ -333,8 +330,6 @@
 				BF0F09542236A36600CD362E /* SWUHomeSchedule.m */,
 				BF0F09562236A36600CD362E /* SWUHomeScheduleSubview.h */,
 				BF0F09522236A36500CD362E /* SWUHomeScheduleSubview.m */,
-				BF0F09572236A36600CD362E /* SWUHomeView.h */,
-				BF0F09592236A36700CD362E /* SWUHomeView.m */,
 				BF0F095A2236A36700CD362E /* SWUMainButton.h */,
 				BF0F09582236A36700CD362E /* SWUMainButton.m */,
 				BFB95CE72233DED900090BEE /* SWUPointView.h */,
@@ -684,7 +679,6 @@
 				BFB95CD322323AAB00090BEE /* SWUBindingModel.m in Sources */,
 				BFF9ADFA22296FDE00B10767 /* SWUForgetPwdViewController.m in Sources */,
 				BFF9ADA122280A9C00B10767 /* SWUTextField.m in Sources */,
-				BF0F095F2236A36700CD362E /* SWUHomeView.m in Sources */,
 				BFA4BE3E22255EE1006F674E /* SWULabel.m in Sources */,
 				BFB95CE62233CD8700090BEE /* SWUScoreViewController.m in Sources */,
 				BF7E691E221CF8010032422F /* SWUAboutViewController.m in Sources */,

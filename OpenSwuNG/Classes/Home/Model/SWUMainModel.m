@@ -8,10 +8,5 @@
 #import "SWUMainModel.h"
 
 @implementation SWUMainModel
-+(SWUMainModel*)dicToModel:(NSMutableDictionary*)array{
-    SWUMainModel* model=[[SWUMainModel alloc]init];
-    [model setValuesForKeysWithDictionary:array];
-    return model;
-}
 @end
 

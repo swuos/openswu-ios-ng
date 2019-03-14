@@ -7,24 +7,31 @@
 
 #import "SWUHomeBanner.h"
 @interface SWUHomeBanner ()
+/** banner的图片 */
 @property(nonatomic,strong)NSArray *images;
+/** banner当前页数 */
 @property(assign,nonatomic)NSInteger page;
+/** timer */
 @property(nonatomic,weak)NSTimer* timer;
 @end
 
 @implementation SWUHomeBanner
+
+//690 320 px
+//345 160 pt
+
 + (instancetype)bannerWithFrame:(CGRect)frame
 {
-    SWUHomeBanner* banner=[[SWUHomeBanner alloc]initWithFrame:frame];
+    SWUHomeBanner* banner = [[SWUHomeBanner alloc]initWithFrame:frame];
     //设置banner属性
-    banner.contentSize=CGSizeMake(banner.frame.size.width*3, 0);
-    banner.backgroundColor=[UIColor redColor];
-    banner.showsVerticalScrollIndicator=NO;
-    banner.showsHorizontalScrollIndicator=NO;
-    banner.pagingEnabled=YES;
-    banner.bounces=NO;
-    banner.page=0;
-    banner.images=@[[UIColor blueColor],[UIColor greenColor],[UIColor grayColor]];
+    banner.contentSize = CGSizeMake(banner.frame.size.width*3, 0);
+    banner.layer.cornerRadius = 5;
+    banner.showsVerticalScrollIndicator = NO;
+    banner.showsHorizontalScrollIndicator = NO;
+    banner.pagingEnabled = YES;
+    banner.bounces = NO;
+    banner.page = 0;
+    banner.images = @[@"banner1",@"banner2",@"banner3"];
     [banner setBannerImages:banner.images];
     [banner startTimer];
     return banner;
@@ -34,15 +41,15 @@
 -(void)setBannerImages:(NSArray*)images{
     //添加图片
     for(int i=0;i<3;i++){
-        UIView *temp=[[UIView alloc]initWithFrame:CGRectMake(i*self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)];
-        temp.backgroundColor=images[i];
+        UIImageView* temp=[[UIImageView alloc]initWithFrame:CGRectMake(i*self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)];
+        temp.image=[UIImage imageNamed:images[i]];
         [self addSubview:temp];
     }
 }
 
 #pragma mark - NSTimer
 -(void)startTimer{
-    _timer=[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(nextPage) userInfo:nil repeats:YES];
+    _timer=[NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(nextPage) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
 }
 

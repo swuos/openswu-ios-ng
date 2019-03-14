@@ -10,10 +10,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SWUMainModel : NSObject
-@property(nonatomic,strong)NSString *image;
+/** 标题 */
 @property(nonatomic,strong)NSString *title;
+/** 内容 */
 @property(nonatomic,strong)NSString *content;
-+(SWUMainModel*)dicToModel:(NSMutableDictionary*)array;
 @end
 
 NS_ASSUME_NONNULL_END
