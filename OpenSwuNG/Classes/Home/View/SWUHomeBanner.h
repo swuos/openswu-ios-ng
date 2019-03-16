@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SWUHomeBanner : UIScrollView
-+ (instancetype)bannerWithFrame:(CGRect)frame;
++(instancetype)bannerWithFrame:(CGRect)frame;
 -(void)startTimer;
 -(void)stopTimer;
 @end

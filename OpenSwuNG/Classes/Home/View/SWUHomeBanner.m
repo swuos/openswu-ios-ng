@@ -8,9 +8,9 @@
 #import "SWUHomeBanner.h"
 @interface SWUHomeBanner ()
 /** banner的图片 */
-@property(nonatomic,strong)NSArray *images;
+@property(nonatomic,copy)NSArray *images;
 /** banner当前页数 */
-@property(assign,nonatomic)NSInteger page;
+@property(nonatomic,assign)NSInteger page;
 /** timer */
 @property(nonatomic,weak)NSTimer* timer;
 @end
@@ -20,7 +20,7 @@
 //690 320 px
 //345 160 pt
 
-+ (instancetype)bannerWithFrame:(CGRect)frame
++(instancetype)bannerWithFrame:(CGRect)frame
 {
     SWUHomeBanner* banner = [[SWUHomeBanner alloc]initWithFrame:frame];
     //设置banner属性
@@ -37,36 +37,35 @@
     return banner;
 }
 
-
 -(void)setBannerImages:(NSArray*)images{
     //添加图片
     for(int i=0;i<3;i++){
-        UIImageView* temp=[[UIImageView alloc]initWithFrame:CGRectMake(i*self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)];
-        temp.image=[UIImage imageNamed:images[i]];
+        UIImageView *temp = [[UIImageView alloc]initWithFrame:CGRectMake(i*self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)];
+        temp.image = [UIImage imageNamed:images[i]];
         [self addSubview:temp];
     }
 }
 
 #pragma mark - NSTimer
 -(void)startTimer{
-    _timer=[NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(nextPage) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(nextPage) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop]addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
 -(void)stopTimer{
-    [_timer invalidate];
+    [self.timer invalidate];
 }
 
 -(void)nextPage{
-    if(_page==2){
+    if(self.page == 2){
         [self toPage:0];
     }
     else
-        [self toPage:_page+1];
+        [self toPage:self.page+1];
 }
 
 -(void)toPage:(NSInteger)page{
-    _page=page;
+    self.page = page;
     [self setContentOffset:CGPointMake(self.frame.size.width*page, 0) animated:YES];
 }
 

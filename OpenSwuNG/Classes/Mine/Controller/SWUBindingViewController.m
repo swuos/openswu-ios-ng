@@ -85,12 +85,13 @@
                 [userDefaults synchronize];
 //                下载课表
                 [NSDate getSchedule];
+                [SVProgressHUD dismiss];
                 [self dismissViewControllerAnimated:YES completion:nil];
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 [SVProgressHUD showErrorWithStatus:@"请检查网络!"];
             }];
-            [SVProgressHUD dismiss];
+            
         }else {
             [SVProgressHUD showErrorWithStatus:@"请检查卡号密码"];
         }

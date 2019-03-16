@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SWUHomeSchedule : UIScrollView
-+(SWUHomeSchedule*)homeScheduleWithFrame:(CGRect)frame;
++(instancetype)homeScheduleWithFrame:(CGRect)frame;
 -(void)setSubviews:(NSMutableArray*)subviews;
 @end
 

@@ -52,7 +52,7 @@ static NSString * const reuseIdentifier = @"Cell";
         [Data mj_setupObjectClassInArray:^NSDictionary *{
             return @{@"weekitem":[Weekitem class]};
         }];
-        _dataArray = [Data mj_objectArrayWithFile:CACHE_PATH(@"schedule.plist")];
+        _dataArray = [Data mj_objectArrayWithFile:DOCUMENT_PATH(@"schedule.plist")];
     }
     return _dataArray;
 }
@@ -62,7 +62,7 @@ static NSString * const reuseIdentifier = @"Cell";
     [super viewDidLoad];
     
     self.comp = [NSDate getDateComponents];
-    NSLog(@"%@",CACHE_PATH(@"schedule.plist"));
+    NSLog(@"%@",DOCUMENT_PATH(@"schedule.plist"));
     [self postSchedule];
 }
 
@@ -165,7 +165,7 @@ static NSString * const reuseIdentifier = @"Cell";
 //获取课程表数据
 -(void)postSchedule {
     NSFileManager * fileManager = [NSFileManager defaultManager];
-    if ([fileManager fileExistsAtPath:CACHE_PATH(@"schedule.plist")]) {
+    if ([fileManager fileExistsAtPath:DOCUMENT_PATH(@"schedule.plist")]) {
         return;
     }
     NSString * cardNumber = [_userDefaults objectForKey:@"cardNumber"];
