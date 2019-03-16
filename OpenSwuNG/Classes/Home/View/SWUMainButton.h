@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SWUMainButton : UIView
 
-+(instancetype)initWithFrame:(CGRect)frame
++(instancetype)mainButtonWithFrame:(CGRect)frame
                       imageName:(NSString *)imageName
                           Title:(NSString *)title;
 @end

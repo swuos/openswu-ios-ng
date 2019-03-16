@@ -11,7 +11,7 @@
 @end
 
 @implementation SWUHomeScheduleSubview
-+(instancetype)initWithFrame:(CGRect)frame
++(instancetype)scheduleSubviewWithFrame:(CGRect)frame
                                   Title:(NSString*)titleText
                                 Content:(NSString*)contenText
                                  number:(NSInteger)number{

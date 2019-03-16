@@ -10,8 +10,6 @@
 #import "Weekitem.h"
 
 @interface SWUHomeSchedule ()
-/** 今日课表的UIView数组 */
-@property(nonatomic,copy) NSMutableArray* subviews;
 @end
 
 @implementation SWUHomeSchedule
@@ -22,12 +20,12 @@
     return homeSchedule;
 }
 
--(void)setSubviews:(NSMutableArray*)subviews{
+-(void)initSubviews:(NSMutableArray*)subviews{
     self.contentSize = CGSizeMake(subviews.count*(self.frame.size.height*140.0/65.0+15)+15, 0);
     for(int i = 0;i<subviews.count;i++){
         Weekitem *temp = subviews[i];
         SWUHomeScheduleSubview *sub = 
-        [SWUHomeScheduleSubview initWithFrame:CGRectMake(i*(15+self.frame.size.height*140.0/65.0)+15,0,   self.frame.size.height*140.0/65.0,self.frame.size.height)
+        [SWUHomeScheduleSubview scheduleSubviewWithFrame:CGRectMake(i*(15+self.frame.size.height*140.0/65.0)+15,0,   self.frame.size.height*140.0/65.0,self.frame.size.height)
                                         Title:temp.lessonName
                                       Content:[NSString stringWithFormat:@"第%@-%@节 | %@",temp.startTime,temp.endTime,temp.classRoom] number:i];
         [self addSubview:sub];

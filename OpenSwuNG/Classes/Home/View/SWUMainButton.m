@@ -8,7 +8,7 @@
 #import "SWUMainButton.h"
 
 @implementation SWUMainButton
-+(instancetype)initWithFrame:(CGRect)frame
++(instancetype)mainButtonWithFrame:(CGRect)frame
                       imageName:(NSString *)imageName
                           Title:(NSString *)title {
     SWUMainButton *mainBtn = [[SWUMainButton alloc] initWithFrame:frame];

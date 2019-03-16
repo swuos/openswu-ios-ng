@@ -32,12 +32,12 @@
     banner.bounces = NO;
     banner.page = 0;
     banner.images = @[@"banner1",@"banner2",@"banner3"];
-    [banner setBannerImages:banner.images];
+    [banner initBannerImages:banner.images];
     [banner startTimer];
     return banner;
 }
 
--(void)setBannerImages:(NSArray*)images{
+-(void)initBannerImages:(NSArray*)images{
     //添加图片
     for(int i=0;i<3;i++){
         UIImageView *temp = [[UIImageView alloc]initWithFrame:CGRectMake(i*self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)];
