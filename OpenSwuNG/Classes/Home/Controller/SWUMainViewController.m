@@ -94,13 +94,21 @@
     //图片和标题
     NSArray *titles = @[@"成绩查询",@"我的钱包",@"水费查询",@"图书查询"];
     NSArray *images = @[@"main_grade",@"main_wallet",@"main_water",@"main_library"];
-    CGFloat padding = (SCREEN_WIDTH*3.0/25.0)/2.0;
-    CGFloat cellHW = (SCREEN_WIDTH-8*padding)/4.0;
+    CGFloat padding = 0;
+    CGFloat cellWidth = 0;
+    if([[UIDevice currentDevice].model isEqualToString:@"iPad"]){
+        padding = (SCREEN_WIDTH*(4.2/25.0))/2.0;
+        cellWidth = (SCREEN_WIDTH-8*padding)/4.0;
+    }
+    else{
+        padding = (SCREEN_WIDTH*(3.0/25.0))/2.0;
+        cellWidth = (SCREEN_WIDTH-8*padding)/4.0;
+    }
     [self.view layoutIfNeeded];
     for(int i=0;i<4;i++){
-        SWUMainButton *mainButton = [SWUMainButton mainButtonWithFrame:CGRectMake(padding+(cellHW +2*padding)*i, CGRectGetMaxY(_banner.frame)+12, cellHW, cellHW+20)
-                                                imageName:images[i]
-                                                    Title:titles[i]];
+        SWUMainButton *mainButton = [SWUMainButton mainButtonWithFrame:CGRectMake(padding+(cellWidth+2*padding)*i, CGRectGetMaxY(_banner.frame)+SCREEN_HEIGHT*(12.0/667.0), cellWidth, cellWidth+20)
+                                                             imageName:images[i]
+                                                                 Title:titles[i]];
         mainButton.userInteractionEnabled = YES;
         [self.view addSubview:mainButton];
         [self.buttons addObject:mainButton];
@@ -157,7 +165,7 @@
     [self.view addSubview:_scheduleHeadLabel];
     [self.scheduleHeadLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         SWUMainButton *button = self.buttons[0];
-        make.top.mas_equalTo(button.mas_bottom).offset(20);
+        make.top.mas_equalTo(button.mas_bottom).offset(SCREEN_HEIGHT*(20.0/667.0));
         make.left.mas_equalTo(self.view).offset(16);
         make.width.mas_equalTo(100);
         make.height.mas_equalTo(15);
