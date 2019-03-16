@@ -20,7 +20,7 @@
     return homeSchedule;
 }
 
--(void)initSubviews:(NSMutableArray*)subviews{
+-(void)loadSubviews:(NSMutableArray*)subviews{
     self.contentSize = CGSizeMake(subviews.count*(self.frame.size.height*140.0/65.0+15)+15, 0);
     for(int i = 0;i<subviews.count;i++){
         Weekitem *temp = subviews[i];

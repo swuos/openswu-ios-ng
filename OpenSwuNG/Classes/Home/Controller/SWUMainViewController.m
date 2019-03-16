@@ -58,24 +58,24 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     self.view.backgroundColor = [UIColor whiteColor];
     self.userDefaults = [NSUserDefaults standardUserDefaults];
-    [self initUi];
+    [self setUpUi];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self initScheduleSubviews];
+    [self loadScheduleSubviews];
 }
 
 
--(void)initUi{
-    [self initHead];
-    [self initBanner];
-    [self initButton];
-    [self initSchedule];
-    [self initNews];
+-(void)setUpUi{
+    [self setUpHead];
+    [self setUpBanner];
+    [self setUpButton];
+    [self setUpSchedule];
+    [self setUpNews];
 }
 
 #pragma mark - “西大助手”Label
--(void)initHead{
+-(void)setUpHead{
     self.headLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 15)];
     self.headLabel.text = @"西大助手";
     self.headLabel.textColor = [UIColor blackColor];
@@ -85,7 +85,7 @@
 }
 
 #pragma mark - banner
--(void)initBanner{
+-(void)setUpBanner{
     [self.view layoutIfNeeded];
     self.banner = [SWUHomeBanner bannerWithFrame:CGRectMake(15,NAVA_MAXY+5, SCREEN_WIDTH-15.0*2, (SCREEN_WIDTH-15.0*2)*160.0/345.0) ];
     [self.banner setCenter:CGPointMake(self.view.center.x, NAVA_MAXY+5+self.banner.frame.size.height/2.0)];
@@ -94,7 +94,7 @@
 }
 
 #pragma mark - buttons
--(void)initButton{
+-(void)setUpButton{
     self.buttons = [NSMutableArray arrayWithCapacity:4];
     //图片和标题
     NSArray *titles = @[@"成绩查询",@"我的钱包",@"水费查询",@"图书查询"];
@@ -152,7 +152,7 @@
 }
 
 #pragma mark - schedule
--(void)initScheduleHead{
+-(void)setUpScheduleHead{
     self.scheduleHeadLabel = [[UILabel alloc]init];
     self.scheduleHeadLabel.text = @"今日课表";
     self.scheduleHeadLabel.textColor = [UIColor blackColor];
@@ -168,19 +168,19 @@
     }];
 }
 
--(void)initSchedule{
-    [self initScheduleHead];
+-(void)setUpSchedule{
+    [self setUpScheduleHead];
     [self.view layoutIfNeeded];
     self.schedule = [SWUHomeSchedule homeScheduleWithFrame:CGRectMake(0, CGRectGetMaxY(_scheduleHeadLabel.frame)+_schedule.frame.size.height+13, SCREEN_WIDTH, SCREEN_HEIGHT/10.0)];
     if ([[self.userDefaults objectForKey:@"cardNumber"] length] == 0){
     }
     else{
-        [self initScheduleSubviews];
+        [self loadScheduleSubviews];
     }
     [self.view addSubview:self.schedule];
 }
 
--(void)initScheduleSubviews{
+-(void)loadScheduleSubviews{
     //计算当前日期
     NSDateComponents *date = [NSDate getDateComponents];
     //当前周数
@@ -197,11 +197,11 @@
         }
     }
     //调用函数，传入arr，生成schedule今日课表
-    [self.schedule initSubviews:arr];
+    [self.schedule loadSubviews:arr];
 }
 
 #pragma mark - news
--(void)initNewsHead{
+-(void)setUpNewsHead{
     self.newsHeadLabel = [[UILabel alloc]init];
     self.newsHeadLabel.text = @"失物招领";
     self.newsHeadLabel.textColor = [UIColor blackColor];
@@ -238,8 +238,8 @@
     [self.navigationController pushViewController:moreNews animated:YES];
 }
 
--(void)initNews{
-    [self initNewsHead];
+-(void)setUpNews{
+    [self setUpNewsHead];
     self.news = [[UITableView alloc]init];
     [self.view addSubview:_news];
     [self.news mas_makeConstraints:^(MASConstraintMaker *make) {
