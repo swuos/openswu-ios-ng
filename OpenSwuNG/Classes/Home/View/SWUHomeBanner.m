@@ -60,8 +60,9 @@
     if(self.page == 2){
         [self toPage:0];
     }
-    else
+    else{
         [self toPage:self.page+1];
+    }
 }
 
 -(void)toPage:(NSInteger)page{

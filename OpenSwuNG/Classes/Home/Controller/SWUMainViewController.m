@@ -2,16 +2,16 @@
 //  SWUMainViewController.m
 //  OpenSwuNG
 //
-//  Created by 张俊 on 2019/2/16.
+//  Created by 501 on 2019/2/16.
 //
 
 #import "SWUMainViewController.h"
 #import "SWUScoreViewController.h"
-#import "../View/SWUHomeBanner.h"
-#import "../View/SWUMainButton.h"
-#import "../View//SWUHomeSchedule.h"
-#import "../View/SWUHomeScheduleSubview.h"
-#import "../../Constants.h"
+#import "SWUHomeBanner.h"
+#import "SWUMainButton.h"
+#import "SWUHomeSchedule.h"
+#import "SWUHomeScheduleSubview.h"
+#import "Constants.h"
 #import "Masonry.h"
 #import "SWUAFN.h"
 #import "SVProgressHUD.h"
@@ -58,20 +58,15 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     self.view.backgroundColor = [UIColor whiteColor];
     self.userDefaults = [NSUserDefaults standardUserDefaults];
-    [self setUpUi];
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [self loadScheduleSubviews];
-}
-
-
--(void)setUpUi{
     [self setUpHead];
     [self setUpBanner];
     [self setUpButton];
     [self setUpSchedule];
     [self setUpNews];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [self loadScheduleSubviews];
 }
 
 #pragma mark - “西大助手”Label
@@ -103,13 +98,14 @@
     CGFloat cellHW = (SCREEN_WIDTH-8*padding)/4.0;
     [self.view layoutIfNeeded];
     for(int i=0;i<4;i++){
-        SWUMainButton *btn = [SWUMainButton mainButtonWithFrame:CGRectMake(padding+(cellHW +2*padding)*i, CGRectGetMaxY(_banner.frame)+12, cellHW, cellHW+20)
+        SWUMainButton *mainButton = [SWUMainButton mainButtonWithFrame:CGRectMake(padding+(cellHW +2*padding)*i, CGRectGetMaxY(_banner.frame)+12, cellHW, cellHW+20)
                                                 imageName:images[i]
                                                     Title:titles[i]];
-        btn.userInteractionEnabled = YES;
-        [self.view addSubview:btn];
-        [self.buttons addObject:btn];
+        mainButton.userInteractionEnabled = YES;
+        [self.view addSubview:mainButton];
+        [self.buttons addObject:mainButton];
     }
+    
     UITapGestureRecognizer *tapGestureOfGrades = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonTapOfGrades)];
     UITapGestureRecognizer *tapGestureOfWallet = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonTapOfWallet)];
     UITapGestureRecognizer *tapGestureOfOther1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonTapOfOther)];

@@ -33,7 +33,6 @@
     content.textColor = [UIColor whiteColor];
     [content setText:contenText];
     content.numberOfLines = 0;
-    
     //image
     NSArray *image = @[@"blue",@"orange",@"cyan",@"purple",@"yellow",@"red"];
     sub.image = [UIImage imageNamed:image[number%6]];
