@@ -7,59 +7,66 @@
 
 #import "SWUHomeBanner.h"
 @interface SWUHomeBanner ()
-@property(nonatomic,strong)NSArray *images;
-@property(assign,nonatomic)NSInteger page;
+/** banner的图片 */
+@property(nonatomic,copy)NSArray *images;
+/** banner当前页数 */
+@property(nonatomic,assign)NSInteger page;
+/** timer */
 @property(nonatomic,weak)NSTimer* timer;
 @end
 
 @implementation SWUHomeBanner
-+ (instancetype)bannerWithFrame:(CGRect)frame
+
+//690 320 px
+//345 160 pt
+
++(instancetype)bannerWithFrame:(CGRect)frame
 {
-    SWUHomeBanner* banner=[[SWUHomeBanner alloc]initWithFrame:frame];
+    SWUHomeBanner* banner = [[SWUHomeBanner alloc]initWithFrame:frame];
     //设置banner属性
-    banner.contentSize=CGSizeMake(banner.frame.size.width*3, 0);
-    banner.backgroundColor=[UIColor redColor];
-    banner.showsVerticalScrollIndicator=NO;
-    banner.showsHorizontalScrollIndicator=NO;
-    banner.pagingEnabled=YES;
-    banner.bounces=NO;
-    banner.page=0;
-    banner.images=@[[UIColor blueColor],[UIColor greenColor],[UIColor grayColor]];
-    [banner setBannerImages:banner.images];
+    banner.contentSize = CGSizeMake(banner.frame.size.width*3, 0);
+    banner.layer.cornerRadius = 5;
+    banner.showsVerticalScrollIndicator = NO;
+    banner.showsHorizontalScrollIndicator = NO;
+    banner.pagingEnabled = YES;
+    banner.bounces = NO;
+    banner.page = 0;
+    banner.images = @[@"banner1",@"banner2",@"banner3"];
+    [banner loadBannerImages:banner.images];
     [banner startTimer];
     return banner;
 }
 
-
--(void)setBannerImages:(NSArray*)images{
+-(void)loadBannerImages:(NSArray*)images{
     //添加图片
     for(int i=0;i<3;i++){
-        UIView *temp=[[UIView alloc]initWithFrame:CGRectMake(i*self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)];
-        temp.backgroundColor=images[i];
+        UIImageView *temp = [[UIImageView alloc]initWithFrame:CGRectMake(i*self.frame.size.width, 0, self.frame.size.width, self.frame.size.height)];
+        temp.image = [UIImage imageNamed:images[i]];
         [self addSubview:temp];
     }
 }
 
 #pragma mark - NSTimer
 -(void)startTimer{
-    _timer=[NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(nextPage) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop]addTimer:_timer forMode:NSRunLoopCommonModes];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(nextPage) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop]addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
 -(void)stopTimer{
-    [_timer invalidate];
+    [self.timer invalidate];
 }
 
 -(void)nextPage{
-    if(_page==2){
+    if(self.page == 2){
         [self toPage:0];
     }
-    else
-        [self toPage:_page+1];
+    else{
+        [self toPage:self.page+1];
+    }
 }
 
 -(void)toPage:(NSInteger)page{
-    _page=page;
+    self.page = page;
     [self setContentOffset:CGPointMake(self.frame.size.width*page, 0) animated:YES];
 }
 

@@ -2,7 +2,7 @@
 //  SWUMainViewController.h
 //  OpenSwuNG
 //
-//  Created by 张俊 on 2019/2/16.
+//  Created by 501 on 2019/2/16.
 //
 
 #import <UIKit/UIKit.h>

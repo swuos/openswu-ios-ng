@@ -10,9 +10,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SWUHomeScheduleSubview : UIImageView
-+(SWUHomeScheduleSubview*)initWithFrame:(CGRect)frame
-               Title:(NSString*)titleText
-             Content:(NSString*)contenText;
++(instancetype)scheduleSubviewWithFrame:(CGRect)frame
+                                  Title:(NSString*)titleText
+                                Content:(NSString*)contenText
+                                 number:(NSInteger)number;
 @end
 
 NS_ASSUME_NONNULL_END

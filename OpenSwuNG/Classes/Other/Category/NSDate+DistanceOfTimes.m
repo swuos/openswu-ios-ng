@@ -60,7 +60,11 @@
         //        进行数据解析
         SWUScheduleModel * scheduleModel = [SWUScheduleModel mj_objectWithKeyValues:responseObject];
         //        如果不存在那么重新写入
-        [scheduleModel.result[@"data"] writeToFile:CACHE_PATH(@"schedule.plist") atomically:YES];
+//        NSFileManager * fileManager = [NSFileManager defaultManager];
+//        if ([fileManager fileExistsAtPath:DOCUMENT_PATH(@"schedule.plist")]) {
+//            [fileManager removeItemAtPath:DOCUMENT_PATH(@"schedule.plist") error:nil];
+//        }
+        [scheduleModel.result[@"data"] writeToFile:DOCUMENT_PATH(@"schedule.plist") atomically:YES];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     }];
 }

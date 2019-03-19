@@ -37,7 +37,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUpUI];
-    NSLog(@"%@",CACHE_PATH(@"plist.plist"));
 }
 
 
@@ -60,7 +59,6 @@
 //布局
 -(void)setUpUI {
     self.view.backgroundColor = [UIColor whiteColor];
-    
     //      添加图标
     UIImageView * logImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"about_logo"]];
     [self.view addSubview:logImageView];

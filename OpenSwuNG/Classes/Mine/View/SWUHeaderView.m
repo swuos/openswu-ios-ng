@@ -14,17 +14,15 @@
     if (self = [super initWithFrame:frame]) {
         UILabel * label = [[UILabel alloc] init];
         [self addSubview:label];
-//        label.backgroundColor = [UIColor purpleColor];
         label.font = [UIFont systemFontOfSize:21];
-        label.text = @"欢迎你，余泰澄同学";
+        label.text = @"同学,欢迎你 !";
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self).with.insets(UIEdgeInsetsMake(25, 15, 40, 100));
         }];
         
         
         UILabel * collegeLabel  = [[UILabel alloc] init];
-//        collegeLabel.backgroundColor = [UIColor greenColor];
-        collegeLabel.text = @"软件学院";
+        collegeLabel.text = @"含弘光大，继往开来";
         collegeLabel.font = [UIFont systemFontOfSize:12];
         collegeLabel.textColor = [UIColor lightGrayColor];
         [self addSubview:collegeLabel];
@@ -44,7 +42,6 @@
         }];
         imageView.layer.masksToBounds = YES;
         imageView.layer.cornerRadius = imageView.frame.size.width/2.0;
-//        self.backgroundColor = [UIColor blackColor];
     }
     return self;
 }

@@ -102,7 +102,7 @@
                 [userDefaults setObject:@"" forKey:@"cardNumber"];
                 [userDefaults setObject:@"" forKey:@"cardNumberPwd"];
                 [userDefaults synchronize];
-                [fileManager removeItemAtPath:CACHE_PATH(@"schedule.plist") error:nil];
+                [fileManager removeItemAtPath:DOCUMENT_PATH(@"schedule.plist") error:nil];
                 return ;
             }
 //            教务处数据同步
@@ -118,7 +118,7 @@
                 [userDefaults setObject:@"" forKey:@"phoneNumber"];
                 [userDefaults setObject:@"" forKey:@"password"];
                 [userDefaults synchronize];
-                [fileManager removeItemAtPath:CACHE_PATH(@"schedule.plist") error:nil];
+                [fileManager removeItemAtPath:DOCUMENT_PATH(@"schedule.plist") error:nil];
 //                退出登录，然后设置主页面为登录界面
                 SWULoginViewController * loginVc = [[SWULoginViewController alloc] init];
                 SWUNavigationController * nav = [[SWUNavigationController alloc] initWithRootViewController:loginVc];

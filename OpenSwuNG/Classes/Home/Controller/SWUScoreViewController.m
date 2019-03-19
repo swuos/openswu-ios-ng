@@ -22,13 +22,13 @@
 
 @interface SWUScoreViewController ()<UITableViewDelegate,UITableViewDataSource,SWUPickerViewDelegate>
 /** 时间选择器  */
-@property (nonatomic,strong) SWUPickerView * picker;
+@property (nonatomic,strong) SWUPickerView *picker;
 /** data  */
-@property (nonatomic,strong) NSArray * dataArray;
+@property (nonatomic,strong) NSArray *dataArray;
 /** 成绩显示的视图  */
-@property (nonatomic,strong) SWUScrollerBackView * scrollerBackView;
+@property (nonatomic,strong) SWUScrollerBackView *scrollerBackView;
 /** 显示课程成绩的详细信息  */
-@property (nonatomic,strong) UITableView * gradeDetailView;
+@property (nonatomic,strong) UITableView *gradeDetailView;
 @end
 
 @implementation SWUScoreViewController
@@ -75,6 +75,7 @@
     
     //    scrollerview滚动显示成绩的柱状图
     self.scrollerBackView = [SWUScrollerBackView swuScrollerBackViewWithFrame:CGRectMake(0, CGRectGetMaxY(scoreView.frame), SCREEN_WIDTH, 220) DataArray:self.dataArray];
+    self.scrollerBackView.center = CGPointMake(self.view.center.x, self.scrollerBackView.center.y);
     [self.view addSubview:_scrollerBackView];
     
     
@@ -96,8 +97,13 @@
     [self.view addSubview:_picker];
 }
 
-
 #pragma mark ------ UITableViewDataSource ------
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (self.gradeDetailView.contentOffset.y < 0) {
+        [self.gradeDetailView setContentOffset:CGPointMake(0, 0)];
+    }
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataArray.count;
 }
@@ -122,7 +128,6 @@
     AFHTTPSessionManager * manager = [SWUAFN swuAfnManage];
     [manager.requestSerializer setValue:[userDefaults objectForKey:@"acToken"] forHTTPHeaderField:@"acToken"];
     [manager GET:@"https://freegatty.swuosa.xenoeye.org/api/grade/search" parameters:paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
         NSString * success = responseObject[@"success"];
         if (success.integerValue == 0) {
             [SVProgressHUD showErrorWithStatus:@"系统繁忙，发生错误"];
@@ -130,6 +135,10 @@
         }
         NSDictionary * dic = responseObject[@"result"];
         [self setDataArray:[SWUScoreModel mj_objectArrayWithKeyValuesArray:dic[@"data"]]];
+        if (self.dataArray.count == 0) {
+            [SVProgressHUD showErrorWithStatus:@"请选择正确的学年"];
+            return;
+        }
         [self setUpUI:paraDic];
         [SVProgressHUD dismiss];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
