@@ -75,13 +75,15 @@
     SWUHeaderView * view = [[SWUHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
     return  view;
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50;
+}
 
 #pragma mark ------ TableViewDelegate ------
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     SWUMineModel * swuMine = self.dataArray[indexPath.row];
     [self showAlertViewtableView:tableView SwuMine:swuMine];
-    
 }
 //显示alertView
 -(void)showAlertViewtableView:(UITableView *)tableView SwuMine:(SWUMineModel *)swuMine {

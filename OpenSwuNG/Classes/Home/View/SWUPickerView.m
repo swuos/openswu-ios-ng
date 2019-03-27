@@ -27,6 +27,7 @@
 -(void)setUpUI:(CGRect)frame {
     self.backgroundColor = [UIColor whiteColor];
     self.layer.cornerRadius = 10;
+    self.clipsToBounds = YES;
     self.layer.borderWidth = 1;
     self.layer.borderColor = [UIColor lightGrayColor].CGColor;
     
@@ -39,7 +40,6 @@
     
     //    添加选择日期的
     self.picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(messageLabel.frame), frame.size.width, frame.size.height-94)];
-//    self.picker.backgroundColor = [UIColor greenColor];
     self.picker.delegate = self;
     self.picker.dataSource = self;
     [self addSubview:_picker];

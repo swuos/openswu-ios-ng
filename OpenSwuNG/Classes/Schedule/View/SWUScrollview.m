@@ -70,15 +70,20 @@
         label.textColor = [UIColor blackColor];
         label.text = [NSString stringWithFormat:@"%d",i+1];
         label.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
+//        if (i % 2 == 0) {
+//            label.backgroundColor = [UIColor redColor];
+//        }
         [self addSubview:label];
     }
     //        读取数据，然后布局
+    CGFloat realCell_HW = CELL_HW - 4;
     for (int i = 0;i < self.data.weekitem.count;i++) {
         self.weekitem = _data.weekitem[i];
         NSInteger count = _weekitem.endTime.integerValue-_weekitem.startTime.integerValue+1;;
-        SWULabel * label = [[SWULabel alloc] initWithFrame:CGRectMake(TIME_HW+(_weekitem.day.integerValue-1)*CELL_HW, (_weekitem.startTime.integerValue-1)*CELL_HW+TIME_HW, CELL_HW,CELL_HW*count)];
+        SWULabel * label = [[SWULabel alloc] initWithFrame:CGRectMake(TIME_HW+(_weekitem.day.integerValue-1)*CELL_HW, (_weekitem.startTime.integerValue-1)*CELL_HW+TIME_HW+2, realCell_HW,(CELL_HW-2)*count)];
         _weekitem.scrollerViewCount = i;
         label.weekitem = _weekitem;
+//        label.
         UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showDetailInfo:)];
         [label addGestureRecognizer:tapGesture];
         label.userInteractionEnabled = YES;
