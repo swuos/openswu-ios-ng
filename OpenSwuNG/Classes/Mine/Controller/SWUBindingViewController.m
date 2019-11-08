@@ -11,7 +11,7 @@
 #import "SWUTextField.h"
 #import "SWULoginLabel.h"
 #import "SVProgressHUD.h"
-#import "SWUAFN.h"
+#import "SWUFactory.h"
 #import "SWUBindingModel.h"
 #import "MJExtension.h"
 #import "NSDate+DistanceOfTimes.h"
@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBarHidden = NO;
     self.navigationItem.title = @"绑定校园卡";
     [self setUpUI];
 }
@@ -37,7 +38,7 @@
 -(void)setUpUI {
     self.view.backgroundColor = [UIColor whiteColor];
     //    绑定校园卡
-    UIView * backView = [[UIView alloc] initWithFrame:CGRectMake(0, 40, SCREEN_WIDTH, 120)];
+    UIView * backView = [[UIView alloc] initWithFrame:CGRectMake(0, NAVA_MAXY + 10, SCREEN_WIDTH, 120)];
     [self.view addSubview:backView];
     int i = 0;
     SWULoginLabel * phoneLabel = [SWULoginLabel SWULoginLabelwithText:@"卡号"];
@@ -66,8 +67,8 @@
             [SVProgressHUD showWithStatus:@"请稍等...."];
             NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
             
-            AFHTTPSessionManager * manager = [SWUAFN swuAfnManage];
-            [manager.requestSerializer setValue:[userDefaults objectForKey:@"acToken"] forHTTPHeaderField:@"acToken"];
+            AFHTTPSessionManager * manager = [SWUFactory SWUFactoryManage];
+            [manager.requestSerializer setValue:[userDefaults objectForKey:@"token"] forHTTPHeaderField:@"acToken"];
             NSDictionary * paraDic = @{
                                        @"swuid":_cardNumber.text,
                                        @"password":_cardNumberPwd.text
@@ -75,7 +76,7 @@
             //            发送请求
             [manager POST:@"https://freegatty.swuosa.xenoeye.org/ac/bindSwuac" parameters:paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 SWUBindingModel * bindingModel = [SWUBindingModel mj_objectWithKeyValues:responseObject];
-                NSLog(@"success:%@----message%@",bindingModel.success,bindingModel.message);
+//                NSLog(@"success:%@----message%@",bindingModel.success,bindingModel.message);
                 if (bindingModel.success.intValue != 1) {
                     [SVProgressHUD showErrorWithStatus:@"请检查账号和密码"];
                     return ;
@@ -86,9 +87,10 @@
 //                下载课表
                 [NSDate getSchedule];
                 [SVProgressHUD dismiss];
-                [self dismissViewControllerAnimated:YES completion:nil];
+                [self.navigationController popViewControllerAnimated:YES];
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"%@",error);
                 [SVProgressHUD showErrorWithStatus:@"请检查网络!"];
             }];
             

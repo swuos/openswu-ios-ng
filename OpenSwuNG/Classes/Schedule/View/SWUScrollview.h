@@ -8,10 +8,10 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-@class Data;
+
 @interface SWUScrollview : UIScrollView
 
--(void)setData:(Data * )data;
+-(void)setData:(NSArray * )data currentWeek:(NSInteger)currentWeek;
 
 @end
 

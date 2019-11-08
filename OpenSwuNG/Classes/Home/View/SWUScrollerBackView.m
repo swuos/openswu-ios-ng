@@ -37,9 +37,13 @@
     [self addSubview:_gradeScorllerView];
     
     CGFloat realizeHeight = frame.size.height-40;
+    CGFloat lineWidth = _gradeScorllerView.contentSize.width;
+    if (_gradeScorllerView.contentSize.width < SCREEN_WIDTH) {
+        lineWidth = SCREEN_HEIGHT;
+    }
 //    添加5条成绩标准提示线
     for (int i = 0; i < 6; i++) {
-        UIView * gradeMessageLine = [[UIView alloc] initWithFrame:CGRectMake(0,15+realizeHeight*0.2*i, _gradeScorllerView.contentSize.width, 1)];
+        UIView * gradeMessageLine = [[UIView alloc] initWithFrame:CGRectMake(0,15+realizeHeight*0.2*i, lineWidth, 1)];
         gradeMessageLine.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:235/255.0 alpha:1.0];
         [_gradeScorllerView addSubview:gradeMessageLine];
 //        添加成绩显示

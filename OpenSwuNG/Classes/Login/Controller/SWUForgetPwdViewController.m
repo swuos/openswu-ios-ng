@@ -11,7 +11,7 @@
 #import "SWUTextField.h"
 #import "SWULoginLabel.h"
 #import "SVProgressHUD.h"
-#import "SWUAFN.h"
+#import "SWUFactory.h"
 #import "SWUVerificationCodeButton.h"
 
 @interface SWUForgetPwdViewController ()
@@ -95,7 +95,7 @@
     if (_userPhoneNumber.text.length == 11 && [self checkPhoneNumber:_userPhoneNumber.text]) {
         //        设置计时器开始计时
         [self.getVerCodeBtn timeFailBeginFrom:150];
-        self.manager = [SWUAFN swuAfnManage];
+        self.manager = [SWUFactory SWUFactoryManage];
         self.paraDic = @{
                          @"phoneNumber":_userPhoneNumber.text
                          };
@@ -134,7 +134,7 @@
                      @"password":_firstPwd.text,
                      @"verificationCode":_verificationCode.text,
                      };
-    [_manager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"acToken"] forHTTPHeaderField:@"acToken"];
+    [_manager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"token"] forHTTPHeaderField:@"token"];
     [_manager POST:@"https://freegatty.swuosa.xenoeye.org/ac/changePassword" parameters:_paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //        修改密码后怎么办？
 //        NSLog(@"%@",responseObject);

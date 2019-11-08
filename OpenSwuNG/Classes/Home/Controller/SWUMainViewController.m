@@ -6,69 +6,126 @@
 //
 
 #import "SWUMainViewController.h"
-#import "SWUScoreViewController.h"
-#import "SWUHomeBanner.h"
-#import "SWUMainButton.h"
-#import "SWUHomeSchedule.h"
-#import "SWUHomeScheduleSubview.h"
 #import "Constants.h"
-#import "Masonry.h"
-#import "SWUAFN.h"
+#import "SWUMainHeaderView.h"
+#import "SWUFactory.h"
 #import "SVProgressHUD.h"
-#import "NSDate+DistanceOfTimes.h"
-#import "Data.h"
-#import "Weekitem.h"
-#import "MJExtension.h"
+#import "SWUNewsModel.h"
+#import "SWUNewsCell.h"
+#import "SWUNewsInfoController.h"
 
-@interface SWUMainViewController () <UIScrollViewDelegate>
+@interface SWUMainViewController ()<UITableViewDelegate,UITableViewDataSource>
 /** headLabel */
 @property(nonatomic,strong)UILabel *headLabel;
-/** banner */
-@property(nonatomic,strong)SWUHomeBanner *banner;
-/** 4个button的数组*/
-@property(nonatomic,strong)NSMutableArray *buttons;
-/** scheduleHead */
-@property(nonatomic,strong)UILabel *scheduleHeadLabel;
-/** schedule */
-@property(nonatomic,strong)SWUHomeSchedule *schedule;
-/** newsHead */
-@property(nonatomic,strong)UILabel *newsHeadLabel;
-/** news */
-@property(nonatomic,strong)UITableView *news;
-/** userDefaults  */
-@property(nonatomic,strong)NSUserDefaults *userDefaults;
-/** 存储课程信息的dataArray  */
-@property(nonatomic,copy)NSArray *dataArray;
+@property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) NSArray *dataArray;
 @end
 
 @implementation SWUMainViewController
--(NSArray *)dataArray {
-    if (!_dataArray) {
-        [Data mj_setupObjectClassInArray:^NSDictionary *{
-            return @{@"weekitem":[Weekitem class]};
-        }];
-        _dataArray = [Data mj_objectArrayWithFile:DOCUMENT_PATH(@"schedule.plist")];
-    }
-    return _dataArray;
-}
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    //     self.navigationController.navigationBarHidden = YES;
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    //    设置标题
     [self setUpHead];
-    [self setUpBanner];
-    [self setUpButton];
-    [self setUpSchedule];
-    [self setUpNews];
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, NAVA_MAXY, SCREEN_WIDTH, SCREEN_HEIGHT-NAVA_MAXY)];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.rowHeight = 80;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    __block NSArray *hotNewsArr;
+    __block NSArray *notificationArr;
+    __block NSArray *lectureArr;
+    
+    SWUMainHeaderView *headerView = [[SWUMainHeaderView alloc] initWithFrame:CGRectMake(0, NAVA_MAXY, SCREEN_WIDTH, 450)];
+    headerView.alertVcBlock = ^(UIViewController * _Nonnull vc) {
+        [self presentViewController:vc animated:YES completion:nil];
+    };
+    headerView.pushVcBlock = ^(UIViewController * _Nonnull vc) {
+        [self.navigationController pushViewController:vc animated:YES];
+    };
+    headerView.changeVcBlock = ^(NSString * _Nonnull name) {
+//        热点新闻 通知公告 学术看板
+        if ([name isEqualToString:@"热点新闻"]) {
+            if (hotNewsArr) {
+                self.dataArray = hotNewsArr;
+                [self.tableView reloadData];
+               
+                return ;
+            }
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                __weak typeof(self) weakSelf = self;
+                AFHTTPSessionManager * manager = [SWUFactory SWUFactoryManage];
+                [manager GET:@"https://freegatty.swuosa.xenoeye.org/crawl/1/10" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    hotNewsArr = [SWUFactory getData:responseObject model:[SWUNewsModel class]];
+                    weakSelf.dataArray = hotNewsArr;
+                    [self.tableView reloadData];
+                   
+                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                }];
+            });
+        }
+        if ([name isEqualToString:@"通知公告"]) {
+            if (notificationArr) {
+                self.dataArray = notificationArr;
+                [self.tableView reloadData];
+               
+                return ;
+            }
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                __weak typeof(self) weakSelf = self;
+                AFHTTPSessionManager * manager = [SWUFactory SWUFactoryManage];
+                [manager GET:@"https://freegatty.swuosa.xenoeye.org/crawl/0/10" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    notificationArr = [SWUFactory getData:responseObject model:[SWUNewsModel class]];
+                    weakSelf.dataArray = notificationArr;
+                    [self.tableView reloadData];
+                   
+                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                }];
+            });
+        }
+        if ([name isEqualToString:@"学术看板"]) {
+            if (lectureArr) {
+                self.dataArray = lectureArr;
+                [self.tableView reloadData];
+               
+                return ;
+            }
+            dispatch_async(dispatch_get_global_queue(0, 0), ^{
+                __weak typeof(self) weakSelf = self;
+                AFHTTPSessionManager * manager = [SWUFactory SWUFactoryManage];
+                [manager GET:@"https://freegatty.swuosa.xenoeye.org/crawl/2/10" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    lectureArr = [SWUFactory getData:responseObject model:[SWUNewsModel class]];
+                    weakSelf.dataArray = lectureArr;
+                    [self.tableView reloadData];
+                   
+                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                }];
+            });
+        }
+    };
+    
+    self.tableView.tableHeaderView = headerView;
+    self.tableView.sectionHeaderHeight = headerView.frame.size.height;
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        __weak typeof(self) weakSelf = self;
+        AFHTTPSessionManager * manager = [SWUFactory SWUFactoryManage];
+        [manager GET:@"https://freegatty.swuosa.xenoeye.org/crawl/1/10" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            hotNewsArr = [SWUFactory getData:responseObject model:[SWUNewsModel class]];
+            weakSelf.dataArray = hotNewsArr;
+            [self.tableView reloadData];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        }];
+    });
+    [self.tableView layoutIfNeeded];
+    [self.view addSubview:self.tableView];
 }
-
-- (void)viewWillAppear:(BOOL)animated{
-    [self loadScheduleSubviews];
-}
-
 #pragma mark - “西大助手”Label
 -(void)setUpHead{
     self.headLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 15)];
@@ -79,196 +136,46 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.headLabel];
 }
 
-#pragma mark - banner
--(void)setUpBanner{
-    [self.view layoutIfNeeded];
-    self.banner = [SWUHomeBanner bannerWithFrame:CGRectMake(15,NAVA_MAXY+5, SCREEN_WIDTH-15.0*2, (SCREEN_WIDTH-15.0*2)*160.0/345.0) ];
-    [self.banner setCenter:CGPointMake(self.view.center.x, NAVA_MAXY+5+self.banner.frame.size.height/2.0)];
-    [self.banner setDelegate:self];
-    [self.view addSubview:self.banner];
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
 
-#pragma mark - buttons
--(void)setUpButton{
-    self.buttons = [NSMutableArray arrayWithCapacity:4];
-    //图片和标题
-    NSArray *titles = @[@"成绩查询",@"我的钱包",@"水费查询",@"图书查询"];
-    NSArray *images = @[@"main_grade",@"main_wallet",@"main_water",@"main_library"];
-    CGFloat padding = 0;
-    CGFloat cellWidth = 0;
-    if([[UIDevice currentDevice].model isEqualToString:@"iPad"]){
-        padding = (SCREEN_WIDTH*(4.2/25.0))/2.0;
-        cellWidth = (SCREEN_WIDTH-8*padding)/4.0;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.dataArray.count;
+}
+
+-(SWUNewsCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString * ID = @"Main";
+    SWUNewsCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (!cell) {
+        cell = [[SWUNewsCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
     }
-    else{
-        padding = (SCREEN_WIDTH*(3.0/25.0))/2.0;
-        cellWidth = (SCREEN_WIDTH-8*padding)/4.0;
-    }
-    [self.view layoutIfNeeded];
-    for(int i=0;i<4;i++){
-        SWUMainButton *mainButton = [SWUMainButton mainButtonWithFrame:CGRectMake(padding+(cellWidth+2*padding)*i, CGRectGetMaxY(_banner.frame)+SCREEN_HEIGHT*(12.0/667.0), cellWidth, cellWidth+20)
-                                                             imageName:images[i]
-                                                                 Title:titles[i]];
-        mainButton.userInteractionEnabled = YES;
-        [self.view addSubview:mainButton];
-        [self.buttons addObject:mainButton];
-    }
+//    cell.backgroundColor = [UIColor blueColor];
+//    if (indexPath.row %2 == 0) {
+//        cell.backgroundColor = [UIColor redColor];
+//    }
     
-    UITapGestureRecognizer *tapGestureOfGrades = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonTapOfGrades)];
-    UITapGestureRecognizer *tapGestureOfWallet = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonTapOfWallet)];
-    UITapGestureRecognizer *tapGestureOfOther1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonTapOfOther)];
-    UITapGestureRecognizer *tapGestureOfOther2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonTapOfOther)];
-    [self.buttons[0] addGestureRecognizer:tapGestureOfGrades];
-    [self.buttons[1] addGestureRecognizer:tapGestureOfWallet];
-    [self.buttons[2] addGestureRecognizer:tapGestureOfOther1];
-    [self.buttons[3] addGestureRecognizer:tapGestureOfOther2];
+    cell.model = self.dataArray[indexPath.row];
+    return cell;
 }
 
-#pragma mark - 主页4个按钮事件
--(void)buttonTapOfGrades{
-    NSString *cardNumber = [self.userDefaults objectForKey:@"cardNumber"];
-    if (cardNumber.length <= 0) {
-        [SVProgressHUD showInfoWithStatus:@"请先绑定校园卡..."];
-        return;
-    }
-    SWUScoreViewController *scoreVc = [[SWUScoreViewController alloc] init];
-    [self.navigationController pushViewController:scoreVc animated:YES];
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    SWUNewsCell *cell = (SWUNewsCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+    SWUNewsInfoController * infoVc = [[SWUNewsInfoController alloc] init];
+    infoVc.newInfoBlock = ^SWUNewsModel * _Nonnull{
+        return cell.model;
+    };
+//    [infoVc setHidesBottomBarWhenPushed:YES];
+    [self.navigationController pushViewController:infoVc animated:YES];
 }
 
--(void)buttonTapOfWallet{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NULL message:@"暂未开通" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil];
-    [alert addAction:cancelAction];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:okAction];
-    // 弹出对话框
-    [self presentViewController:alert animated:true completion:nil];
-}
 
--(void)buttonTapOfOther{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NULL message:@"暂未开通" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil];
-    [alert addAction:cancelAction];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:okAction];
-    // 弹出对话框
-    [self presentViewController:alert animated:YES completion:nil];
-}
 
-#pragma mark - schedule
--(void)setUpScheduleHead{
-    self.scheduleHeadLabel = [[UILabel alloc]init];
-    self.scheduleHeadLabel.text = @"今日课表";
-    self.scheduleHeadLabel.textColor = [UIColor blackColor];
-    self.scheduleHeadLabel.font = [UIFont boldSystemFontOfSize:16];
-    self.scheduleHeadLabel.numberOfLines = 0;
-    [self.view addSubview:_scheduleHeadLabel];
-    [self.scheduleHeadLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        SWUMainButton *button = self.buttons[0];
-        make.top.mas_equalTo(button.mas_bottom).offset(SCREEN_HEIGHT*(20.0/667.0));
-        make.left.mas_equalTo(self.view).offset(16);
-        make.width.mas_equalTo(100);
-        make.height.mas_equalTo(15);
-    }];
-}
 
--(void)setUpSchedule{
-    [self setUpScheduleHead];
-    [self.view layoutIfNeeded];
-    self.schedule = [SWUHomeSchedule homeScheduleWithFrame:CGRectMake(0, CGRectGetMaxY(_scheduleHeadLabel.frame)+_schedule.frame.size.height+13, SCREEN_WIDTH, SCREEN_HEIGHT/10.0)];
-    if ([[self.userDefaults objectForKey:@"cardNumber"] length] == 0){
-    }
-    else{
-        [self loadScheduleSubviews];
-    }
-    [self.view addSubview:self.schedule];
-}
 
--(void)loadScheduleSubviews{
-    //计算当前日期
-    NSDateComponents *date = [NSDate getDateComponents];
-    //当前周数
-    NSInteger currentWeek = ceil([NSDate distanceFromOneDayToNow:@"2019-02-25 00:00:00"]/7.0);
-    //取出存放这周课表的NSArray对象
-    Data *dataModel = self.dataArray[currentWeek-1];
-    NSArray *classOfWeek = dataModel.weekitem;
-    //取出今天的课表，存入数组arr
-    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:0];
-    NSArray *trans = @[@7,@1,@2,@3,@4,@5,@6];
-    for(Weekitem *weekItemModel in classOfWeek){
-        if (weekItemModel.day.intValue == [trans[date.weekday-1] integerValue]) {
-            [arr addObject:weekItemModel];
-        }
-    }
-    //调用函数，传入arr，生成schedule今日课表
-    [self.schedule loadSubviews:arr];
-}
 
-#pragma mark - news
--(void)setUpNewsHead{
-    self.newsHeadLabel = [[UILabel alloc]init];
-    self.newsHeadLabel.text = @"失物招领";
-    self.newsHeadLabel.textColor = [UIColor blackColor];
-    self.newsHeadLabel.font = [UIFont boldSystemFontOfSize:16];
-    self.newsHeadLabel.numberOfLines = 0;
-    [self.view addSubview:_newsHeadLabel];
-    [self.newsHeadLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.schedule.mas_bottom).offset(19);
-        make.left.mas_equalTo(self.scheduleHeadLabel.mas_left);
-        make.right.mas_equalTo(self.scheduleHeadLabel.mas_right);
-        make.height.mas_equalTo(15);
-    }];
-    
-    //添加展开按钮
-    UIButton *moreNews = [[UIButton alloc]init];
-    [moreNews setTitle:@"展开" forState:UIControlStateNormal];
-    moreNews.titleLabel.font = [UIFont systemFontOfSize:16];
-    moreNews.titleLabel.numberOfLines = 0;
-    [moreNews setTitleColor:[UIColor colorWithRed:0/255.0 green:124/255.0 blue:247/255.0 alpha:1] forState:UIControlStateNormal];
-    [moreNews addTarget:self action:@selector(moreNewsTouchDown) forControlEvents:UIControlEventTouchDown];
-    [self.view addSubview:moreNews];
-    [moreNews mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.schedule.mas_bottom).offset(19);
-        make.right.mas_equalTo(self.view).offset(-16);
-        make.height.mas_equalTo(self.newsHeadLabel.mas_height);
-        make.width.mas_equalTo(35);
-    }];
-}
-
-//展开按钮事件
--(void)moreNewsTouchDown{
-    UITableViewController *moreNews = [[UITableViewController alloc]init];
-    moreNews.title = @"失物招领";
-    [self.navigationController pushViewController:moreNews animated:YES];
-}
-
--(void)setUpNews{
-    [self setUpNewsHead];
-    self.news = [[UITableView alloc]init];
-    [self.view addSubview:_news];
-    [self.news mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.newsHeadLabel.mas_bottom).offset(5);
-        make.left.mas_equalTo(self.view).offset(16);
-        make.right.mas_equalTo(self.view).offset(-16);
-        make.bottom.mas_equalTo(self.view);
-    }];
-}
-
-#pragma mark - UISrollerViewDelegate
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [self.banner stopTimer];
-}
-
-- (void)scrollViewDidEndDragging:(SWUHomeBanner *)scrollView
-                  willDecelerate:(BOOL)decelerate{
-    if(!decelerate){
-        [self.banner startTimer];
-    }
-}
-
--(void)scrollViewDidEndDecelerating:(SWUHomeBanner *)scrollView{
-    [self.banner startTimer];
-}
 
 
 @end

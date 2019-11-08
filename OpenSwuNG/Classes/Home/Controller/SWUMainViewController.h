@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class SWUNewsModel;
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SWUMainViewController : UIViewController

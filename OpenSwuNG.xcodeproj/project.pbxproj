@@ -7,6 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E5550FF237454C9004F571E /* SWUNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5550FE237454C9004F571E /* SWUNewsModel.m */; };
+		0E5551022374568C004F571E /* SWUNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E5551012374568C004F571E /* SWUNewsCell.m */; };
+		0E55510523753D82004F571E /* SWUNewsInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E55510423753D82004F571E /* SWUNewsInfoController.m */; };
+		0ED784912372B2E80039E802 /* SWUScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ED7848F2372B2E80039E802 /* SWUScheduleModel.m */; };
+		0ED784972372B3D70039E802 /* SWUFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ED784962372B3D70039E802 /* SWUFactory.m */; };
+		0ED7849E2372E6910039E802 /* SWULibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ED7849C2372E6910039E802 /* SWULibraryViewController.m */; };
+		0EE35E132372E6FB003F3C44 /* SWULibraryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE35E122372E6FB003F3C44 /* SWULibraryCell.m */; };
+		0EE35E162372EBE1003F3C44 /* SWULibraryHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE35E152372EBE1003F3C44 /* SWULibraryHeaderView.m */; };
+		0EE35E192372F1DC003F3C44 /* SWUBookCaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE35E182372F1DC003F3C44 /* SWUBookCaseController.m */; };
+		0EE35E1C2372F836003F3C44 /* SWUPopularModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE35E1B2372F836003F3C44 /* SWUPopularModel.m */; };
+		0EE35E1F2373FEF5003F3C44 /* SWUBookCaseHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE35E1E2373FEF5003F3C44 /* SWUBookCaseHeaderView.m */; };
+		0EE35E222374081A003F3C44 /* SWULibraryHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE35E212374081A003F3C44 /* SWULibraryHistoryModel.m */; };
+		0EE35E2523740871003F3C44 /* SWULibraryBorrowingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE35E2423740871003F3C44 /* SWULibraryBorrowingModel.m */; };
+		0EE35E282374097F003F3C44 /* SWUBookCaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE35E272374097F003F3C44 /* SWUBookCaseCell.m */; };
+		0EE35E2B23740AF0003F3C44 /* SWULibraryCollectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE35E2A23740AF0003F3C44 /* SWULibraryCollectModel.m */; };
+		0EE35E2E23742BB2003F3C44 /* SWULibraryPlaceHoldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE35E2D23742BB2003F3C44 /* SWULibraryPlaceHoldCell.m */; };
+		0EE35E3123743931003F3C44 /* SWUMainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EE35E3023743931003F3C44 /* SWUMainHeaderView.m */; };
 		4B4B04DA213ECC67008FA20D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B4B04D9213ECC67008FA20D /* Assets.xcassets */; };
 		4B4B04DD213ECC67008FA20D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B4B04DB213ECC67008FA20D /* LaunchScreen.storyboard */; };
 		BF0F095B2236A36700CD362E /* SWUHomeScheduleSubview.m in Sources */ = {isa = PBXBuildFile; fileRef = BF0F09522236A36500CD362E /* SWUHomeScheduleSubview.m */; };
@@ -44,8 +61,6 @@
 		BFB95C802231169600090BEE /* SWULoginModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95C7F2231169600090BEE /* SWULoginModel.m */; };
 		BFB95C8322312D6F00090BEE /* SWUVerificationCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95C8222312D6F00090BEE /* SWUVerificationCodeButton.m */; };
 		BFB95CD322323AAB00090BEE /* SWUBindingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CD222323AAB00090BEE /* SWUBindingModel.m */; };
-		BFB95CD622323D6800090BEE /* SWUAFN.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CD522323D6800090BEE /* SWUAFN.m */; };
-		BFB95CD922326B6B00090BEE /* SWUScheduleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CD822326B6B00090BEE /* SWUScheduleModel.m */; };
 		BFB95CEC2233F77800090BEE /* SWUTotalScoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CEB2233F77800090BEE /* SWUTotalScoreView.m */; };
 		BFB95CEF2233FCAB00090BEE /* SWUScrollerBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CEE2233FCAB00090BEE /* SWUScrollerBackView.m */; };
 		BFB95CF422340EA600090BEE /* SWUScoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB95CF322340EA600090BEE /* SWUScoreModel.m */; };
@@ -68,6 +83,40 @@
 
 /* Begin PBXFileReference section */
 		055E4E42096CDE36E1746EE7 /* libPods-OpenSwuNG.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpenSwuNG.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E5550FD237454C9004F571E /* SWUNewsModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUNewsModel.h; sourceTree = "<group>"; };
+		0E5550FE237454C9004F571E /* SWUNewsModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUNewsModel.m; sourceTree = "<group>"; };
+		0E5551002374568C004F571E /* SWUNewsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUNewsCell.h; sourceTree = "<group>"; };
+		0E5551012374568C004F571E /* SWUNewsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUNewsCell.m; sourceTree = "<group>"; };
+		0E55510323753D82004F571E /* SWUNewsInfoController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUNewsInfoController.h; sourceTree = "<group>"; };
+		0E55510423753D82004F571E /* SWUNewsInfoController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUNewsInfoController.m; sourceTree = "<group>"; };
+		0ED7848F2372B2E80039E802 /* SWUScheduleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUScheduleModel.m; sourceTree = "<group>"; };
+		0ED784902372B2E80039E802 /* SWUScheduleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUScheduleModel.h; sourceTree = "<group>"; };
+		0ED784952372B3D70039E802 /* SWUFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUFactory.h; sourceTree = "<group>"; };
+		0ED784962372B3D70039E802 /* SWUFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUFactory.m; sourceTree = "<group>"; };
+		0ED7849B2372E6910039E802 /* SWULibraryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWULibraryViewController.h; sourceTree = "<group>"; };
+		0ED7849C2372E6910039E802 /* SWULibraryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWULibraryViewController.m; sourceTree = "<group>"; };
+		0EE35E112372E6FB003F3C44 /* SWULibraryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWULibraryCell.h; sourceTree = "<group>"; };
+		0EE35E122372E6FB003F3C44 /* SWULibraryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWULibraryCell.m; sourceTree = "<group>"; };
+		0EE35E142372EBE1003F3C44 /* SWULibraryHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWULibraryHeaderView.h; sourceTree = "<group>"; };
+		0EE35E152372EBE1003F3C44 /* SWULibraryHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWULibraryHeaderView.m; sourceTree = "<group>"; };
+		0EE35E172372F1DC003F3C44 /* SWUBookCaseController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUBookCaseController.h; sourceTree = "<group>"; };
+		0EE35E182372F1DC003F3C44 /* SWUBookCaseController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUBookCaseController.m; sourceTree = "<group>"; };
+		0EE35E1A2372F836003F3C44 /* SWUPopularModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUPopularModel.h; sourceTree = "<group>"; };
+		0EE35E1B2372F836003F3C44 /* SWUPopularModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUPopularModel.m; sourceTree = "<group>"; };
+		0EE35E1D2373FEF5003F3C44 /* SWUBookCaseHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUBookCaseHeaderView.h; sourceTree = "<group>"; };
+		0EE35E1E2373FEF5003F3C44 /* SWUBookCaseHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUBookCaseHeaderView.m; sourceTree = "<group>"; };
+		0EE35E202374081A003F3C44 /* SWULibraryHistoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWULibraryHistoryModel.h; sourceTree = "<group>"; };
+		0EE35E212374081A003F3C44 /* SWULibraryHistoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWULibraryHistoryModel.m; sourceTree = "<group>"; };
+		0EE35E2323740871003F3C44 /* SWULibraryBorrowingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWULibraryBorrowingModel.h; sourceTree = "<group>"; };
+		0EE35E2423740871003F3C44 /* SWULibraryBorrowingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWULibraryBorrowingModel.m; sourceTree = "<group>"; };
+		0EE35E262374097F003F3C44 /* SWUBookCaseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUBookCaseCell.h; sourceTree = "<group>"; };
+		0EE35E272374097F003F3C44 /* SWUBookCaseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUBookCaseCell.m; sourceTree = "<group>"; };
+		0EE35E2923740AF0003F3C44 /* SWULibraryCollectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWULibraryCollectModel.h; sourceTree = "<group>"; };
+		0EE35E2A23740AF0003F3C44 /* SWULibraryCollectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWULibraryCollectModel.m; sourceTree = "<group>"; };
+		0EE35E2C23742BB2003F3C44 /* SWULibraryPlaceHoldCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWULibraryPlaceHoldCell.h; sourceTree = "<group>"; };
+		0EE35E2D23742BB2003F3C44 /* SWULibraryPlaceHoldCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWULibraryPlaceHoldCell.m; sourceTree = "<group>"; };
+		0EE35E2F23743931003F3C44 /* SWUMainHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUMainHeaderView.h; sourceTree = "<group>"; };
+		0EE35E3023743931003F3C44 /* SWUMainHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUMainHeaderView.m; sourceTree = "<group>"; };
 		4B4B04CD213ECC66008FA20D /* OpenSwuNG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenSwuNG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4B04D9213ECC67008FA20D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B4B04DC213ECC67008FA20D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -139,10 +188,6 @@
 		BFB95C8222312D6F00090BEE /* SWUVerificationCodeButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUVerificationCodeButton.m; sourceTree = "<group>"; };
 		BFB95CD122323AAB00090BEE /* SWUBindingModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUBindingModel.h; sourceTree = "<group>"; };
 		BFB95CD222323AAB00090BEE /* SWUBindingModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUBindingModel.m; sourceTree = "<group>"; };
-		BFB95CD422323D6800090BEE /* SWUAFN.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUAFN.h; sourceTree = "<group>"; };
-		BFB95CD522323D6800090BEE /* SWUAFN.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUAFN.m; sourceTree = "<group>"; };
-		BFB95CD722326B6B00090BEE /* SWUScheduleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUScheduleModel.h; sourceTree = "<group>"; };
-		BFB95CD822326B6B00090BEE /* SWUScheduleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUScheduleModel.m; sourceTree = "<group>"; };
 		BFB95CEA2233F77800090BEE /* SWUTotalScoreView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUTotalScoreView.h; sourceTree = "<group>"; };
 		BFB95CEB2233F77800090BEE /* SWUTotalScoreView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUTotalScoreView.m; sourceTree = "<group>"; };
 		BFB95CED2233FCAB00090BEE /* SWUScrollerBackView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUScrollerBackView.h; sourceTree = "<group>"; };
@@ -306,6 +351,12 @@
 				BF75E8BB2218F59B005244C5 /* SWUMainViewController.m */,
 				E851C8F0223A5F6400EBDDBA /* SWUScoreViewController.h */,
 				E851C8F1223A5F6400EBDDBA /* SWUScoreViewController.m */,
+				0ED7849B2372E6910039E802 /* SWULibraryViewController.h */,
+				0ED7849C2372E6910039E802 /* SWULibraryViewController.m */,
+				0EE35E172372F1DC003F3C44 /* SWUBookCaseController.h */,
+				0EE35E182372F1DC003F3C44 /* SWUBookCaseController.m */,
+				0E55510323753D82004F571E /* SWUNewsInfoController.h */,
+				0E55510423753D82004F571E /* SWUNewsInfoController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -317,6 +368,26 @@
 				BF0F09612236A37B00CD362E /* SWUMainModel.m */,
 				BFB95CF222340EA600090BEE /* SWUScoreModel.h */,
 				BFB95CF322340EA600090BEE /* SWUScoreModel.m */,
+				0EE35E112372E6FB003F3C44 /* SWULibraryCell.h */,
+				0EE35E122372E6FB003F3C44 /* SWULibraryCell.m */,
+				0EE35E1A2372F836003F3C44 /* SWUPopularModel.h */,
+				0EE35E1B2372F836003F3C44 /* SWUPopularModel.m */,
+				0EE35E202374081A003F3C44 /* SWULibraryHistoryModel.h */,
+				0EE35E212374081A003F3C44 /* SWULibraryHistoryModel.m */,
+				0EE35E2323740871003F3C44 /* SWULibraryBorrowingModel.h */,
+				0EE35E2423740871003F3C44 /* SWULibraryBorrowingModel.m */,
+				0EE35E2923740AF0003F3C44 /* SWULibraryCollectModel.h */,
+				0EE35E2A23740AF0003F3C44 /* SWULibraryCollectModel.m */,
+				0EE35E262374097F003F3C44 /* SWUBookCaseCell.h */,
+				0EE35E272374097F003F3C44 /* SWUBookCaseCell.m */,
+				0EE35E2C23742BB2003F3C44 /* SWULibraryPlaceHoldCell.h */,
+				0EE35E2D23742BB2003F3C44 /* SWULibraryPlaceHoldCell.m */,
+				0E5550FD237454C9004F571E /* SWUNewsModel.h */,
+				0E5550FE237454C9004F571E /* SWUNewsModel.m */,
+				BFB95CF82234ABBC00090BEE /* SWUScoreCell.h */,
+				BFB95CF92234ABBC00090BEE /* SWUScoreCell.m */,
+				0E5551002374568C004F571E /* SWUNewsCell.h */,
+				0E5551012374568C004F571E /* SWUNewsCell.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -324,6 +395,8 @@
 		BF75E8BD2218F59B005244C5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0EE35E2F23743931003F3C44 /* SWUMainHeaderView.h */,
+				0EE35E3023743931003F3C44 /* SWUMainHeaderView.m */,
 				BF0F09512236A36500CD362E /* SWUHomeBanner.h */,
 				BF0F09552236A36600CD362E /* SWUHomeBanner.m */,
 				BF0F09532236A36500CD362E /* SWUHomeSchedule.h */,
@@ -340,10 +413,12 @@
 				BFB95CEE2233FCAB00090BEE /* SWUScrollerBackView.m */,
 				BFB95CF52234A6DB00090BEE /* SWUScoreHeaderView.h */,
 				BFB95CF62234A6DB00090BEE /* SWUScoreHeaderView.m */,
-				BFB95CF82234ABBC00090BEE /* SWUScoreCell.h */,
-				BFB95CF92234ABBC00090BEE /* SWUScoreCell.m */,
 				BFB95CFB2235493C00090BEE /* SWUPickerView.h */,
 				BFB95CFC2235493C00090BEE /* SWUPickerView.m */,
+				0EE35E142372EBE1003F3C44 /* SWULibraryHeaderView.h */,
+				0EE35E152372EBE1003F3C44 /* SWULibraryHeaderView.m */,
+				0EE35E1D2373FEF5003F3C44 /* SWUBookCaseHeaderView.h */,
+				0EE35E1E2373FEF5003F3C44 /* SWUBookCaseHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -388,8 +463,8 @@
 				BF75E8C52218F59B005244C5 /* AppDelegate.h */,
 				BF75E8C62218F59B005244C5 /* AppDelegate.m */,
 				BF75E8C72218F59B005244C5 /* main.m */,
-				BFB95CD422323D6800090BEE /* SWUAFN.h */,
-				BFB95CD522323D6800090BEE /* SWUAFN.m */,
+				0ED784952372B3D70039E802 /* SWUFactory.h */,
+				0ED784962372B3D70039E802 /* SWUFactory.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -489,8 +564,8 @@
 		BFA4BE4322256264006F674E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BFB95CD722326B6B00090BEE /* SWUScheduleModel.h */,
-				BFB95CD822326B6B00090BEE /* SWUScheduleModel.m */,
+				0ED784902372B2E80039E802 /* SWUScheduleModel.h */,
+				0ED7848F2372B2E80039E802 /* SWUScheduleModel.m */,
 				BFA4BE4422256264006F674E /* Data.h */,
 				BFA4BE4522256264006F674E /* Data.m */,
 				BFA4BE4622256264006F674E /* Weekitem.h */,
@@ -634,16 +709,11 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-OpenSwuNG/Pods-OpenSwuNG-resources.sh",
-				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-OpenSwuNG/Pods-OpenSwuNG-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-OpenSwuNG/Pods-OpenSwuNG-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -677,54 +747,69 @@
 			files = (
 				BFA4BE7F2226A3C5006F674E /* SWUWeekSelectView.m in Sources */,
 				BFB95CD322323AAB00090BEE /* SWUBindingModel.m in Sources */,
+				0EE35E222374081A003F3C44 /* SWULibraryHistoryModel.m in Sources */,
 				BFF9ADFA22296FDE00B10767 /* SWUForgetPwdViewController.m in Sources */,
 				BFF9ADA122280A9C00B10767 /* SWUTextField.m in Sources */,
 				BFA4BE3E22255EE1006F674E /* SWULabel.m in Sources */,
 				E851C8FB223A5FA200EBDDBA /* NSDate+DistanceOfTimes.m in Sources */,
 				BF7E691E221CF8010032422F /* SWUAboutViewController.m in Sources */,
+				0EE35E132372E6FB003F3C44 /* SWULibraryCell.m in Sources */,
 				E851C8F2223A5F6400EBDDBA /* SWUScoreViewController.m in Sources */,
 				BF71B164221F93B900C00868 /* SWUAboutUsViewController.m in Sources */,
 				BF75E8D22218F59B005244C5 /* main.m in Sources */,
 				BFB95C8322312D6F00090BEE /* SWUVerificationCodeButton.m in Sources */,
 				BFB95CF422340EA600090BEE /* SWUScoreModel.m in Sources */,
 				BFA4BE7C222697DD006F674E /* SWUScheduleViewController.m in Sources */,
+				0EE35E2B23740AF0003F3C44 /* SWULibraryCollectModel.m in Sources */,
 				BFA4BE4A22256264006F674E /* Weekitem.m in Sources */,
 				BFA4BE7922267E21006F674E /* SWUNavTitleView.m in Sources */,
 				BF75E8D12218F59B005244C5 /* AppDelegate.m in Sources */,
 				BF75E8CE2218F59B005244C5 /* SWUTabBarController.m in Sources */,
 				BF0F095C2236A36700CD362E /* SWUHomeSchedule.m in Sources */,
+				0EE35E2523740871003F3C44 /* SWULibraryBorrowingModel.m in Sources */,
 				BFA4BE862226D230006F674E /* SWULoginViewController.m in Sources */,
-				BFB95CD922326B6B00090BEE /* SWUScheduleModel.m in Sources */,
 				BFF9ADA422281BB700B10767 /* UIButton+Login.m in Sources */,
 				BFB95CFA2234ABBC00090BEE /* SWUScoreCell.m in Sources */,
 				BFD47F6F22222435000AED18 /* UIBarButtonItem+Item.m in Sources */,
+				0E55510523753D82004F571E /* SWUNewsInfoController.m in Sources */,
+				0EE35E1C2372F836003F3C44 /* SWUPopularModel.m in Sources */,
+				0EE35E162372EBE1003F3C44 /* SWULibraryHeaderView.m in Sources */,
+				0EE35E1F2373FEF5003F3C44 /* SWUBookCaseHeaderView.m in Sources */,
 				BFF9ADFD222A321E00B10767 /* SWULoginLabel.m in Sources */,
+				0ED784912372B2E80039E802 /* SWUScheduleModel.m in Sources */,
 				BF75E8D02218F59B005244C5 /* SWUMineViewController.m in Sources */,
 				BF7E6921221D320C0032422F /* SWUAboutHeaderView.m in Sources */,
 				BFA4BE4922256264006F674E /* Data.m in Sources */,
 				BFB95CEC2233F77800090BEE /* SWUTotalScoreView.m in Sources */,
+				0ED7849E2372E6910039E802 /* SWULibraryViewController.m in Sources */,
+				0E5550FF237454C9004F571E /* SWUNewsModel.m in Sources */,
 				BF7E6913221C19D80032422F /* SWUMineModel.m in Sources */,
 				BF7E68B7221BEB4B0032422F /* SWUMineTableViewCell.m in Sources */,
 				BF7E6947221D3C730032422F /* SWUNavigationController.m in Sources */,
 				BF0F095D2236A36700CD362E /* SWUHomeBanner.m in Sources */,
 				BFA4BE3B22255E06006F674E /* SWUScrollview.m in Sources */,
-				BFB95CD622323D6800090BEE /* SWUAFN.m in Sources */,
 				BFB95CEF2233FCAB00090BEE /* SWUScrollerBackView.m in Sources */,
 				BFA4BE7622262F66006F674E /* SWUAlertViewController.m in Sources */,
 				BF75E8CF2218F59B005244C5 /* SWUMainViewController.m in Sources */,
 				E851C8F5223A5F7E00EBDDBA /* SWUBindingViewController.m in Sources */,
+				0E5551022374568C004F571E /* SWUNewsCell.m in Sources */,
 				BFB95CFD2235493C00090BEE /* SWUPickerView.m in Sources */,
 				E851C8EF223A5F5200EBDDBA /* SWUPointView.m in Sources */,
 				BFA4BE892226D2A4006F674E /* SWURegisterViewController.m in Sources */,
 				BFB95CF72234A6DB00090BEE /* SWUScoreHeaderView.m in Sources */,
 				E851C8F8223A5F8D00EBDDBA /* SWUHeaderView.m in Sources */,
+				0ED784972372B3D70039E802 /* SWUFactory.m in Sources */,
+				0EE35E282374097F003F3C44 /* SWUBookCaseCell.m in Sources */,
 				BF0F095E2236A36700CD362E /* SWUMainButton.m in Sources */,
 				BF0F095B2236A36700CD362E /* SWUHomeScheduleSubview.m in Sources */,
+				0EE35E2E23742BB2003F3C44 /* SWULibraryPlaceHoldCell.m in Sources */,
 				BFA4BE4122255FDF006F674E /* SWUCollectionViewCell.m in Sources */,
 				BF71B167221F93D400C00868 /* SWUUpdateLogViewController.m in Sources */,
 				BFB95D2222354FC800090BEE /* NSDate+PickerView.m in Sources */,
 				BFB95C802231169600090BEE /* SWULoginModel.m in Sources */,
+				0EE35E3123743931003F3C44 /* SWUMainHeaderView.m in Sources */,
 				BF0F09622236A37C00CD362E /* SWUMainModel.m in Sources */,
+				0EE35E192372F1DC003F3C44 /* SWUBookCaseController.m in Sources */,
 				BF71B15F221F8FFC00C00868 /* SWUAboutModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -860,13 +945,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FB8892725V;
+				DEVELOPMENT_TEAM = WGW75UGN4E;
 				INFOPLIST_FILE = OpenSwuNG/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "SWU-OPENSOURCE.OpenSwuNG1";
+				PRODUCT_BUNDLE_IDENTIFIER = "SWU-OPENSOURCE.OpenSwuNG2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -878,13 +964,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = FB8892725V;
+				DEVELOPMENT_TEAM = WGW75UGN4E;
 				INFOPLIST_FILE = OpenSwuNG/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "SWU-OPENSOURCE.OpenSwuNG1";
+				PRODUCT_BUNDLE_IDENTIFIER = "SWU-OPENSOURCE.OpenSwuNG2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

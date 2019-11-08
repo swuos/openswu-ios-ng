@@ -11,14 +11,14 @@
 #import "SWULabel.h"
 #import "SWUCollectionViewCell.h"
 #import "SWUWeekSelectView.h"
-#import "SWUAFN.h"
-#import "MJExtension.h"
-#import "SWUScheduleModel.h"
+#import "SWUFactory.h"
 #import "Data.h"
 #import "Weekitem.h"
 #import "SWUScrollview.h"
 #import "SVProgressHUD.h"
 #import "NSDate+DistanceOfTimes.h"
+
+
 
 @interface SWUScheduleViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 /** 判断collectionview是左右滑动  */
@@ -49,10 +49,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(NSArray *)dataArray {
     if (!_dataArray) {
-        [Data mj_setupObjectClassInArray:^NSDictionary *{
-            return @{@"weekitem":[Weekitem class]};
-        }];
-        _dataArray = [Data mj_objectArrayWithFile:DOCUMENT_PATH(@"schedule.plist")];
+        _dataArray = [SWUFactory getScheduleData];
     }
     return _dataArray;
 }
@@ -60,15 +57,15 @@ static NSString * const reuseIdentifier = @"Cell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.userDefaults = [NSUserDefaults standardUserDefaults];
     self.comp = [NSDate getDateComponents];
-    NSLog(@"%@",DOCUMENT_PATH(@"schedule.plist"));
+//    NSLog(@"%@",DOCUMENT_PATH(@"schedule.plist"));
     [self postSchedule];
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.userDefaults = [NSUserDefaults standardUserDefaults];
+    
     if ([[_userDefaults objectForKey:@"cardNumber"] length] > 0) {
         [self setUpUIAndAddGesture];
     }else {
@@ -102,7 +99,7 @@ static NSString * const reuseIdentifier = @"Cell";
 
 
 -(void)setUpUIAndAddGesture {
-    self.currentWeek = ceil([NSDate distanceFromOneDayToNow:@"2019-02-25 00:00:00"]/7.0);
+    self.currentWeek = ceil([NSDate distanceFromOneDayToNow:@"2019-09-01 00:00:00"]/7.0);
     
     [self addObserver:self forKeyPath:@"currentWeek" options:NSKeyValueObservingOptionNew context:nil];
     //    添加collectionview
@@ -168,7 +165,9 @@ static NSString * const reuseIdentifier = @"Cell";
     if ([fileManager fileExistsAtPath:DOCUMENT_PATH(@"schedule.plist")]) {
         return;
     }
+    
     NSString * cardNumber = [_userDefaults objectForKey:@"cardNumber"];
+//    NSLog(@"%@",cardNumber);
     if (cardNumber.length <= 0) {
         return;
     }
@@ -182,7 +181,8 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     SWUCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    [cell.scrollerView setData:self.dataArray[indexPath.row]];
+//    [cell.scrollerView setData:self.dataArray[indexPath.row]];
+    [cell.scrollerView setData:self.dataArray currentWeek:self.currentWeek];
     return cell;
 }
 
@@ -203,6 +203,7 @@ static NSString * const reuseIdentifier = @"Cell";
         //                NSLog(@"到达开头或者结尾");
     }
 }
+
 
 
 #pragma mark ------ UICollectionViewDelegateFlowLayout ------
@@ -241,6 +242,9 @@ static NSString * const reuseIdentifier = @"Cell";
         offset = maxOffset;
     }
     [self.weekScrollerView setContentOffset:CGPointMake(offset, 0) animated:YES];
+    [self.collectionView reloadData];
+    
+    
 }
 
 @end

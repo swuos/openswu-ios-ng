@@ -6,13 +6,17 @@
 //
 
 #import "NSDate+DistanceOfTimes.h"
-#import "SWUAFN.h"
+#import "SWUFactory.h"
 #import "SWUScheduleModel.h"
 #import "MJExtension.h"
 #import "Constants.h"
 
 @implementation NSDate (DistanceOfTimes)
-
+//+(void)convertData:(NSArray *)data{
+//    NSMutableArray * array = [NSMutableArray arrayWithObject:@"fdovi"];
+//
+//
+//}
 
 +(int)distanceFromOneDayToNow:(NSString * )dateString {
     NSDate * nowDate = [NSDate date];
@@ -46,28 +50,33 @@
 
 
 +(void)getSchedule {
-    NSDateComponents * comp = [NSDate getDateComponents];
-    AFHTTPSessionManager * manager = [SWUAFN swuAfnManage];
+//    NSDateComponents * comp = [NSDate getDateComponents];
+    AFHTTPSessionManager * manager = [SWUFactory SWUFactoryManage];
     NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-    [manager.requestSerializer setValue:[userDefaults objectForKey:@"acToken"] forHTTPHeaderField:@"acToken"];
+    [manager.requestSerializer setValue:[userDefaults objectForKey:@"token"] forHTTPHeaderField:@"token"];
     
-    NSDictionary * paraDic = @{
-                               @"swuid":[userDefaults objectForKey:@"cardNumber"],
-                               @"academicYear":[NSString stringWithFormat:@"%ld",(comp.year-1)],
-                               @"term":[NSString stringWithFormat:@"%d",(comp.month >= 2 && comp.month < 9 ? 2:1)]
-                               };
-    [manager GET:@"https://freegatty.swuosa.xenoeye.org/api/schedule/search" parameters:paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//    NSDictionary * paraDic = @{
+//                               @"swuid":[userDefaults objectForKey:@"cardNumber"],
+//                               @"academicYear":[NSString stringWithFormat:@"%ld",(comp.year-1)],
+//                               @"term":[NSString stringWithFormat:@"%d",(comp.month >= 2 && comp.month < 9 ? 2:1)]
+//                               };
+    [manager GET:@"https://freegatty.swuosa.xenoeye.org/api/schedule/all/0" parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         //        进行数据解析
+//        NSLog(@"%@",responseObject);
         SWUScheduleModel * scheduleModel = [SWUScheduleModel mj_objectWithKeyValues:responseObject];
         //        如果不存在那么重新写入
 //        NSFileManager * fileManager = [NSFileManager defaultManager];
 //        if ([fileManager fileExistsAtPath:DOCUMENT_PATH(@"schedule.plist")]) {
 //            [fileManager removeItemAtPath:DOCUMENT_PATH(@"schedule.plist") error:nil];
 //        }
-        [scheduleModel.result[@"data"] writeToFile:DOCUMENT_PATH(@"schedule.plist") atomically:YES];
+//        NSLog(@"%@",scheduleModel.data);
+        [scheduleModel.data writeToFile:DOCUMENT_PATH(@"schedule.plist") atomically:YES];
+//        NSLog(@"%@",f);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
     }];
 }
+
+
 
 
 @end

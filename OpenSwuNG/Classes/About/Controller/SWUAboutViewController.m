@@ -45,7 +45,7 @@
 
 //设置底部的开源协会
 -(void)setUpBottom {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-100, self.view.frame.size.width, 30)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-200, self.view.frame.size.width, 30)];
     label.numberOfLines = 0;
     [self.view addSubview:label];
     NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"Copyright©2018 西南大学开源协会\nAll rights reserved" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFang-SC-Medium" size: 10],NSForegroundColorAttributeName: [UIColor colorWithRed:128/255.0 green:128/255.0 blue:128/255.0 alpha:1.0]}];

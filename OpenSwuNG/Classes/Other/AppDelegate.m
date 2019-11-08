@@ -23,6 +23,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     SWULoginViewController * loginVc = [[SWULoginViewController alloc] init];
     SWUNavigationController * nav = [[SWUNavigationController alloc] initWithRootViewController:loginVc];
+    SWUTabBarController * tabVc = [[SWUTabBarController alloc] init];
     [self.window setRootViewController:nav];
     
     [self.window makeKeyAndVisible];

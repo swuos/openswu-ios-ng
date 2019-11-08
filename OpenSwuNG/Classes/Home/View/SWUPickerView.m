@@ -27,19 +27,21 @@
 -(void)setUpUI:(CGRect)frame {
     self.backgroundColor = [UIColor whiteColor];
     self.layer.cornerRadius = 10;
+    self.clipsToBounds = YES;
     self.layer.borderWidth = 1;
-    self.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.layer.borderColor = [UIColor purpleColor].CGColor;
     
     UILabel * messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, 50)];
     messageLabel.text = @"切换当前学年和学期";
     messageLabel.layer.cornerRadius = 10;
-    messageLabel.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1.0];
+//    messageLabel.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1.0];
+//    223 219 195
+    messageLabel.backgroundColor = [UIColor colorWithRed:223/255.0 green:219/255.0 blue:195/255.0 alpha:1.0];
     messageLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:messageLabel];
     
     //    添加选择日期的
     self.picker = [[UIPickerView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(messageLabel.frame), frame.size.width, frame.size.height-94)];
-//    self.picker.backgroundColor = [UIColor greenColor];
     self.picker.delegate = self;
     self.picker.dataSource = self;
     [self addSubview:_picker];
@@ -67,7 +69,7 @@
         NSString * academicYear = [[firstArr objectAtIndex:[_picker selectedRowInComponent:0]] substringToIndex:4];
         NSString * term = [NSString stringWithFormat:@"%ld",[_picker selectedRowInComponent:1]+1] ;
         NSMutableDictionary * paraDic = [[NSMutableDictionary alloc] init];
-        [paraDic setObject:academicYear forKey:@"academicYear"];
+        [paraDic setObject:academicYear forKey:@"year"];
         [paraDic setObject:term forKey:@"term"];
         
         [self.delegate SWUPickerViewDidSelected:paraDic];

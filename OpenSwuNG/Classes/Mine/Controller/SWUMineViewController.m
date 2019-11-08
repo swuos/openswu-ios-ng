@@ -55,7 +55,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     return self.dataArray.count;
-
 }
 
 
@@ -75,13 +74,15 @@
     SWUHeaderView * view = [[SWUHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
     return  view;
 }
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 50;
+}
 
 #pragma mark ------ TableViewDelegate ------
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     SWUMineModel * swuMine = self.dataArray[indexPath.row];
     [self showAlertViewtableView:tableView SwuMine:swuMine];
-    
 }
 //显示alertView
 -(void)showAlertViewtableView:(UITableView *)tableView SwuMine:(SWUMineModel *)swuMine {
@@ -95,6 +96,16 @@
         if (count == 2) {
             UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil];
             [alert addAction:cancelAction];
+        }
+        // 弹出对话框还是切换界面？
+        //            点击cell，如果已经绑定校园卡，则解绑
+        if ([swuMine.icon isEqualToString:@"mine_card"]) {
+            NSString * cardNumber = [userDefaults objectForKey:@"cardNumber"];
+            if (cardNumber.length <= 0) {
+                SWUBindingViewController * bindingVc = [[SWUBindingViewController alloc] init];
+                [self.navigationController pushViewController:bindingVc animated:YES];
+                return;
+            }
         }
         UIAlertAction * okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 //            绑卡
@@ -112,7 +123,7 @@
             }
 //            退出
             if ([swuMine.icon isEqualToString:@"mine_exit"]) {
-                [userDefaults setObject:@"" forKey:@"acToken"];
+                [userDefaults setObject:@"" forKey:@"token"];
                 [userDefaults setObject:@"" forKey:@"cardNumber"];
                 [userDefaults setObject:@"" forKey:@"cardNumberPwd"];
                 [userDefaults setObject:@"" forKey:@"phoneNumber"];
@@ -127,15 +138,7 @@
             }
         }];
         [alert addAction:okAction];
-        // 弹出对话框还是切换界面？
-        //            点击cell，如果已经绑定校园卡，则解绑
-        if ([swuMine.icon isEqualToString:@"mine_card"]) {
-            NSString * cardNumber = [userDefaults objectForKey:@"cardNumber"];
-            if (cardNumber.length <= 0) {
-                SWUBindingViewController * bindingVc = [[SWUBindingViewController alloc] init];
-                [self presentViewController:bindingVc animated:YES completion:nil];
-            }
-        }
+
         [self presentViewController:alert animated:true completion:nil];
     }else{
         SWUAboutViewController * aboutVc = [[SWUAboutViewController alloc] init];

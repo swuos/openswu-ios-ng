@@ -15,7 +15,7 @@
 #import "SWUScoreHeaderView.h"
 #import "SWUScoreCell.h"
 #import "SWUPickerView.h"
-#import "SWUAFN.h"
+#import "SWUFactory.h"
 #import "SWULabel.h"
 #import "SVProgressHUD.h"
 
@@ -48,7 +48,8 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:imageView];
     
     SWULabel * titleLabel = [[SWULabel alloc] initWithFrame:CGRectMake(0, NAVA_MAXY, SCREEN_WIDTH, SCREEN_HEIGHT-NAVA_MAXY)];
-    titleLabel.backgroundColor = SWUCOLOR(143, 119, 181);
+    titleLabel.backgroundColor = [UIColor whiteColor];
+    titleLabel.textColor = SWUCOLOR(143, 119, 181);
     titleLabel.text = @"点击右上角选择学年和学期";
     titleLabel.font = [UIFont systemFontOfSize:25];
     [self.view addSubview:titleLabel];
@@ -60,6 +61,7 @@
     }
     //    添加view视图（绩点显示+日期）
     SWUPointView * pointBackView = [SWUPointView swuPointViewWithFrame:CGRectMake(0, NAVA_MAXY, SCREEN_WIDTH, 70) DataArray:self.dataArray ParaDic:paraDic];
+//    pointBackView.backgroundColor = [UIColor redColor];
     [self.view addSubview:pointBackView];
     
     
@@ -124,17 +126,19 @@
 -(void)SWUPickerViewDidSelected:(NSMutableDictionary *)paraDic {
     [SVProgressHUD showWithStatus:@"请稍后..."];
     NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
-    [paraDic setObject:[userDefaults objectForKey:@"cardNumber"] forKey:@"swuid"];
-    AFHTTPSessionManager * manager = [SWUAFN swuAfnManage];
-    [manager.requestSerializer setValue:[userDefaults objectForKey:@"acToken"] forHTTPHeaderField:@"acToken"];
-    [manager GET:@"https://freegatty.swuosa.xenoeye.org/api/grade/search" parameters:paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSString * success = responseObject[@"success"];
-        if (success.integerValue == 0) {
+    [paraDic setObject:@"0" forKey:@"update"];
+    AFHTTPSessionManager * manager = [SWUFactory SWUFactoryManage];
+    [manager.requestSerializer setValue:[userDefaults objectForKey:@"token"] forHTTPHeaderField:@"token"];
+    [manager GET:[@"https://freegatty.swuosa.xenoeye.org/api/grade/single/" stringByAppendingString:[NSString stringWithFormat:@"%@/%@/%@",paraDic[@"year"],paraDic[@"term"],paraDic[@"update"]]] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        NSLog(@"%@",responseObject);
+        NSString * success = responseObject[@"code"];
+        if (success.integerValue != 0) {
             [SVProgressHUD showErrorWithStatus:@"系统繁忙，发生错误"];
             return ;
         }
-        NSDictionary * dic = responseObject[@"result"];
-        [self setDataArray:[SWUScoreModel mj_objectArrayWithKeyValuesArray:dic[@"data"]]];
+        
+        
+        [self setDataArray:[SWUScoreModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]]];
         if (self.dataArray.count == 0) {
             [SVProgressHUD showErrorWithStatus:@"请选择正确的学年"];
             return;
@@ -142,6 +146,7 @@
         [self setUpUI:paraDic];
         [SVProgressHUD dismiss];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"%@",error);
         [SVProgressHUD showErrorWithStatus:@"请选择正确的学年和学期"];
     }];
 }

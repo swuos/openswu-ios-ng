@@ -16,7 +16,7 @@
 #import "SWUTabBarController.h"
 #import "SWULoginModel.h"
 #import "MJExtension.h"
-#import "SWUAFN.h"
+#import "SWUFactory.h"
 
 
 
@@ -49,10 +49,11 @@
     [super viewDidAppear:animated];
     self.userDefaults = [NSUserDefaults standardUserDefaults];
     NSString * phoneNumber = [self.userDefaults objectForKey:@"phoneNumber"];
-    NSString * cardNumber = [self.userDefaults objectForKey:@"cardNumber"];
-    if (phoneNumber.length > 0 && cardNumber.length > 0) {
-        self.userTextField.text = [self.userDefaults objectForKey:@"phoneNumber"];
-        self.pwdTextfield.text = [self.userDefaults objectForKey:@"password"];
+    NSString * password = [self.userDefaults objectForKey:@"password"];
+    
+    if (phoneNumber.length > 0 && password.length >0 ) {
+        self.userTextField.text = phoneNumber;
+        self.pwdTextfield.text = password;
         [self login];
     }
 }
@@ -90,7 +91,6 @@
     [forgetPwdBtn addTarget:self action:@selector(forgetPwd) forControlEvents:UIControlEventTouchUpInside];
     [backView addSubview:forgetPwdBtn];
     
-    
     //    添加登录按钮
     _loginBtn = [UIButton ButtonWithTitle:@"登录" Frame:CGRectMake(CGRectGetMinX(_pwdTextfield.frame), CGRectGetMaxY(backView.frame)+35, _pwdTextfield.frame.size.width, 40) Alignment:UIControlContentHorizontalAlignmentCenter titleColor:[UIColor whiteColor]];
     _loginBtn.backgroundColor = [UIColor colorWithRed:24/255.0 green:113/255.0 blue:245/255.0 alpha:1.0];
@@ -119,7 +119,7 @@
     }
     [SVProgressHUD showWithStatus:@"请稍后..."];
 //    登录请求
-    AFHTTPSessionManager * manger = [SWUAFN swuAfnManage];
+    AFHTTPSessionManager * manger = [SWUFactory SWUFactoryManage];
     
     NSDictionary * paraDic = @{
                                @"phoneNumber":_userTextField.text,
@@ -131,9 +131,9 @@
             [SVProgressHUD showErrorWithStatus:@"请检查账户和密码后重试"];
             return ;
         }
-//        将登录的actoken进行解析出来，然后存放到NSuserdefaults中
-//        NSLog(@"登录保存的actoken：%@",loginModel.result[@"acToken"]);
-        [self.userDefaults setObject:loginModel.result[@"acToken"] forKey:@"acToken"];
+//        将登录的token进行解析出来，然后存放到NSuserdefaults中
+//        NSLog(@"%@------",loginModel.result[@"acToken"]);
+        [self.userDefaults setObject:loginModel.result[@"acToken"] forKey:@"token"];
         [self.userDefaults setObject:self.userTextField.text forKey:@"phoneNumber"];
         [self.userDefaults setObject:self.pwdTextfield.text forKey:@"password"];
         [self.userDefaults synchronize];
