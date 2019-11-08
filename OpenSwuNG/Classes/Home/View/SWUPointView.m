@@ -39,7 +39,7 @@
     SWULabel * timeLabel = [[SWULabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width*0.8, self.frame.size.height*0.3)];
     timeLabel.textColor = [UIColor lightGrayColor];
     timeLabel.font = [UIFont systemFontOfSize:14];
-    timeLabel.text = [NSString stringWithFormat:@"%@ -- %@",paraDic[@"academicYear"],paraDic[@"term"]];
+    timeLabel.text = [NSString stringWithFormat:@"%@ -- %@",paraDic[@"year"],paraDic[@"term"]];
     timeLabel.layer.borderWidth = 0.5;
     timeLabel.layer.cornerRadius = 4;
     [self addSubview:timeLabel];

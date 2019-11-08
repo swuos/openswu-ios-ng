@@ -55,7 +55,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     return self.dataArray.count;
-
 }
 
 
@@ -98,6 +97,16 @@
             UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil];
             [alert addAction:cancelAction];
         }
+        // 弹出对话框还是切换界面？
+        //            点击cell，如果已经绑定校园卡，则解绑
+        if ([swuMine.icon isEqualToString:@"mine_card"]) {
+            NSString * cardNumber = [userDefaults objectForKey:@"cardNumber"];
+            if (cardNumber.length <= 0) {
+                SWUBindingViewController * bindingVc = [[SWUBindingViewController alloc] init];
+                [self.navigationController pushViewController:bindingVc animated:YES];
+                return;
+            }
+        }
         UIAlertAction * okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
 //            绑卡
             if ([swuMine.icon isEqualToString:@"mine_card"]) {
@@ -114,7 +123,7 @@
             }
 //            退出
             if ([swuMine.icon isEqualToString:@"mine_exit"]) {
-                [userDefaults setObject:@"" forKey:@"acToken"];
+                [userDefaults setObject:@"" forKey:@"token"];
                 [userDefaults setObject:@"" forKey:@"cardNumber"];
                 [userDefaults setObject:@"" forKey:@"cardNumberPwd"];
                 [userDefaults setObject:@"" forKey:@"phoneNumber"];
@@ -129,15 +138,7 @@
             }
         }];
         [alert addAction:okAction];
-        // 弹出对话框还是切换界面？
-        //            点击cell，如果已经绑定校园卡，则解绑
-        if ([swuMine.icon isEqualToString:@"mine_card"]) {
-            NSString * cardNumber = [userDefaults objectForKey:@"cardNumber"];
-            if (cardNumber.length <= 0) {
-                SWUBindingViewController * bindingVc = [[SWUBindingViewController alloc] init];
-                [self presentViewController:bindingVc animated:YES completion:nil];
-            }
-        }
+
         [self presentViewController:alert animated:true completion:nil];
     }else{
         SWUAboutViewController * aboutVc = [[SWUAboutViewController alloc] init];

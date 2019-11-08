@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString * lessonName;
 /** 分数  */
 @property (nonatomic,copy) NSString * score;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

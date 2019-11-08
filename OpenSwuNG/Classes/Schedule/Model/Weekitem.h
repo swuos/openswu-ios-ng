@@ -15,8 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString * campus;
 /** classRoom  */
 @property (nonatomic,copy) NSString * classRoom;
-/** day  */
-@property (nonatomic,copy) NSString * day;
+
+@property (nonatomic,copy) NSString * weekTime;
 /** endTime  */
 @property (nonatomic,copy) NSString * endTime;
 /** startTime  */
@@ -25,10 +25,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString * teacher;
 /** lessonName  */
 @property (nonatomic,copy) NSString * lessonName;
-/** week  */
+/** week周几上课  */
 @property (nonatomic,copy) NSString * week;
 /** ScrollerViewcount  */
 @property (nonatomic,assign) NSInteger  scrollerViewCount;
+
+
+
+
 @end
 
 NS_ASSUME_NONNULL_END

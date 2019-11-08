@@ -11,7 +11,7 @@
 #import "SWULoginLabel.h"
 #import "UIButton+Login.h"
 #import "SVProgressHUD.h"
-#import "SWUAFN.h"
+#import "SWUFactory.h"
 #import "SWUVerificationCodeButton.h"
 #import "SWULoginViewController.h"
 
@@ -97,11 +97,11 @@
     if (_userPhoneNumber.text.length == 11 && [self checkPhoneNumber:_userPhoneNumber.text]) {
 //        设置计时器开始计时
         [self.getVerCodeBtn timeFailBeginFrom:150];
-        self.manager = [SWUAFN swuAfnManage];
+        self.manager = [SWUFactory SWUFactoryManage];
         self.paraDic = @{@"phoneNumber":_userPhoneNumber.text};
 
         [_manager POST:@"https://freegatty.swuosa.xenoeye.org/ac/sendVerificationCode" parameters:_paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSLog(@"%@",responseObject);
+//            NSLog(@"%@",responseObject);
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             NSLog(@"%@",error);
         }];
@@ -131,7 +131,7 @@
                      };
     [_manager POST:@"https://freegatty.swuosa.xenoeye.org/ac/register" parameters:_paraDic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
 //        注册后怎么办
-        NSLog(@"%@",responseObject);
+//        NSLog(@"%@",responseObject);
         NSString * success = responseObject[@"success"];
         if (success.intValue == 0) {
             [SVProgressHUD showErrorWithStatus:@"已存在账号,请登录!"];
