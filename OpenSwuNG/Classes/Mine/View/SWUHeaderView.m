@@ -12,6 +12,7 @@
 
 -(instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor whiteColor];
         UILabel * label = [[UILabel alloc] init];
         [self addSubview:label];
         label.font = [UIFont systemFontOfSize:21];
@@ -19,7 +20,6 @@
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self).with.insets(UIEdgeInsetsMake(25, 15, 40, 100));
         }];
-        
         
         UILabel * collegeLabel  = [[UILabel alloc] init];
         collegeLabel.text = @"含弘光大，继往开来";

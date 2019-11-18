@@ -32,5 +32,6 @@
 //document
 #define DOCUMENT_PATH(_arg) [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:_arg]
 
+#define RefreshLostData RefreshLostData
 
 #endif /* Constants_h */

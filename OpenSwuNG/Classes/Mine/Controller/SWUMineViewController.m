@@ -90,9 +90,14 @@
     
     NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
     NSFileManager * fileManager = [NSFileManager defaultManager];
-    
+    NSString *information = swuMine.information;
     if (count != 0) {
-        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NULL message:swuMine.information preferredStyle:UIAlertControllerStyleAlert];
+        if ([[userDefaults objectForKey:@"cardNumber"] length] <= 0) {
+            if ([swuMine.icon isEqualToString:@"mine_clean"]) {
+                information = @"请先绑定校园卡！";
+            }
+        }
+        UIAlertController * alert = [UIAlertController alertControllerWithTitle:NULL message:information preferredStyle:UIAlertControllerStyleAlert];
         if (count == 2) {
             UIAlertAction * cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil];
             [alert addAction:cancelAction];

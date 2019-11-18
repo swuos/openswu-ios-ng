@@ -65,13 +65,13 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     if ([[_userDefaults objectForKey:@"cardNumber"] length] > 0) {
         [self setUpUIAndAddGesture];
     }else {
         for (UIView * view in self.view.subviews) {
             [view removeFromSuperview];
         }
+        self.navigationItem.titleView = NULL;
         SWULabel * titleLabel = [[SWULabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         titleLabel.backgroundColor = SWUCOLOR(143, 119, 181);
         titleLabel.text = @"请先绑定校园卡";
@@ -100,7 +100,6 @@ static NSString * const reuseIdentifier = @"Cell";
 
 -(void)setUpUIAndAddGesture {
     self.currentWeek = ceil([NSDate distanceFromOneDayToNow:@"2019-09-01 00:00:00"]/7.0);
-    
     [self addObserver:self forKeyPath:@"currentWeek" options:NSKeyValueObservingOptionNew context:nil];
     //    添加collectionview
     UICollectionViewFlowLayout * layout = [[UICollectionViewFlowLayout alloc] init];
@@ -114,7 +113,6 @@ static NSString * const reuseIdentifier = @"Cell";
     [self.collectionView registerClass:[SWUCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     self.collectionView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:self.collectionView];
-    
     
     //    添加修改周课表的scrollerview
     self.weekScrollerView = [[SWUWeekSelectView alloc] initWithFrame:CGRectMake(0, CGRectGetMinY(self.collectionView.frame)-WEEK_SCROLLERVIEW_HEIGHT, SCREEN_WIDTH, WEEK_SCROLLERVIEW_HEIGHT)];

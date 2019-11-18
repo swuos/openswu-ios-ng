@@ -59,6 +59,7 @@
 }
 
 -(void)layoutSubviews {
+    [super layoutSubviews];
 //    NSLog(@"%@  %@",self.realImageView.superview ,self);
     if (self.realImageView.superview == self) {
 //        存在图片
@@ -117,6 +118,8 @@
     }
     [self.realImageView removeFromSuperview];
     [self layoutSubviews];
-    
 }
+
+
+
 @end

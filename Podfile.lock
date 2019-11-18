@@ -16,12 +16,14 @@ PODS:
     - AFNetworking/NSURLSession
   - Masonry (1.1.0)
   - MJExtension (3.0.15.1)
+  - MJRefresh (3.2.0)
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.2.1)
   - Masonry
   - MJExtension
+  - MJRefresh (~> 3.2.0)
   - SVProgressHUD
 
 SPEC REPOS:
@@ -29,14 +31,16 @@ SPEC REPOS:
     - AFNetworking
     - Masonry
     - MJExtension
+    - MJRefresh
     - SVProgressHUD
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
+  MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 938651f89966669f13f7905f698cb48d0ec19f4c
+PODFILE CHECKSUM: 58258a08852900148bb929d8275dcec2e5a7899d
 
 COCOAPODS: 1.7.5

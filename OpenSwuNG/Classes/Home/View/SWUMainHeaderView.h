@@ -15,6 +15,8 @@ typedef void(^changeVC)(NSString* name);
 @property (nonatomic,copy) pushViewController pushVcBlock;
 @property (nonatomic,copy) alertViewController alertVcBlock;
 @property (nonatomic,copy) changeVC changeVcBlock;
+
+-(void)reSetUpSchedule;
 @end
 
 NS_ASSUME_NONNULL_END

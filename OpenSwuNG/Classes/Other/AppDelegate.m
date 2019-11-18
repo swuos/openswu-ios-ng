@@ -24,7 +24,7 @@
     SWULoginViewController * loginVc = [[SWULoginViewController alloc] init];
     SWUNavigationController * nav = [[SWUNavigationController alloc] initWithRootViewController:loginVc];
     SWUTabBarController * tabVc = [[SWUTabBarController alloc] init];
-    [self.window setRootViewController:nav];
+    [self.window setRootViewController:tabVc];
     
     [self.window makeKeyAndVisible];
     return YES;
