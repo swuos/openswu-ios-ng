@@ -84,7 +84,7 @@
     
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.sectionHeaderHeight = self.headerView.frame.size.height;
-//    [self requestNewData:self.currentType model:[SWUNewsModel class] number:[self.totalDic[self.currentType] count] + 10  update:NO];
+    [self requestNewData:self.currentType model:[SWUNewsModel class] number:[self.totalDic[self.currentType] count] + 10  update:NO];
     
     [self.tableView layoutIfNeeded];
     

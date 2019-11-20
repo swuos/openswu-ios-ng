@@ -412,12 +412,12 @@
 		0E4229D123829B9C00D3B3ED /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0E4229D223829B9C00D3B3ED /* SWUMinePublisViewController.m */,
-				0E4229D323829B9C00D3B3ED /* SWULostViewController.m */,
-				0E4229D423829B9C00D3B3ED /* SWUPublishViewController.m */,
 				0E4229D523829B9C00D3B3ED /* SWUMinePublisViewController.h */,
-				0E4229D623829B9C00D3B3ED /* SWUPublishViewController.h */,
+				0E4229D223829B9C00D3B3ED /* SWUMinePublisViewController.m */,
 				0E4229D723829B9C00D3B3ED /* SWULostViewController.h */,
+				0E4229D323829B9C00D3B3ED /* SWULostViewController.m */,
+				0E4229D623829B9C00D3B3ED /* SWUPublishViewController.h */,
+				0E4229D423829B9C00D3B3ED /* SWUPublishViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -444,11 +444,11 @@
 			isa = PBXGroup;
 			children = (
 				0E4229DF23829B9C00D3B3ED /* AppDelegate.h */,
+				0E4229EC23829B9C00D3B3ED /* AppDelegate.m */,
+				0E4229EB23829B9C00D3B3ED /* SWUFactory.h */,
 				0E4229E023829B9C00D3B3ED /* SWUFactory.m */,
 				0E4229E123829B9C00D3B3ED /* Category */,
 				0E4229EA23829B9C00D3B3ED /* main.m */,
-				0E4229EB23829B9C00D3B3ED /* SWUFactory.h */,
-				0E4229EC23829B9C00D3B3ED /* AppDelegate.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -600,12 +600,12 @@
 		0E422A2323829B9C00D3B3ED /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0E422A2823829B9C00D3B3ED /* SWUByWayPickerView.h */,
 				0E422A2423829B9C00D3B3ED /* SWUByWayPickerView.m */,
 				0E422A2523829B9C00D3B3ED /* SWUByWayHeaderView.h */,
-				0E422A2623829B9C00D3B3ED /* SWUByWayScrollView.m */,
 				0E422A2723829B9C00D3B3ED /* SWUByWayHeaderView.m */,
-				0E422A2823829B9C00D3B3ED /* SWUByWayPickerView.h */,
 				0E422A2923829B9C00D3B3ED /* SWUByWayScrollView.h */,
+				0E422A2623829B9C00D3B3ED /* SWUByWayScrollView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";

@@ -255,6 +255,10 @@
 }
 
 -(void)minePublishBtnClicked:(UIButton *)btn {
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"cardNumber"] length] <= 0) {
+        [SVProgressHUD showInfoWithStatus:@"请先绑定校园卡..."];
+        return ;
+    }
     SWUMinePublisViewController *minePublishVc = [[SWUMinePublisViewController alloc] init];
     minePublishVc.refreshBlock = ^{
         [self.dataArray removeAllObjects];
@@ -264,6 +268,10 @@
 }
 
 -(void)PublishBtnClicked:(UIButton *)btn {
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"cardNumber"] length] <= 0) {
+        [SVProgressHUD showInfoWithStatus:@"请先绑定校园卡..."];
+        return ;
+    }
     SWUPublishViewController *publishVc = [[SWUPublishViewController alloc] init];
     publishVc.refreshBlock = ^{
         [self.dataArray removeAllObjects];

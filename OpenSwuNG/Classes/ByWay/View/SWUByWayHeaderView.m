@@ -36,11 +36,12 @@
     self.backView = backView;
     [self addSubview:self.backView];
     
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFang SC" size: 50],NSForegroundColorAttributeName: [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0]}];
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"" attributes:@{NSFontAttributeName: [UIFont fontWithName:@"PingFang SC" size: 20],NSForegroundColorAttributeName: [UIColor colorWithRed:0/255.0 green:0/255.0 blue:0/255.0 alpha:1.0]}];
     
     UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selectStation:)];
     UILabel *startLabel = [[UILabel alloc] initWithFrame:CGRectMake(72.5,213.5,55,18)];
     startLabel.numberOfLines = 0;
+//    startLabel.backgroundColor = [UIColor orangeColor];
     startLabel.attributedText = string;
     startLabel.userInteractionEnabled = YES;
     [startLabel addGestureRecognizer:tap1];
@@ -54,6 +55,7 @@
     endLabel.numberOfLines = 0;
     endLabel.attributedText = string;
     endLabel.userInteractionEnabled = YES;
+//    endLabel.backgroundColor = [UIColor greenColor];
     [endLabel addGestureRecognizer:tap];
     endLabel.text = @"终点";
     endLabel.textAlignment = NSTextAlignmentCenter;
@@ -87,23 +89,18 @@
         make.height.equalTo(backView.mas_width).multipliedBy(127.0/345);
     }];
     [startLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(backView).offset(55);
+        make.left.equalTo(backView).offset(35);
         make.top.equalTo(backView).offset(20);
         make.width.equalTo(@90);
         make.height.equalTo(startLabel.mas_width).multipliedBy(20.0/60);
     }];
     //
     [endLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(backView.mas_right).offset(-55);
+        make.right.equalTo(backView.mas_right).offset(-35);
         make.top.equalTo(startLabel);
         make.height.width.equalTo(startLabel);
     }];
-    [changeWayBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(startLabel).offset(5);
-        make.left.equalTo(startLabel.mas_right).offset(20);
-        make.right.equalTo(endLabel.mas_left).offset(-20);
-        make.height.equalTo(changeWayBtn.mas_width).multipliedBy(15.0/40);
-    }];
+
     
     [searchBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(backView).offset(20);
@@ -111,6 +108,21 @@
         make.bottom.equalTo(backView).offset(-15);
         make.height.equalTo(searchBtn.mas_width).multipliedBy(40.0/310);
     }];
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
+    
+    CGFloat changeBtnWidth = endLabel.frame.size.height * 8/3.0;
+    CGFloat distance = CGRectGetMinX(endLabel.frame) - CGRectGetMaxX(startLabel.frame);
+    CGFloat padding = (distance - changeBtnWidth) * 0.5;
+//    NSLog(@"%lf %lf %lf",changeBtnWidth,distance,padding);
+    [changeWayBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(startLabel).offset(5);
+        make.left.equalTo(startLabel.mas_right).offset(padding);
+        make.width.equalTo([NSNumber numberWithDouble:changeBtnWidth]);
+        make.height.equalTo(changeWayBtn.mas_width).multipliedBy(2.5/8);
+    }];
+    
+    
 }
 
 

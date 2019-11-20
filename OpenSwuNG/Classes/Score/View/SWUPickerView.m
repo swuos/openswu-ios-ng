@@ -115,7 +115,7 @@
     if (!label) {
         label = [[UILabel alloc]init];
         //在这里设置字体相关属性
-        label.font = [UIFont systemFontOfSize:22];
+        label.font = [UIFont systemFontOfSize:18];
         label.textColor = [UIColor blackColor];
         label.textAlignment = NSTextAlignmentCenter;
     }
