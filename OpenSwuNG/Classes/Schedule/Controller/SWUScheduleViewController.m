@@ -163,7 +163,6 @@ static NSString * const reuseIdentifier = @"Cell";
     if ([fileManager fileExistsAtPath:DOCUMENT_PATH(@"schedule.plist")]) {
         return;
     }
-    
     NSString * cardNumber = [_userDefaults objectForKey:@"cardNumber"];
 //    NSLog(@"%@",cardNumber);
     if (cardNumber.length <= 0) {
@@ -179,7 +178,6 @@ static NSString * const reuseIdentifier = @"Cell";
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     SWUCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-//    [cell.scrollerView setData:self.dataArray[indexPath.row]];
     [cell.scrollerView setData:self.dataArray currentWeek:self.currentWeek];
     return cell;
 }
@@ -201,8 +199,6 @@ static NSString * const reuseIdentifier = @"Cell";
         //                NSLog(@"到达开头或者结尾");
     }
 }
-
-
 
 #pragma mark ------ UICollectionViewDelegateFlowLayout ------
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -241,8 +237,6 @@ static NSString * const reuseIdentifier = @"Cell";
     }
     [self.weekScrollerView setContentOffset:CGPointMake(offset, 0) animated:YES];
     [self.collectionView reloadData];
-    
-    
 }
 
 @end

@@ -13,18 +13,23 @@
 #import "SWULibraryHistoryModel.h"
 #import "SWULibraryBorrowingModel.h"
 #import "SWULibraryCollectModel.h"
-#import "SWULibraryPlaceHoldCell.h"
 #import "Constants.h"
 #import "MJRefresh.h"
 
+#import "SWUBaseData.h"
+#import "SWUMainDataSource.h"
+
+static NSString *const ID = @"Bookcase";
 
 @interface SWUBookCaseController ()<UITableViewDelegate,UITableViewDataSource>
 /** 存放数据的数组  */
-@property (nonatomic,strong) NSArray *dataArray;
 @property (nonatomic,strong) NSUserDefaults *userDefault;
 @property (nonatomic,strong) UITableView *tableView;
-@property (nonatomic,strong) NSMutableDictionary *totalDic;
 @property (nonatomic,strong) NSString *currentType;
+@property (nonatomic,strong) NSString *cookieName;
+@property (nonatomic,strong) SWUBookCaseHeaderView *headerView;
+
+@property (nonatomic,strong) SWUMainDataSource *dataSource;
 @end
 
 @implementation SWUBookCaseController
@@ -36,31 +41,22 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.userDefault = [NSUserDefaults standardUserDefaults];
     
-    self.totalDic = [NSMutableDictionary dictionary];
-    
     NSDictionary *classDic = @{
                                @"借阅历史":@"SWULibraryHistoryModel",
                                @"收藏书籍":@"SWULibraryCollectModel",
                                @"在借书籍":@"SWULibraryBorrowingModel"
                                };
     //    添加头部按钮
-    SWUBookCaseHeaderView *headerView = [[SWUBookCaseHeaderView alloc] initWithFrame:CGRectMake(0, NAVA_MAXY, self.view.frame.size.width, 30)];
-    [self.view addSubview:headerView];
-    headerView.changeVcBlock = ^(NSString * _Nonnull name) {
-        [self requestNewData:name model:NSClassFromString(classDic[name])];
+    [self.view addSubview:self.headerView];
+    [self.view addSubview:self.tableView];
+    __weak typeof (self) weakSelf = self;
+    self.headerView.changeVcBlock = ^(NSString * _Nonnull type) {
+        [weakSelf requestNewData:type model:NSClassFromString(classDic[type])];
     };
     
-    //    添加tableview
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,headerView.frame.origin.y+headerView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.sectionHeaderHeight = 0;
-    self.tableView.sectionFooterHeight = 0;
-    [self.view addSubview:self.tableView];
-    
     //    登陆
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    dispatch_queue_t queue = dispatch_queue_create("bookCaseQueue", DISPATCH_QUEUE_SERIAL);
+    dispatch_sync(queue, ^{
         AFHTTPSessionManager * manager = [SWUFactory SWUFactoryManage];
         NSDictionary * dic = @{
                                @"username":[self.userDefault objectForKey:@"cardNumber"],
@@ -70,81 +66,88 @@
         [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
         [manager POST:@"https://freegatty.swuosa.xenoeye.org/library/login/doLogin" parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             NSDictionary * dic1 = responseObject[@"data"];
-            [self.userDefault setObject:dic1[@"cookieName"] forKey:@"cookieName"];
+            self.cookieName = dic1[@"cookieName"];
             [SVProgressHUD dismiss];
+            [self requestNewData:@"借阅历史" model:NSClassFromString(classDic[@"借阅历史"])];
+            [self.tableView layoutIfNeeded];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [SVProgressHUD showErrorWithStatus:@"请检查网络后重试！"];
         }];
     });
-    [self requestNewData:@"借阅历史" model:NSClassFromString(classDic[@"借阅历史"])];
-    [self.tableView layoutIfNeeded];
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (_dataArray != nil) {
-        return self.dataArray.count > 0 ? self.dataArray.count:1;
-    }
-    return 0;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *ID = @"Bookcase";
-    if (self.dataArray.count <= 0) {
-        SWULibraryPlaceHoldCell *cell = [[SWULibraryPlaceHoldCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
-        return cell;
-    }
-    SWUBookCaseCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (!cell) {
-        cell = [[SWUBookCaseCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
-    }
-    cell.model = self.dataArray[indexPath.row];
-    return cell;
 }
 
 #pragma mark ------ 自定义方法 -------
 
 //请求数据
--(void)requestNewData:(NSString *)name model:(id)model{
-    if ([self.totalDic[name] count] > 0) {
-        self.dataArray = self.totalDic[name];
+-(void)requestNewData:(NSString *)type model:(id)model{
+    if ( [[self.dataSource getCurrentTypeData:type] count] > 0 ) {
+        [self.dataSource loadExistTypeData:type];
         [self.tableView.mj_footer endRefreshing];
-        [self.tableView reloadData];
+        [self reload];
         return;
     }
     NSDictionary *dic = @{
-                          @"借阅历史":@"https://freegatty.swuosa.xenoeye.org/library/user/history/0",
-                          @"收藏书籍":@"https://freegatty.swuosa.xenoeye.org/library/user/collect/0",
-                          @"在借书籍":@"https://freegatty.swuosa.xenoeye.org/library/user/borrowing/0"
+                          @"借阅历史":@"library/user/history/0",
+                          @"收藏书籍":@"library/user/collect/0",
+                          @"在借书籍":@"library/user/borrowing/0"
                           };
-    __block NSArray *tmpArray;
     [SVProgressHUD showWithStatus:@"加载中。。。。。"];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        __weak typeof(self) weakSelf = self;
-        AFHTTPSessionManager * manager = [SWUFactory SWUFactoryManage];
-        [manager.requestSerializer setValue:[[NSUserDefaults standardUserDefaults] objectForKey:@"cookieName"] forHTTPHeaderField:@"cookieName"];
-        [manager GET:dic[name] parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-//            NSLog(@"%@ %@",model,name);
-//            NSLog(@"%@",responseObject);
-            tmpArray = [SWUFactory getData:responseObject[@"data"] model:model];
-            weakSelf.totalDic[name] = tmpArray;
-            weakSelf.dataArray = tmpArray;
-            if (weakSelf.dataArray.count <= 0) {
-                [SVProgressHUD showProgress:1 status:@"暂无数据～～～"];
-            }
-//            NSLog(@"%ld",tmpArray.count);
-            [weakSelf.tableView reloadData];
-            [SVProgressHUD dismiss];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            [SVProgressHUD showErrorWithStatus:@"出现错误"];
-        }];
-    });
+    
+    [SWUBaseData loadDatawithMethod:@"get" url:dic[type] params:@{@"cookieName":self.cookieName} keyword:@"data" model:model success:^(NSArray * _Nonnull dataArray) {
+        if (dataArray.count <= 0) {
+            [SVProgressHUD showProgress:1.5 status:@"暂无数据～～～"];
+        }
+        [self.dataSource addDataArray:dataArray currentType:type];
+        [self reload];
+        [SVProgressHUD dismiss];
+    } failure:^(id  _Nonnull error) {
+        NSLog(@"%@",error);
+        [SVProgressHUD showErrorWithStatus:@"请求出现错误"];
+    }];
 }
 
+#pragma mark ------ lazyLoad -------
+-(SWUBookCaseHeaderView *)headerView {
+    if (!_headerView) {
+        self.headerView= [[SWUBookCaseHeaderView alloc] initWithFrame:CGRectMake(0, NAVA_MAXY, self.view.frame.size.width, 30)];
+    }
+    return _headerView;
+}
+-(UITableView *)tableView {
+    if (!_tableView) {
+        self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,self.headerView.frame.origin.y+self.headerView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height)];
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self.dataSource;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        [self.tableView registerClass:[SWUBookCaseCell class] forCellReuseIdentifier:ID];
+        self.tableView.sectionHeaderHeight = 0;
+        
+        MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:nil];
+        [footer setTitle:@"点击或上拉刷新" forState:MJRefreshStateIdle];
+        [footer setTitle:@"加载中 ..." forState:MJRefreshStateRefreshing];
+        [footer setTitle:@"(∩_∩) 没有更多数据啦！" forState:MJRefreshStateNoMoreData];
+        footer.stateLabel.font = [UIFont systemFontOfSize:17];
+        footer.stateLabel.textColor = [UIColor lightGrayColor];
+        self.tableView.mj_footer = footer;
+    }
+    return _tableView;
+}
+-(SWUMainDataSource *)dataSource {
+    if (!_dataSource) {
+        self.dataSource = [[SWUMainDataSource alloc] initWithIdentifier:ID configBloc:^(SWUBookCaseCell *cell, id  _Nullable model, NSIndexPath * _Nullable indexPath) {
+            cell.model = model;
+        }];
+    }
+    return _dataSource;
+}
+
+-(void)reload {
+    if (self.tableView.contentSize.height < self.tableView.frame.size.height) {
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+    }
+    [self.tableView reloadData];
+}
 
 
 

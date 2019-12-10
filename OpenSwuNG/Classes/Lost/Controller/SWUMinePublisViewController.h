@@ -8,10 +8,10 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void (^RefreshDataBlock)(void);
+typedef void(^AfterDeleteRefreshDataBlock)(id model);
 
 @interface SWUMinePublisViewController : UIViewController
-@property (nonatomic,copy) RefreshDataBlock refreshBlock;
+@property (nonatomic,copy) AfterDeleteRefreshDataBlock refreshBlock;
 @end
 
 NS_ASSUME_NONNULL_END

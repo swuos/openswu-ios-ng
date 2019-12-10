@@ -140,7 +140,7 @@
     }
     if (self.searchBtnBlock) {
 //        NSLog(@"%@--%@",self.startLabel.text, self.endLabel.text);
-        self.searchBtnBlock(self.startLabel.text, self.endLabel.text,CGRectGetMaxY(self.backView.frame)+20);
+        self.searchBtnBlock(self.startLabel.text, self.endLabel.text,CGRectGetMaxY(self.backView.frame)+10);
     }
 }
 
@@ -154,7 +154,6 @@
     picker.block = ^(NSString * _Nonnull station) {
         stationLabel.text = station;
     };
-    
     if (self.selectStationBlock) {
         self.selectStationBlock(picker);
     }

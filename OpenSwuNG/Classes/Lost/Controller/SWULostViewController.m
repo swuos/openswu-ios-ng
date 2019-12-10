@@ -8,32 +8,33 @@
 #import "SWULostViewController.h"
 #import "SWULostCell.h"
 #import "SVProgressHUD.h"
-#import "SWUFactory.h"
 #import "SWULostModel.h"
 #import "SWUPublishViewController.h"
 #import "SWUMinePublisViewController.h"
 #import "MJRefresh.h"
-#import "SWULibraryPlaceHoldCell.h"
 #import "Constants.h"
 
-@interface SWULostViewController ()<UITableViewDataSource,UITableViewDelegate>
+#import "SWUDataSource.h"
+#import "SWUBaseData.h"
+
+#define WHBtn 60
+#define leftPadding 70
+#define bottom 150
+@interface SWULostViewController ()<UITableViewDelegate>
 @property (nonatomic,strong) UITableView *tableView;
-@property (nonatomic,strong) NSMutableArray *dataArray;
 @property (nonatomic,assign) BOOL isChanged;//悬浮按钮
 @property (nonatomic,strong) UIButton *publishBtn;
 @property (nonatomic,strong) UIButton *minePublishBtn;
 @property (nonatomic,strong) UIView *hideView;
+@property (nonatomic,strong) UIButton *floatBtn;
 @property (nonatomic,assign) NSInteger currentArrayCount;
-@end
 
+@property (nonatomic,strong) SWUDataSource *dataSource;
+
+@end
+static NSString * const ID = @"Lost";
 @implementation SWULostViewController
 
--(NSMutableArray *)dataArray {
-    if (!_dataArray) {
-        _dataArray = [NSMutableArray array];
-    }
-    return _dataArray;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -41,69 +42,14 @@
     self.navigationItem.title = @"失物招领";
     self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
     
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [self.view addSubview:self.tableView];
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 20, 0, 20)];
-    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
-    self.tableView.separatorColor = [UIColor lightGrayColor];
-    
-//    刷新
-    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [self requestNewDataPageNumber:self.dataArray.count/20+1 model:[SWULostModel class]];
-    }];
-    [footer setTitle:@"点击或上拉刷新" forState:MJRefreshStateIdle];
-    [footer setTitle:@"加载中 ..." forState:MJRefreshStateRefreshing];
-    [footer setTitle:@"(∩_∩) 没有更多数据啦！" forState:MJRefreshStateNoMoreData];
-    footer.stateLabel.font = [UIFont systemFontOfSize:17];
-    footer.stateLabel.textColor = [UIColor lightGrayColor];
-    self.tableView.mj_footer = footer;
-    
-    
     self.isChanged = NO;
     //    添加悬浮按钮
-    CGFloat WHBtn = 60;
-    CGFloat leftPadding = 70;
-    CGFloat bottom = 150;
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(self.view.frame.size.width-WHBtn-leftPadding,self.tableView.frame.size.height -2*bottom, WHBtn, WHBtn);
-    btn.alpha = 1.0;
-    btn.layer.cornerRadius = WHBtn * 0.5;
-    [btn setBackgroundImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
-    [btn addTarget:self action:@selector(addBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIPanGestureRecognizer *drag = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moveByTouch:)];
-    [btn addGestureRecognizer:drag];
-    
-    
-    self.publishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.publishBtn.frame = btn.frame;
-    [self.publishBtn setTitle:@"发" forState:UIControlStateNormal];
-    self.publishBtn.tintColor = [UIColor whiteColor];
-    self.publishBtn.layer.cornerRadius = WHBtn * 0.5;
-    [self.publishBtn addTarget:self action:@selector(PublishBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    self.publishBtn.backgroundColor = [UIColor colorWithRed:254/255.0 green:148/255.0 blue:23/255.0 alpha:1.0];
     [self.view addSubview:self.publishBtn];
-    
-    self.minePublishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.minePublishBtn.frame = btn.frame;
-    [self.minePublishBtn setTitle:@"我" forState:UIControlStateNormal];
-    [self.minePublishBtn addTarget:self action:@selector(minePublishBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-    self.minePublishBtn.backgroundColor = [UIColor colorWithRed:52/255.0 green:170/255.0 blue:245/255.0 alpha:1.0];
-    self.minePublishBtn.layer.cornerRadius = WHBtn * 0.5;
     [self.view addSubview:self.minePublishBtn];
-    
-//   掩盖透明的背景
-    UIView *hideView = [[UIView alloc] initWithFrame:btn.frame];
-    hideView.backgroundColor = [UIColor whiteColor];
-    self.hideView = hideView;
-    self.hideView.layer.cornerRadius = btn.layer.cornerRadius;
-    [self.view addSubview:_hideView];
-    [self.view addSubview:btn];
-    
-    [self requestNewDataPageNumber:self.dataArray.count/20+1 model:[SWULostModel class]];
+    [self.view addSubview:self.hideView];
+    [self.view addSubview:self.floatBtn];
+    [self requestNewDataPageNumber:self.dataSource.dataArray.count/20+1 model:[SWULostModel class]];
 }
 
 
@@ -117,31 +63,7 @@
 }
 
 
-#pragma mark ------ dataSource -------
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.dataArray.count > 0 ? self.dataArray.count:0;
-}
-
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.dataArray.count <= 0) {
-        self.tableView.mj_footer = nil;
-        SWULibraryPlaceHoldCell *cell = [[SWULibraryPlaceHoldCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
-        return cell;
-    }
-    NSString * ID = @"Lost";
-    SWULostCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (!cell) {
-        cell = [[SWULostCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-    }
-    cell.model = self.dataArray[indexPath.row];
-    
-    return cell;
-}
-
+#pragma mark ------ delegate -------
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -149,30 +71,22 @@
 
 #pragma mark ------ 数据请求 -------
 -(void)requestNewDataPageNumber:(NSInteger)pageNumber model:(id)model{
-    if (self.currentArrayCount == self.dataArray.count && self.dataArray.count > 0) {
+    if (self.currentArrayCount == self.dataSource.dataArray.count && self.dataSource.dataArray.count > 0) {
         [self.tableView.mj_footer endRefreshingWithNoMoreData];
         return;
     }
     [SVProgressHUD showWithStatus:@"加载中。。。。。"];
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
-    self.currentArrayCount = self.dataArray.count;
+    self.currentArrayCount = self.dataSource.dataArray.count;
     
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        AFHTTPSessionManager * manager = [SWUFactory SWUFactoryManage];
-        NSString *url = [NSString stringWithFormat:@"https://freegatty.swuosa.xenoeye.org/queryLostFoundRecord?pageSize=20&pageNo=%ld",pageNumber];
-//        NSLog(@"%@",url);
-        [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            [self.tableView.mj_footer endRefreshing];
-            NSArray *tempArray = [self convertToArray:responseObject[@"data"]];
-            tempArray = [SWUFactory getData:tempArray model:model];
-            [self.dataArray addObjectsFromArray:tempArray];
-            [self.tableView reloadData];
-            [SVProgressHUD dismiss];
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            NSLog(@"%@",error);
-            [SVProgressHUD showErrorWithStatus:@"出现错误"];
-        }];
-    });
+    [SWUBaseData loadDatawithMethod:@"get" url:[NSString stringWithFormat:@"queryLostFoundRecord?pageSize=20&pageNo=%ld",pageNumber] params:nil keyword:@"data" model:model success:^(NSArray * _Nonnull dataArray) {
+        [self.tableView.mj_footer endRefreshing];
+        [self.dataSource addDataArray:dataArray];
+        [self reload];
+        [SVProgressHUD dismiss];
+    } failure:^(id  _Nonnull error) {
+        [SVProgressHUD showErrorWithStatus:@"出现错误"];
+    }];
 }
 
 -(NSArray *)convertToArray:(NSDictionary *)Dic {
@@ -260,9 +174,10 @@
         return ;
     }
     SWUMinePublisViewController *minePublishVc = [[SWUMinePublisViewController alloc] init];
-    minePublishVc.refreshBlock = ^{
-        [self.dataArray removeAllObjects];
-        [self requestNewDataPageNumber:self.dataArray.count/20+1 model:[SWULostModel class]];
+    minePublishVc.refreshBlock = ^(SWULostModel *model) {
+        [self.dataSource.dataArray removeAllObjects];
+        [self reload];
+        [self requestNewDataPageNumber:1 model:[SWULostModel class]];
     };
     [self.navigationController pushViewController:minePublishVc animated:YES];
 }
@@ -273,11 +188,103 @@
         return ;
     }
     SWUPublishViewController *publishVc = [[SWUPublishViewController alloc] init];
+    
     publishVc.refreshBlock = ^{
-        [self.dataArray removeAllObjects];
-        [self requestNewDataPageNumber:self.dataArray.count/20+1 model:[SWULostModel class]];
+        [self requestNewDataPageNumber:1 model:[SWULostModel class]];
     };
     [self.navigationController pushViewController:publishVc animated:YES];
+}
+
+#pragma mark ------ lazyLoad -------
+-(UITableView *)tableView {
+    if (!_tableView) {
+        self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        self.tableView.dataSource = self.dataSource;
+        self.tableView.delegate = self;
+        self.tableView.rowHeight = UITableViewAutomaticDimension;
+        [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 20, 0, 20)];
+        [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+        self.tableView.separatorColor = [UIColor lightGrayColor];
+        [self.tableView registerClass:[SWULostCell class] forCellReuseIdentifier:ID];
+        
+        //    刷新
+        MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            [self requestNewDataPageNumber:self.dataSource.dataArray.count/20+1 model:[SWULostModel class]];
+        }];
+        [footer setTitle:@"点击或上拉刷新" forState:MJRefreshStateIdle];
+        [footer setTitle:@"加载中 ..." forState:MJRefreshStateRefreshing];
+        [footer setTitle:@"(∩_∩) 没有更多数据啦！" forState:MJRefreshStateNoMoreData];
+        footer.stateLabel.font = [UIFont systemFontOfSize:17];
+        footer.stateLabel.textColor = [UIColor lightGrayColor];
+        self.tableView.mj_footer = footer;
+    }
+    return _tableView;
+}
+-(SWUDataSource *)dataSource {
+    if (!_dataSource) {
+        self.dataSource = [[SWUDataSource alloc] initWithIdentifier:ID configBloc:^(SWULostCell *cell, id  _Nullable model, NSIndexPath * _Nullable indexPath) {
+            cell.model = model;
+        }];
+    }
+    return _dataSource;
+}
+//@property (nonatomic,strong) UIButton *publishBtn;
+-(UIButton *)publishBtn {
+    if (!_publishBtn) {
+        self.publishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.publishBtn.frame = self.floatBtn.frame;
+        [self.publishBtn setTitle:@"发" forState:UIControlStateNormal];
+        self.publishBtn.tintColor = [UIColor whiteColor];
+        self.publishBtn.layer.cornerRadius = WHBtn * 0.5;
+        [self.publishBtn addTarget:self action:@selector(PublishBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        self.publishBtn.backgroundColor = [UIColor colorWithRed:254/255.0 green:148/255.0 blue:23/255.0 alpha:1.0];
+    }
+    return _publishBtn;
+}
+//@property (nonatomic,strong) UIButton *minePublishBtn;
+-(UIButton *)minePublishBtn {
+    if (!_minePublishBtn) {
+        self.minePublishBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.minePublishBtn.frame = self.floatBtn.frame;
+        [self.minePublishBtn setTitle:@"我" forState:UIControlStateNormal];
+        [self.minePublishBtn addTarget:self action:@selector(minePublishBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        self.minePublishBtn.backgroundColor = [UIColor colorWithRed:52/255.0 green:170/255.0 blue:245/255.0 alpha:1.0];
+        self.minePublishBtn.layer.cornerRadius = WHBtn * 0.5;
+    }
+    return _minePublishBtn;
+}
+-(UIButton *)floatBtn {
+    if (!_floatBtn) {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.frame = CGRectMake(self.view.frame.size.width-WHBtn-leftPadding,self.tableView.frame.size.height -2*bottom, WHBtn, WHBtn);
+        btn.alpha = 1.0;
+        btn.layer.cornerRadius = WHBtn * 0.5;
+        [btn setBackgroundImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
+        [btn addTarget:self action:@selector(addBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        UIPanGestureRecognizer *drag = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(moveByTouch:)];
+        [btn addGestureRecognizer:drag];
+        self.floatBtn = btn;
+    }
+    return _floatBtn;
+}
+//@property (nonatomic,strong) UIView *hideView;
+-(UIView *)hideView {
+    if (!_hideView) {
+        UIView *hideView = [[UIView alloc] initWithFrame:self.floatBtn.frame];
+        hideView.backgroundColor = [UIColor whiteColor];
+        self.hideView = hideView;
+        self.hideView.layer.cornerRadius = self.floatBtn.layer.cornerRadius;
+    }
+    return _hideView;
+}
+
+#pragma mark ------ privateMethod -------
+
+-(void)reload {
+    if (self.tableView.contentSize.height < self.tableView.frame.size.height) {
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+    }
+    [self.tableView reloadData];
 }
 
 @end

@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E23245B23915E78001E74EC /* load.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0E23245A23915E78001E74EC /* load.gif */; };
 		0E422A6823829B9D00D3B3ED /* SWUMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4229A223829B9C00D3B3ED /* SWUMainViewController.m */; };
 		0E422A6923829B9D00D3B3ED /* SWUNewsInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4229A323829B9C00D3B3ED /* SWUNewsInfoController.m */; };
 		0E422A6A23829B9D00D3B3ED /* SWUNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4229A623829B9C00D3B3ED /* SWUNewsCell.m */; };
-		0E422A6B23829B9D00D3B3ED /* SWUMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4229A823829B9C00D3B3ED /* SWUMainModel.m */; };
 		0E422A6C23829B9D00D3B3ED /* SWUNewsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4229AB23829B9C00D3B3ED /* SWUNewsModel.m */; };
 		0E422A6D23829B9D00D3B3ED /* SWUHomeSchedule.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4229AD23829B9C00D3B3ED /* SWUHomeSchedule.m */; };
 		0E422A6E23829B9D00D3B3ED /* SWUHomeScheduleSubview.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4229AE23829B9C00D3B3ED /* SWUHomeScheduleSubview.m */; };
@@ -46,7 +46,6 @@
 		0E422A8C23829B9D00D3B3ED /* SWUPopularModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4229F623829B9C00D3B3ED /* SWUPopularModel.m */; };
 		0E422A8D23829B9D00D3B3ED /* SWULibraryCollectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4229FA23829B9C00D3B3ED /* SWULibraryCollectModel.m */; };
 		0E422A8E23829B9D00D3B3ED /* SWULibraryBorrowingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4229FB23829B9C00D3B3ED /* SWULibraryBorrowingModel.m */; };
-		0E422A8F23829B9D00D3B3ED /* SWULibraryPlaceHoldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4229FE23829B9C00D3B3ED /* SWULibraryPlaceHoldCell.m */; };
 		0E422A9023829B9D00D3B3ED /* SWULibraryHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E4229FF23829B9C00D3B3ED /* SWULibraryHistoryModel.m */; };
 		0E422A9123829B9D00D3B3ED /* SWUBookCaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E422A0223829B9C00D3B3ED /* SWUBookCaseCell.m */; };
 		0E422A9223829B9D00D3B3ED /* SWULibraryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E422A0323829B9C00D3B3ED /* SWULibraryCell.m */; };
@@ -89,6 +88,11 @@
 		0E422AB723829B9D00D3B3ED /* SWULoginLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E422A6223829B9D00D3B3ED /* SWULoginLabel.m */; };
 		0E422AB823829B9D00D3B3ED /* SWUVerificationCodeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E422A6323829B9D00D3B3ED /* SWUVerificationCodeButton.m */; };
 		0E422AB923829B9D00D3B3ED /* SWUTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E422A6723829B9D00D3B3ED /* SWUTextField.m */; };
+		0EBAA1E1239D3A5C00ACC960 /* SWUBaseData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBAA1E0239D3A5C00ACC960 /* SWUBaseData.m */; };
+		0EBAA1E4239DEDF200ACC960 /* SWUDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBAA1E3239DEDF200ACC960 /* SWUDataSource.m */; };
+		0EBAA1E9239E367A00ACC960 /* SWUMainDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBAA1E8239E367A00ACC960 /* SWUMainDataSource.m */; };
+		0EBAA1ED239E477500ACC960 /* Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBAA1EC239E477500ACC960 /* Factory.m */; };
+		0EBAA1F3239E6C6900ACC960 /* SWUPublishView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EBAA1F2239E6C6900ACC960 /* SWUPublishView.m */; };
 		4B4B04DA213ECC67008FA20D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B4B04D9213ECC67008FA20D /* Assets.xcassets */; };
 		4B4B04DD213ECC67008FA20D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B4B04DB213ECC67008FA20D /* LaunchScreen.storyboard */; };
 		DC09C91A2C60A4222D2326BA /* libPods-OpenSwuNG.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 055E4E42096CDE36E1746EE7 /* libPods-OpenSwuNG.a */; };
@@ -96,15 +100,14 @@
 
 /* Begin PBXFileReference section */
 		055E4E42096CDE36E1746EE7 /* libPods-OpenSwuNG.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OpenSwuNG.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E23245A23915E78001E74EC /* load.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = load.gif; sourceTree = "<group>"; };
 		0E4229A123829B9C00D3B3ED /* SWUNewsInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUNewsInfoController.h; sourceTree = "<group>"; };
 		0E4229A223829B9C00D3B3ED /* SWUMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUMainViewController.m; sourceTree = "<group>"; };
 		0E4229A323829B9C00D3B3ED /* SWUNewsInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUNewsInfoController.m; sourceTree = "<group>"; };
 		0E4229A423829B9C00D3B3ED /* SWUMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUMainViewController.h; sourceTree = "<group>"; };
 		0E4229A623829B9C00D3B3ED /* SWUNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUNewsCell.m; sourceTree = "<group>"; };
 		0E4229A723829B9C00D3B3ED /* SWUNewsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUNewsModel.h; sourceTree = "<group>"; };
-		0E4229A823829B9C00D3B3ED /* SWUMainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUMainModel.m; sourceTree = "<group>"; };
 		0E4229A923829B9C00D3B3ED /* SWUNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUNewsCell.h; sourceTree = "<group>"; };
-		0E4229AA23829B9C00D3B3ED /* SWUMainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUMainModel.h; sourceTree = "<group>"; };
 		0E4229AB23829B9C00D3B3ED /* SWUNewsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUNewsModel.m; sourceTree = "<group>"; };
 		0E4229AD23829B9C00D3B3ED /* SWUHomeSchedule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUHomeSchedule.m; sourceTree = "<group>"; };
 		0E4229AE23829B9C00D3B3ED /* SWUHomeScheduleSubview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUHomeScheduleSubview.m; sourceTree = "<group>"; };
@@ -168,13 +171,11 @@
 		0E4229F423829B9C00D3B3ED /* SWULibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWULibraryViewController.m; sourceTree = "<group>"; };
 		0E4229F623829B9C00D3B3ED /* SWUPopularModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUPopularModel.m; sourceTree = "<group>"; };
 		0E4229F723829B9C00D3B3ED /* SWULibraryHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWULibraryHistoryModel.h; sourceTree = "<group>"; };
-		0E4229F823829B9C00D3B3ED /* SWULibraryPlaceHoldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWULibraryPlaceHoldCell.h; sourceTree = "<group>"; };
 		0E4229F923829B9C00D3B3ED /* SWUBookCaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUBookCaseCell.h; sourceTree = "<group>"; };
 		0E4229FA23829B9C00D3B3ED /* SWULibraryCollectModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWULibraryCollectModel.m; sourceTree = "<group>"; };
 		0E4229FB23829B9C00D3B3ED /* SWULibraryBorrowingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWULibraryBorrowingModel.m; sourceTree = "<group>"; };
 		0E4229FC23829B9C00D3B3ED /* SWULibraryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWULibraryCell.h; sourceTree = "<group>"; };
 		0E4229FD23829B9C00D3B3ED /* SWUPopularModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUPopularModel.h; sourceTree = "<group>"; };
-		0E4229FE23829B9C00D3B3ED /* SWULibraryPlaceHoldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWULibraryPlaceHoldCell.m; sourceTree = "<group>"; };
 		0E4229FF23829B9C00D3B3ED /* SWULibraryHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWULibraryHistoryModel.m; sourceTree = "<group>"; };
 		0E422A0023829B9C00D3B3ED /* SWULibraryBorrowingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWULibraryBorrowingModel.h; sourceTree = "<group>"; };
 		0E422A0123829B9C00D3B3ED /* SWULibraryCollectModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWULibraryCollectModel.h; sourceTree = "<group>"; };
@@ -257,6 +258,16 @@
 		0E422A6523829B9D00D3B3ED /* SWULoginLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWULoginLabel.h; sourceTree = "<group>"; };
 		0E422A6623829B9D00D3B3ED /* SWUVerificationCodeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWUVerificationCodeButton.h; sourceTree = "<group>"; };
 		0E422A6723829B9D00D3B3ED /* SWUTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWUTextField.m; sourceTree = "<group>"; };
+		0EBAA1DF239D3A5C00ACC960 /* SWUBaseData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUBaseData.h; sourceTree = "<group>"; };
+		0EBAA1E0239D3A5C00ACC960 /* SWUBaseData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUBaseData.m; sourceTree = "<group>"; };
+		0EBAA1E2239DEDF200ACC960 /* SWUDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUDataSource.h; sourceTree = "<group>"; };
+		0EBAA1E3239DEDF200ACC960 /* SWUDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUDataSource.m; sourceTree = "<group>"; };
+		0EBAA1E7239E367A00ACC960 /* SWUMainDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWUMainDataSource.h; sourceTree = "<group>"; };
+		0EBAA1E8239E367A00ACC960 /* SWUMainDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWUMainDataSource.m; sourceTree = "<group>"; };
+		0EBAA1EB239E477500ACC960 /* Factory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Factory.h; sourceTree = "<group>"; };
+		0EBAA1EC239E477500ACC960 /* Factory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Factory.m; sourceTree = "<group>"; };
+		0EBAA1F1239E6C6900ACC960 /* SWUPublishView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SWUPublishView.h; path = OpenSwuNG/Classes/Lost/SWUPublishView.h; sourceTree = SOURCE_ROOT; };
+		0EBAA1F2239E6C6900ACC960 /* SWUPublishView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SWUPublishView.m; path = OpenSwuNG/Classes/Lost/SWUPublishView.m; sourceTree = SOURCE_ROOT; };
 		4B4B04CD213ECC66008FA20D /* OpenSwuNG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenSwuNG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4B04D9213ECC67008FA20D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B4B04DC213ECC67008FA20D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -280,6 +291,8 @@
 		0E42299E23829B9C00D3B3ED /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0EBAA1EA239E475900ACC960 /* Until */,
+				0EBAA1E6239E2D4200ACC960 /* Base */,
 				0E42299F23829B9C00D3B3ED /* Home */,
 				0E4229B723829B9C00D3B3ED /* Schedule */,
 				0E4229D023829B9C00D3B3ED /* Lost */,
@@ -287,7 +300,6 @@
 				0E4229ED23829B9C00D3B3ED /* Library */,
 				0E422A0923829B9C00D3B3ED /* About */,
 				0E422A1823829B9C00D3B3ED /* ByWay */,
-				0E422A2A23829B9C00D3B3ED /* Constants.h */,
 				0E422A2B23829B9C00D3B3ED /* Score */,
 				0E422A3F23829B9C00D3B3ED /* Mine */,
 				0E422A5023829B9D00D3B3ED /* Main */,
@@ -299,6 +311,7 @@
 		0E42299F23829B9C00D3B3ED /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				0E23245A23915E78001E74EC /* load.gif */,
 				0E4229A023829B9C00D3B3ED /* Controller */,
 				0E4229A523829B9C00D3B3ED /* Model */,
 				0E4229AC23829B9C00D3B3ED /* View */,
@@ -320,12 +333,10 @@
 		0E4229A523829B9C00D3B3ED /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0E4229A623829B9C00D3B3ED /* SWUNewsCell.m */,
 				0E4229A723829B9C00D3B3ED /* SWUNewsModel.h */,
-				0E4229A823829B9C00D3B3ED /* SWUMainModel.m */,
-				0E4229A923829B9C00D3B3ED /* SWUNewsCell.h */,
-				0E4229AA23829B9C00D3B3ED /* SWUMainModel.h */,
 				0E4229AB23829B9C00D3B3ED /* SWUNewsModel.m */,
+				0EBAA1E7239E367A00ACC960 /* SWUMainDataSource.h */,
+				0EBAA1E8239E367A00ACC960 /* SWUMainDataSource.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -333,16 +344,18 @@
 		0E4229AC23829B9C00D3B3ED /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0E4229A923829B9C00D3B3ED /* SWUNewsCell.h */,
+				0E4229A623829B9C00D3B3ED /* SWUNewsCell.m */,
+				0E4229B223829B9C00D3B3ED /* SWUHomeSchedule.h */,
 				0E4229AD23829B9C00D3B3ED /* SWUHomeSchedule.m */,
+				0E4229B323829B9C00D3B3ED /* SWUHomeScheduleSubview.h */,
 				0E4229AE23829B9C00D3B3ED /* SWUHomeScheduleSubview.m */,
+				0E4229B623829B9C00D3B3ED /* SWUMainHeaderView.h */,
 				0E4229AF23829B9C00D3B3ED /* SWUMainHeaderView.m */,
 				0E4229B023829B9C00D3B3ED /* SWUMainButton.h */,
-				0E4229B123829B9C00D3B3ED /* SWUHomeBanner.m */,
-				0E4229B223829B9C00D3B3ED /* SWUHomeSchedule.h */,
-				0E4229B323829B9C00D3B3ED /* SWUHomeScheduleSubview.h */,
-				0E4229B423829B9C00D3B3ED /* SWUHomeBanner.h */,
 				0E4229B523829B9C00D3B3ED /* SWUMainButton.m */,
-				0E4229B623829B9C00D3B3ED /* SWUMainHeaderView.h */,
+				0E4229B423829B9C00D3B3ED /* SWUHomeBanner.h */,
+				0E4229B123829B9C00D3B3ED /* SWUHomeBanner.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -361,10 +374,10 @@
 		0E4229B923829B9C00D3B3ED /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0E4229BA23829B9C00D3B3ED /* SWUScheduleViewController.m */,
-				0E4229BB23829B9C00D3B3ED /* SWUAlertViewController.m */,
 				0E4229BC23829B9C00D3B3ED /* SWUScheduleViewController.h */,
+				0E4229BA23829B9C00D3B3ED /* SWUScheduleViewController.m */,
 				0E4229BD23829B9C00D3B3ED /* SWUAlertViewController.h */,
+				0E4229BB23829B9C00D3B3ED /* SWUAlertViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -372,12 +385,12 @@
 		0E4229BE23829B9C00D3B3ED /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0E4229C223829B9C00D3B3ED /* Weekitem.h */,
 				0E4229BF23829B9C00D3B3ED /* Weekitem.m */,
 				0E4229C023829B9C00D3B3ED /* Data.h */,
-				0E4229C123829B9C00D3B3ED /* SWUScheduleModel.h */,
-				0E4229C223829B9C00D3B3ED /* Weekitem.h */,
-				0E4229C323829B9C00D3B3ED /* SWUScheduleModel.m */,
 				0E4229C423829B9C00D3B3ED /* Data.m */,
+				0E4229C123829B9C00D3B3ED /* SWUScheduleModel.h */,
+				0E4229C323829B9C00D3B3ED /* SWUScheduleModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -386,14 +399,14 @@
 			isa = PBXGroup;
 			children = (
 				0E4229C623829B9C00D3B3ED /* SWUCollectionViewCell.h */,
+				0E4229CC23829B9C00D3B3ED /* SWUCollectionViewCell.m */,
 				0E4229C723829B9C00D3B3ED /* SWUNavTitleView.h */,
+				0E4229CB23829B9C00D3B3ED /* SWUNavTitleView.m */,
+				0E4229CE23829B9C00D3B3ED /* SWUScrollview.h */,
 				0E4229C823829B9C00D3B3ED /* SWUScrollview.m */,
+				0E4229CD23829B9C00D3B3ED /* SWULabel.h */,
 				0E4229C923829B9C00D3B3ED /* SWULabel.m */,
 				0E4229CA23829B9C00D3B3ED /* SWUWeekSelectView.h */,
-				0E4229CB23829B9C00D3B3ED /* SWUNavTitleView.m */,
-				0E4229CC23829B9C00D3B3ED /* SWUCollectionViewCell.m */,
-				0E4229CD23829B9C00D3B3ED /* SWULabel.h */,
-				0E4229CE23829B9C00D3B3ED /* SWUScrollview.h */,
 				0E4229CF23829B9C00D3B3ED /* SWUWeekSelectView.m */,
 			);
 			path = View;
@@ -425,10 +438,8 @@
 		0E4229D823829B9C00D3B3ED /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0E4229D923829B9C00D3B3ED /* SWULostCell.h */,
-				0E4229DA23829B9C00D3B3ED /* SWULostModel.m */,
-				0E4229DB23829B9C00D3B3ED /* SWULostCell.m */,
 				0E4229DC23829B9C00D3B3ED /* SWULostModel.h */,
+				0E4229DA23829B9C00D3B3ED /* SWULostModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -436,6 +447,10 @@
 		0E4229DD23829B9C00D3B3ED /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0E4229D923829B9C00D3B3ED /* SWULostCell.h */,
+				0E4229DB23829B9C00D3B3ED /* SWULostCell.m */,
+				0EBAA1F1239E6C6900ACC960 /* SWUPublishView.h */,
+				0EBAA1F2239E6C6900ACC960 /* SWUPublishView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -481,11 +496,11 @@
 		0E4229EE23829B9C00D3B3ED /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0E4229F323829B9C00D3B3ED /* SWUBookCaseController.h */,
 				0E4229EF23829B9C00D3B3ED /* SWUBookCaseController.m */,
+				0E4229F223829B9C00D3B3ED /* SWUSearchController.h */,
 				0E4229F023829B9C00D3B3ED /* SWUSearchController.m */,
 				0E4229F123829B9C00D3B3ED /* SWULibraryViewController.h */,
-				0E4229F223829B9C00D3B3ED /* SWUSearchController.h */,
-				0E4229F323829B9C00D3B3ED /* SWUBookCaseController.h */,
 				0E4229F423829B9C00D3B3ED /* SWULibraryViewController.m */,
 			);
 			path = Controller;
@@ -494,20 +509,14 @@
 		0E4229F523829B9C00D3B3ED /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0E4229F623829B9C00D3B3ED /* SWUPopularModel.m */,
 				0E4229F723829B9C00D3B3ED /* SWULibraryHistoryModel.h */,
-				0E4229F823829B9C00D3B3ED /* SWULibraryPlaceHoldCell.h */,
-				0E4229F923829B9C00D3B3ED /* SWUBookCaseCell.h */,
-				0E4229FA23829B9C00D3B3ED /* SWULibraryCollectModel.m */,
-				0E4229FB23829B9C00D3B3ED /* SWULibraryBorrowingModel.m */,
-				0E4229FC23829B9C00D3B3ED /* SWULibraryCell.h */,
-				0E4229FD23829B9C00D3B3ED /* SWUPopularModel.h */,
-				0E4229FE23829B9C00D3B3ED /* SWULibraryPlaceHoldCell.m */,
 				0E4229FF23829B9C00D3B3ED /* SWULibraryHistoryModel.m */,
-				0E422A0023829B9C00D3B3ED /* SWULibraryBorrowingModel.h */,
 				0E422A0123829B9C00D3B3ED /* SWULibraryCollectModel.h */,
-				0E422A0223829B9C00D3B3ED /* SWUBookCaseCell.m */,
-				0E422A0323829B9C00D3B3ED /* SWULibraryCell.m */,
+				0E4229FA23829B9C00D3B3ED /* SWULibraryCollectModel.m */,
+				0E422A0023829B9C00D3B3ED /* SWULibraryBorrowingModel.h */,
+				0E4229FB23829B9C00D3B3ED /* SWULibraryBorrowingModel.m */,
+				0E4229FD23829B9C00D3B3ED /* SWUPopularModel.h */,
+				0E4229F623829B9C00D3B3ED /* SWUPopularModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -515,10 +524,14 @@
 		0E422A0423829B9C00D3B3ED /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0E422A0523829B9C00D3B3ED /* SWUBookCaseHeaderView.m */,
-				0E422A0623829B9C00D3B3ED /* SWULibraryHeaderView.m */,
+				0E4229F923829B9C00D3B3ED /* SWUBookCaseCell.h */,
+				0E422A0223829B9C00D3B3ED /* SWUBookCaseCell.m */,
+				0E4229FC23829B9C00D3B3ED /* SWULibraryCell.h */,
+				0E422A0323829B9C00D3B3ED /* SWULibraryCell.m */,
 				0E422A0723829B9C00D3B3ED /* SWUBookCaseHeaderView.h */,
+				0E422A0523829B9C00D3B3ED /* SWUBookCaseHeaderView.m */,
 				0E422A0823829B9C00D3B3ED /* SWULibraryHeaderView.h */,
+				0E422A0623829B9C00D3B3ED /* SWULibraryHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -633,9 +646,9 @@
 			isa = PBXGroup;
 			children = (
 				0E422A3023829B9C00D3B3ED /* SWUScoreModel.h */,
-				0E422A3123829B9C00D3B3ED /* SWUScoreCell.m */,
 				0E422A3223829B9C00D3B3ED /* SWUScoreModel.m */,
 				0E422A3323829B9C00D3B3ED /* SWUScoreCell.h */,
+				0E422A3123829B9C00D3B3ED /* SWUScoreCell.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -683,9 +696,9 @@
 			isa = PBXGroup;
 			children = (
 				0E422A4723829B9D00D3B3ED /* SWUMineModel.h */,
-				0E422A4823829B9D00D3B3ED /* SWUBindingModel.m */,
 				0E422A4923829B9D00D3B3ED /* SWUMineModel.m */,
 				0E422A4A23829B9D00D3B3ED /* SWUBindingModel.h */,
+				0E422A4823829B9D00D3B3ED /* SWUBindingModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -694,9 +707,9 @@
 			isa = PBXGroup;
 			children = (
 				0E422A4C23829B9D00D3B3ED /* SWUHeaderView.h */,
-				0E422A4D23829B9D00D3B3ED /* SWUMineTableViewCell.m */,
-				0E422A4E23829B9D00D3B3ED /* SWUMineTableViewCell.h */,
 				0E422A4F23829B9D00D3B3ED /* SWUHeaderView.m */,
+				0E422A4E23829B9D00D3B3ED /* SWUMineTableViewCell.h */,
+				0E422A4D23829B9D00D3B3ED /* SWUMineTableViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -763,6 +776,27 @@
 				0E422A6723829B9D00D3B3ED /* SWUTextField.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		0EBAA1E6239E2D4200ACC960 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				0EBAA1DF239D3A5C00ACC960 /* SWUBaseData.h */,
+				0EBAA1E0239D3A5C00ACC960 /* SWUBaseData.m */,
+				0EBAA1E2239DEDF200ACC960 /* SWUDataSource.h */,
+				0EBAA1E3239DEDF200ACC960 /* SWUDataSource.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		0EBAA1EA239E475900ACC960 /* Until */ = {
+			isa = PBXGroup;
+			children = (
+				0E422A2A23829B9C00D3B3ED /* Constants.h */,
+				0EBAA1EB239E477500ACC960 /* Factory.h */,
+				0EBAA1EC239E477500ACC960 /* Factory.m */,
+			);
+			path = Until;
 			sourceTree = "<group>";
 		};
 		28EF1B5D3E93E805818CEC18 /* Pods */ = {
@@ -873,6 +907,7 @@
 				4B4B04DD213ECC67008FA20D /* LaunchScreen.storyboard in Resources */,
 				4B4B04DA213ECC67008FA20D /* Assets.xcassets in Resources */,
 				0E422AAA23829B9D00D3B3ED /* Mine.plist in Resources */,
+				0E23245B23915E78001E74EC /* load.gif in Resources */,
 				0E422A7223829B9D00D3B3ED /* course.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -938,8 +973,10 @@
 				0E422A8A23829B9D00D3B3ED /* SWUSearchController.m in Sources */,
 				0E422A7023829B9D00D3B3ED /* SWUHomeBanner.m in Sources */,
 				0E422A7123829B9D00D3B3ED /* SWUMainButton.m in Sources */,
+				0EBAA1F3239E6C6900ACC960 /* SWUPublishView.m in Sources */,
 				0E422AB023829B9D00D3B3ED /* SWUHeaderView.m in Sources */,
 				0E422A8123829B9D00D3B3ED /* SWULostCell.m in Sources */,
+				0EBAA1E9239E367A00ACC960 /* SWUMainDataSource.m in Sources */,
 				0E422AB523829B9D00D3B3ED /* SWUForgetPwdViewController.m in Sources */,
 				0E422AB423829B9D00D3B3ED /* SWULoginViewController.m in Sources */,
 				0E422A7823829B9D00D3B3ED /* SWUScrollview.m in Sources */,
@@ -967,14 +1004,15 @@
 				0E422AAD23829B9D00D3B3ED /* SWUBindingModel.m in Sources */,
 				0E422AA823829B9D00D3B3ED /* SWUScoreHeaderView.m in Sources */,
 				0E422A8923829B9D00D3B3ED /* SWUBookCaseController.m in Sources */,
-				0E422A6B23829B9D00D3B3ED /* SWUMainModel.m in Sources */,
 				0E422A7A23829B9D00D3B3ED /* SWUNavTitleView.m in Sources */,
 				0E422A6E23829B9D00D3B3ED /* SWUHomeScheduleSubview.m in Sources */,
 				0E422A6823829B9D00D3B3ED /* SWUMainViewController.m in Sources */,
 				0E422A9C23829B9D00D3B3ED /* SWUByWayPlanCell.m in Sources */,
+				0EBAA1E4239DEDF200ACC960 /* SWUDataSource.m in Sources */,
 				0E422A7523829B9D00D3B3ED /* Weekitem.m in Sources */,
 				0E422A8223829B9D00D3B3ED /* SWUFactory.m in Sources */,
 				0E422AB823829B9D00D3B3ED /* SWUVerificationCodeButton.m in Sources */,
+				0EBAA1ED239E477500ACC960 /* Factory.m in Sources */,
 				0E422A9D23829B9D00D3B3ED /* SWUByWayCell.m in Sources */,
 				0E422AA123829B9D00D3B3ED /* SWUByWayHeaderView.m in Sources */,
 				0E422A8D23829B9D00D3B3ED /* SWULibraryCollectModel.m in Sources */,
@@ -992,12 +1030,12 @@
 				0E422A9E23829B9D00D3B3ED /* SWUByWayModel.m in Sources */,
 				0E422A8523829B9D00D3B3ED /* UIBarButtonItem+Item.m in Sources */,
 				0E422AA323829B9D00D3B3ED /* SWUScoreCell.m in Sources */,
-				0E422A8F23829B9D00D3B3ED /* SWULibraryPlaceHoldCell.m in Sources */,
 				0E422AA623829B9D00D3B3ED /* SWUScrollerBackView.m in Sources */,
 				0E422AAF23829B9D00D3B3ED /* SWUMineTableViewCell.m in Sources */,
 				0E422A9623829B9D00D3B3ED /* SWUAboutUsViewController.m in Sources */,
 				0E422A9123829B9D00D3B3ED /* SWUBookCaseCell.m in Sources */,
 				0E422AA723829B9D00D3B3ED /* SWUPointView.m in Sources */,
+				0EBAA1E1239D3A5C00ACC960 /* SWUBaseData.m in Sources */,
 				0E422A9723829B9D00D3B3ED /* SWUUpdateLogViewController.m in Sources */,
 				0E422AAE23829B9D00D3B3ED /* SWUMineModel.m in Sources */,
 				0E422A9F23829B9D00D3B3ED /* SWUByWayPickerView.m in Sources */,

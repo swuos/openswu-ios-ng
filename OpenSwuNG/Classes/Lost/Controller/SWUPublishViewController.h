@@ -8,9 +8,9 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-typedef void (^RefreshDataBlock)(void);
+typedef void (^AfterPublishRefreshDataBlock)(void);
 @interface SWUPublishViewController : UIViewController
-@property (nonatomic,copy) RefreshDataBlock refreshBlock;
+@property (nonatomic,copy) AfterPublishRefreshDataBlock refreshBlock;
 @end
 
 NS_ASSUME_NONNULL_END

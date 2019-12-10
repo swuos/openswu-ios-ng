@@ -35,7 +35,7 @@
     SWUByWayHeaderView *backView = [[SWUByWayHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [self.view addSubview:backView];
     backView.searchBtnBlock = ^(NSString * _Nonnull start, NSString * _Nonnull end, CGFloat positionY) {
-         //https://www.cqmetro.cn/Front/html/TakeLine!queryYsTakeLine.action?entity.startStaName=%25E9%2587%258D%25E5%25BA%2586%25E5%259B%25BE%25E4%25B9%25A6%25E9%25A6%2586&entity.endStaName=%25E6%25B2%2599%25E5%259D%25AA%25E5%259D%259D
+    //https://www.cqmetro.cn/Front/html/TakeLine!queryYsTakeLine.action?entity.startStaName=%25E9%2587%258D%25E5%25BA%2586%25E5%259B%25BE%25E4%25B9%25A6%25E9%25A6%2586&entity.endStaName=%25E6%25B2%2599%25E5%259D%25AA%25E5%259D%259D
         [SVProgressHUD showWithStatus:@"查询中。。。。。"];
         [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
         //    https://nshipster.cn/nscharacterset/

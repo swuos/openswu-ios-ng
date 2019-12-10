@@ -10,14 +10,15 @@
 #import "SWUBookCaseCell.h"
 #import "SWUFactory.h"
 #import "SWULibraryCell.h"
-#import "SWULibraryPlaceHoldCell.h"
+
+#import "MJRefresh.h"
 
 
 @interface SWUSearchController ()<UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,strong) UITextField *searchTextField;
 @property (nonatomic,strong) NSArray *dataArray;
-//@property (nonatomic,strong) NSUserDefaults *userDefault;
 @property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) MJRefreshAutoNormalFooter *footer;
 @end
 
 @implementation SWUSearchController
@@ -30,17 +31,8 @@
 -(void)setUI {
     self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
-    CGFloat searchHeight = self.navigationController.navigationBar.frame.size.height * 0.7;
-    CGFloat radius = searchHeight * 0.5;
-    UITextField *searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width*0.5, searchHeight)];
-    searchTextField.layer.borderWidth = 0.5;
-    searchTextField.layer.borderColor = [UIColor orangeColor].CGColor;
-    searchTextField.layer.cornerRadius = radius;
-    UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, radius, searchHeight)];
-    searchTextField.leftView = leftView;
-    searchTextField.leftViewMode = UITextFieldViewModeAlways;
-    self.searchTextField = searchTextField;
-    UIView *searchBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width*0.5, searchHeight)];
+    
+    UIView *searchBackView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width*0.5, self.searchTextField.frame.size.height)];
     [searchBackView addSubview:self.searchTextField];
     self.navigationItem.titleView = searchBackView;
     
@@ -57,14 +49,6 @@
     [btn addTarget:self action:@selector(searchBtnDidClicked) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:view];
     
-    
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,44, self.view.frame.size.width, self.view.frame.size.height)];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.sectionHeaderHeight = 0;
-    self.tableView.sectionFooterHeight = 0;
     [self.view addSubview:self.tableView];
     
 }
@@ -96,10 +80,6 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString * ID = @"search";
-    if (self.dataArray.count <= 0) {
-        SWULibraryPlaceHoldCell *cell = [[SWULibraryPlaceHoldCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 40)];
-        return cell;
-    }
     SWULibraryCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
         cell = [[SWULibraryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
@@ -115,6 +95,7 @@
 
 #pragma mark ------ 自定义方法 -------
 -(void)searchBtnDidClicked {
+    [self.footer setTitle:@"(∩_∩) 没有更多数据啦！" forState:MJRefreshStateNoMoreData];
     if ([self.searchTextField canResignFirstResponder]) {
         //取消第一响应者。收回键盘
         [self.searchTextField resignFirstResponder];
@@ -137,13 +118,62 @@
             if (weakSelf.dataArray.count <= 0) {
                 [SVProgressHUD showInfoWithStatus:@"暂无馆藏～～～"];
             }
-            [self.tableView reloadData];
+            [self reload];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [SVProgressHUD showErrorWithStatus:@"请检查网络后重试！"];
         }];
     });
 }
 
+#pragma mark ------ lazyLoad -------
+//@property (nonatomic,strong) UITextField *searchTextField;
+-(UITextField *)searchTextField {
+    if (!_searchTextField) {
+        CGFloat searchHeight = self.navigationController.navigationBar.frame.size.height * 0.7;
+        CGFloat radius = searchHeight * 0.5;
+        UITextField *searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width*0.5, searchHeight)];
+        searchTextField.layer.borderWidth = 0.5;
+        searchTextField.layer.borderColor = [UIColor orangeColor].CGColor;
+        searchTextField.layer.cornerRadius = radius;
+        UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, radius, searchHeight)];
+        searchTextField.leftView = leftView;
+        searchTextField.leftViewMode = UITextFieldViewModeAlways;
+        self.searchTextField = searchTextField;
+    }
+    return _searchTextField;
+}
+//@property (nonatomic,strong) UITableView *tableView;
+-(UITableView *)tableView {
+    if (!_tableView) {
+        self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,44, self.view.frame.size.width, self.view.frame.size.height)];
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.tableView.rowHeight = UITableViewAutomaticDimension;
+        self.tableView.sectionHeaderHeight = 0;
+        
+        self.tableView.mj_footer = self.footer;
+    }
+    return _tableView;
+}
+-(MJRefreshAutoNormalFooter *)footer {
+    if (!_footer) {
+        self.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:nil];
+        [self.footer setTitle:@"点击或上拉刷新" forState:MJRefreshStateIdle];
+        [self.footer setTitle:@"加载中 ..." forState:MJRefreshStateRefreshing];
+        [self.footer setTitle:@"" forState:MJRefreshStateNoMoreData];
+        self.footer.stateLabel.font = [UIFont systemFontOfSize:17];
+        self.footer.stateLabel.textColor = [UIColor lightGrayColor];
+    }
+    return _footer;
+}
+
+-(void)reload {
+    if (self.tableView.contentSize.height < self.tableView.frame.size.height) {
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+    }
+    [self.tableView reloadData];
+}
 
 
 

@@ -8,6 +8,7 @@
 #import "SWUPickerView.h"
 #import "NSDate+PickerView.h"
 #import "UIButton+Login.h"
+#import "Factory.h"
 
 @interface SWUPickerView ()<UIPickerViewDataSource,UIPickerViewDelegate>
 /** picker的数据  */
@@ -47,9 +48,9 @@
     self.picker.dataSource = self;
     [self addSubview:self.picker];
     
-    UIImage * blueImage = [SWUPickerView createImageWithColor:[UIColor colorWithRed:24/255.0 green:113/255.0 blue:245/255.0 alpha:1.0]];//蓝色
-    UIImage * touchDownimage = [SWUPickerView createImageWithColor:[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0]];//灰色
-    UIImage *lightGrayImage = [SWUPickerView createImageWithColor:[UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1.0]];
+    UIImage * blueImage = [Factory createImageWithColor:[UIColor colorWithRed:24/255.0 green:113/255.0 blue:245/255.0 alpha:1.0]];//蓝色
+    UIImage * touchDownimage = [Factory createImageWithColor:[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0]];//灰色
+    UIImage *lightGrayImage = [Factory createImageWithColor:[UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1.0]];
     UIButton * okBtn = [UIButton ButtonWithTitle:@"确定" Frame:CGRectMake(0, CGRectGetMaxY(_picker.frame), frame.size.width*0.5, frame.size.height*0.2) Alignment:UIControlContentHorizontalAlignmentCenter titleColor:[UIColor blackColor]];
     [okBtn addTarget:self action:@selector(OkBtnClick) forControlEvents:UIControlEventTouchUpInside];
     [okBtn setBackgroundImage:touchDownimage forState:UIControlStateHighlighted];
@@ -130,14 +131,5 @@
 }
 
 
-+ (UIImage*)createImageWithColor:(UIColor*)color{
-    CGRect rect=CGRectMake(0.0f,0.0f,1.0f,1.0f);UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context=UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    UIImage* theImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return theImage;
-}
 
 @end

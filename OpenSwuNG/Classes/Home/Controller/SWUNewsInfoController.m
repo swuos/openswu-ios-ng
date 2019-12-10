@@ -20,15 +20,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //    self.navigationController.toolbarHidden = NO;//uitoolbar出现
-    
     self.view.backgroundColor = [UIColor whiteColor];
     SWUNewsModel * model ;
     if (self.newInfoBlock) {
-//        model = self.newInfoBlock();
         NSDictionary *resultDic = self.newInfoBlock();
         model = resultDic[@"model"];
-        self.navigationItem.title = [NSString stringWithFormat:@"%@详情",resultDic[@"name"]];
+        self.navigationItem.title = [NSString stringWithFormat:@"%@详情",resultDic[@"type"]];
     }
     
     [self setUI:model];
@@ -53,7 +50,6 @@
     titlelabel.center = CGPointMake(self.view.center.x, titlelabel.center.y);
     [contentView addSubview:titlelabel];
     
-    
     UILabel *timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-80, CGRectGetMaxY(titlelabel.frame)+5, 60, 20)];
     timeLabel.font = [UIFont systemFontOfSize:(fontSize - 6)];
     timeLabel.text = model.time;
@@ -75,9 +71,9 @@
         }
     }
     
-    UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(padding, CGRectGetMaxY(timeLabel.frame)+model.imgUrl.count * (picHeight + 2)+5, picWidth, 9000)];
+    UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(padding, CGRectGetMaxY(timeLabel.frame)+model.imgUrl.count * (picHeight + 2)+7, picWidth, 9000)];
     contentLabel.font = [UIFont systemFontOfSize:(fontSize - 3)];
-    contentLabel.text = [NSString stringWithFormat:@"    %@",model.contents];
+    contentLabel.text = [NSString stringWithFormat:@"    %@",[model.contents stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"]];
     contentLabel.numberOfLines = 0;
     size = [self calculateProperRect:contentLabel padding:padding];
     [contentLabel sizeToFit];
@@ -91,14 +87,16 @@
 }
 
 -(void)loadImageView:(NSString *)url imageView:(UIImageView *)imageView{
-    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [[AFHTTPResponseSerializer alloc]init];
-    [manager.requestSerializer setValue:@"image/jpeg" forHTTPHeaderField:@"Content-Type"];
-    [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject){
-        imageView.image = [UIImage imageWithData:responseObject];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
-    }];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
+        manager.responseSerializer = [[AFHTTPResponseSerializer alloc]init];
+        [manager.requestSerializer setValue:@"image/jpeg" forHTTPHeaderField:@"Content-Type"];
+        [manager GET:url parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject){
+            imageView.image = [UIImage imageWithData:responseObject];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"%@",error);
+        }];
+    });
 }
 //自适应label的高度
 -(CGSize )calculateProperRect:(UILabel *)label padding:(CGFloat)padding {
