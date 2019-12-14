@@ -37,6 +37,7 @@
 }
 
 -(void)loadSubviews:(NSInteger)currentWeek dataArr:(NSArray *)data date:(NSDateComponents *)date{
+    UILabel *tipLable;
     Weekitem * weekitem = [[Weekitem alloc] init];
     NSArray *trans = @[@7,@1,@2,@3,@4,@5,@6];
     NSString * day = [NSString string];
@@ -54,17 +55,18 @@
         }
         [todayData addObject:weekitem];
     }
+    
 
-//    按照a开始的节数进行排序
+//    按照开始的节数进行排序
     [todayData sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
         Weekitem *w1 = (Weekitem *)obj1;
         Weekitem *w2 = (Weekitem *)obj2;
         return w1.startTime.integerValue > w2.startTime.integerValue;
     }];
+    
 //    今日没课
-    UILabel *tipLable;
     if (todayData.count <= 0) {
-        tipLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.frame.size.height)];
+        tipLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.frame.size.height-15)];
         tipLable.text = @"～～～今日无课，放松下吧～～～";
         tipLable.textAlignment = NSTextAlignmentCenter;
         tipLable.alpha = 0.5;

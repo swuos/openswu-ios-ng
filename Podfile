@@ -11,5 +11,7 @@ target 'OpenSwuNG' do
   pod 'Masonry'
   pod 'MJExtension'
   pod 'SVProgressHUD'
+  pod 'MJRefresh', '~> 3.2.0'
+  pod 'SDWebImage', '~> 5.1.1'
 
 end

@@ -8,7 +8,8 @@
 #import <UIKit/UIKit.h>
 @class SWUNewsModel;
 NS_ASSUME_NONNULL_BEGIN
-typedef SWUNewsModel *_Nonnull(^showNewsInfoBlock) (void);
+//typedef SWUNewsModel *_Nonnull(^showNewsInfoBlock) (void);
+typedef NSDictionary *_Nonnull(^showNewsInfoBlock) (void);
 @interface SWUNewsInfoController : UIViewController
 
 @property (nonatomic,copy) showNewsInfoBlock newInfoBlock;

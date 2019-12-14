@@ -20,6 +20,9 @@
 #import "Masonry.h"
 #import "NSDate+DistanceOfTimes.h"
 #import "SWUFactory.h"
+#import "SWUBayWayViewController.h"
+#import "SWULostViewController.h"
+#import "UIImage+GIF.h"
 
 
 @interface SWUMainHeaderView()<UIScrollViewDelegate>
@@ -31,14 +34,14 @@
 @property(nonatomic,strong)UILabel *scheduleHeadLabel;
 /** schedule */
 @property(nonatomic,strong)SWUHomeSchedule *schedule;
-/** newsHead */
-@property(nonatomic,strong)UILabel *newsHeadLabel;
 /** userDefaults  */
 @property(nonatomic,strong)NSUserDefaults *userDefaults;
 /** 存储课程信息的dataArray  */
 @property(nonatomic,copy)NSArray *dataArray;
 @property (nonatomic,strong) UIButton *selectbtn;
 @property (nonatomic,strong) UIView *scrollLineView;
+@property (nonatomic,strong) UIImageView *loadImageView;
+@property (nonatomic,strong) UIView *backView;//存放热点新闻 通知公告等
 @end
 
 @implementation SWUMainHeaderView
@@ -62,9 +65,16 @@
     [self setUpButton];
     //    设置课表的显示
     [self setUpSchedule];
+    
+    [self setUpLoadGif];
     [self setUpNewsHead];
     
+    [self layoutIfNeeded];
+    [self setNeedsLayout];
+    self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width, CGRectGetMaxY(self.backView.frame));
 }
+
+
 #pragma mark - banner
 -(void)setUpBanner{
     [self layoutIfNeeded];
@@ -77,7 +87,7 @@
 -(void)setUpButton{
     self.buttons = [NSMutableArray arrayWithCapacity:4];
     //图片和标题
-    NSArray *titles = @[@"成绩查询",@"我的钱包",@"水费查询",@"图书查询"];
+    NSArray *titles = @[@"成绩查询",@"失物招领",@"轻轨查询",@"图书查询"];
     NSArray *images = @[@"main_grade",@"main_wallet",@"main_water",@"main_library"];
     CGFloat padding = 0;
     CGFloat cellWidth = 0;
@@ -100,13 +110,13 @@
     }
     
     UITapGestureRecognizer *tapGestureOfGrades = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonTapOfGrades)];
-    UITapGestureRecognizer *tapGestureOfWallet = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonTapOfWallet)];
-    UITapGestureRecognizer *tapGestureOfOther1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonTapOfWaterElectricFare)];
-    UITapGestureRecognizer *tapGestureOfOther2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonTapOfLibrary)];
+    UITapGestureRecognizer *tapGestureOfLost = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonTapOfLost)];
+    UITapGestureRecognizer *tapGestureOfBayWay = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonTapOfBayway)];
+    UITapGestureRecognizer *tapGestureOfLibrary = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonTapOfLibrary)];
     [self.buttons[0] addGestureRecognizer:tapGestureOfGrades];
-    [self.buttons[1] addGestureRecognizer:tapGestureOfWallet];
-    [self.buttons[2] addGestureRecognizer:tapGestureOfOther1];
-    [self.buttons[3] addGestureRecognizer:tapGestureOfOther2];
+    [self.buttons[1] addGestureRecognizer:tapGestureOfLost];
+    [self.buttons[2] addGestureRecognizer:tapGestureOfBayWay];
+    [self.buttons[3] addGestureRecognizer:tapGestureOfLibrary];
 }
 
 #pragma mark - 主页4个按钮事件
@@ -120,26 +130,17 @@
     SWUScoreViewController *scoreVc = [[SWUScoreViewController alloc] init];
     self.pushVcBlock(scoreVc);
 }
-// 查询钱包
--(void)buttonTapOfWallet{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NULL message:@"暂未开通" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil];
-    [alert addAction:cancelAction];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:okAction];
-    // 弹出对话框
-    self.alertVcBlock(alert);
+// 失物招领
+-(void)buttonTapOfLost{
+    SWULostViewController *lostVc = [[SWULostViewController alloc] init];
+    self.pushVcBlock(lostVc);
 }
-//
--(void)buttonTapOfWaterElectricFare{
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:NULL message:@"暂未开通" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDestructive handler:nil];
-    [alert addAction:cancelAction];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-    [alert addAction:okAction];
-    // 弹出对话框
-    self.alertVcBlock(alert);
+//轻轨
+-(void)buttonTapOfBayway{
+    SWUBayWayViewController *bayWayVc = [[SWUBayWayViewController alloc] init];
+    self.pushVcBlock(bayWayVc);
 }
+//图书馆
 -(void)buttonTapOfLibrary{
     SWULibraryViewController * libraryVc = [[SWULibraryViewController alloc] init];
     self.pushVcBlock(libraryVc);
@@ -166,9 +167,6 @@
     [self setUpScheduleHead];
     [self layoutIfNeeded];
     self.schedule = [SWUHomeSchedule homeScheduleWithFrame:CGRectMake(0, CGRectGetMaxY(_scheduleHeadLabel.frame)+_schedule.frame.size.height+13, SCREEN_WIDTH, SCREEN_HEIGHT/10.0)];
-    if ([[self.userDefaults objectForKey:@"cardNumber"] length] != 0){
-        [self loadScheduleSubviews];
-    }
     [self addSubview:self.schedule];
 }
 
@@ -184,8 +182,9 @@
 -(void)setUpNewsHead{
     UIView *backView = [[UIView alloc] initWithFrame:CGRectMake(15, CGRectGetMaxY(self.schedule.frame), self.frame.size.width-30, 30)];
     backView.userInteractionEnabled = YES;
-//    backView.backgroundColor = [UIColor orangeColor];
-    [self addSubview:backView];
+    //    backView.backgroundColor = [UIColor orangeColor];
+    self.backView = backView;
+    [self addSubview:self.backView];
     
     CGFloat lineSperator = 1;
     CGFloat width = (self.frame.size.width - 2*lineSperator-30)/3.0;
@@ -196,8 +195,8 @@
         [backView addSubview:btn];
     }
     [backView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self->_schedule.mas_bottom).offset(2);
-        make.left.right.equalTo(self->_banner);
+        make.top.equalTo(self.schedule.mas_bottom).offset(2);
+        make.left.right.equalTo(self.banner);
         make.height.equalTo(@30);
     }];
     self.scrollLineView = [[UIView alloc] initWithFrame:CGRectMake(0, backView.frame.size.height - 2, width - 20, 2)];
@@ -209,6 +208,7 @@
     self.selectbtn = [self viewWithTag:20];
     self.selectbtn.tintColor = [UIColor orangeColor];
 }
+
 -(UIButton *)creatBtnName:(NSString *)name frame:(CGRect)frame{
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
     btn.frame = frame;
@@ -219,14 +219,32 @@
     [btn addTarget:self action:@selector(changeVc:) forControlEvents:UIControlEventTouchUpInside];
     return btn;
 }
+#pragma mark ------ LoadGif -------
+-(void)setUpLoadGif {
+    CGFloat width = self.frame.size.width * 0.3;
+    UIImageView *loadImageView = [[UIImageView alloc] init];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"load" ofType:@"gif"];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    loadImageView.image = [UIImage sd_imageWithGIFData:data];
+    //    loadImageView.center = CGPointMake(self.center.x, loadImageView.center.y);
+    self.loadImageView = loadImageView;
+    [self addSubview:self.loadImageView];
+    [self.loadImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self).offset(width);
+        make.right.equalTo(self).offset(-width);
+        make.top.equalTo(self.mas_bottom).offset(-20);
+        make.height.equalTo(self.loadImageView.mas_width).multipliedBy(494/658.0);
+    }];
+}
 
 -(void)changeVc:(UIButton *)btn {
-//    NSLog(@"%@  %@",btn,btn.titleLabel.text);
+    self.loadImageView.hidden = NO;
+    //    NSLog(@"%@  %@",btn,btn.titleLabel.text);
     [UIView animateWithDuration:0.3 animations:^{
-        self->_selectbtn.tintColor = [UIColor blackColor];
+        self.selectbtn.tintColor = [UIColor blackColor];
         btn.tintColor = [UIColor orangeColor];
-        self->_selectbtn = btn;
-        self->_scrollLineView.center = CGPointMake(btn.center.x, self->_scrollLineView.center.y);
+        self.selectbtn = btn;
+        self.scrollLineView.center = CGPointMake(btn.center.x, self.scrollLineView.center.y);
     }];
     self.changeVcBlock(btn.titleLabel.text);
 }
@@ -236,6 +254,7 @@
     moreNews.title = @"失物招领";
     self.pushVcBlock(moreNews);
 }
+
 #pragma mark - UISrollerViewDelegate
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     [self.banner stopTimer];
@@ -250,6 +269,27 @@
 
 -(void)scrollViewDidEndDecelerating:(SWUHomeBanner *)scrollView{
     [self.banner startTimer];
+}
+
+- (void)reSetUpSchedule {
+    for (UIView *view in self.schedule.subviews) {
+        [view removeFromSuperview];
+    }
+    if ([[self.userDefaults objectForKey:@"cardNumber"] length] != 0){
+        [self loadScheduleSubviews];
+    }else {
+        UILabel *tipLable = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, self.schedule.frame.size.height)];
+        tipLable.text = @"～～～请先绑定校园卡～～～";
+        tipLable.textAlignment = NSTextAlignmentCenter;
+        tipLable.alpha = 0.5;
+        tipLable.textColor = [UIColor grayColor];
+        self.schedule.contentSize = tipLable.frame.size;
+        [self.schedule addSubview:tipLable];
+    }
+}
+
+-(void)hideLoadImage {
+    self.loadImageView.hidden = YES;
 }
 
 @end
